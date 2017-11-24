@@ -4,6 +4,7 @@
     <tr>
       <th>#</th>
       <th>Customer</th>
+      <th>Shipping Name</th>
       <th>Date</th>
       <th>Date Shipped</th>
       <th></th>
@@ -12,6 +13,7 @@
   <tbody>
     <tr *ngFor="let order of orders$ | async; let i = index">
       <td>{{ i + 1 }}</td>
+      <td>User made this</td>
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date}}</td>
       <td *ngIf="order.dateShipped">{{ order.dateShipped | date }}</td>      
