@@ -11,11 +11,11 @@
   <tbody>
     <tr *ngFor="let order of orders$ | async; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ order.datePlaced | date}}</td>
-      <td *ngIf="order.dateShipped">{{ order.dateShipped | date }}</td>      
+      <td>{{ order.datePlaced | date:'dd-MM-yyyy'}}</td>
+      <td *ngIf="order.dateShipped">{{ order.dateShipped | date:'dd-MM-yyyy' }}</td>      
       <td *ngIf="!order.dateShipped">Order not shipped yet</td>
       <td>
-        <button class="btn btn-primary" [routerLink]="['/my/orders/', order.$key]">View</button>
+        <button class="btn btn-primary" [routerLink]="['/my/orders/', order.$key]">View Order</button>
       </td>
     </tr>
   </tbody> 

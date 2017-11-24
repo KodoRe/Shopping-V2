@@ -1,6 +1,9 @@
-
 .card { 
   margin-bottom: 30px;
+}
+
+.card .dialog {
+  cursor: pointer;
 }
 
 .card-img-top { 
@@ -13,6 +16,5 @@
 }
 
 .card-footer button {
-  cursor: pointer;
   text-transform: uppercase;
 }

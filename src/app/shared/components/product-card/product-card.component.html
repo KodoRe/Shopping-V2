@@ -1,5 +1,5 @@
 <div *ngIf="product.title" class="card">
-  <div  (click)="openDialog()">
+  <div class="dialog" (click)="openDialog()">
   <img *ngIf="product.imageUrl" class="card-img-top" [src]="product.imageUrl" alt="{{ product.title }}">
   <div class="card-body">
     <h4 class="card-title">{{ product.title }}</h4>

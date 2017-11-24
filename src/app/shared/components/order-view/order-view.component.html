@@ -1,7 +1,7 @@
 <h2>Order Details</h2>
 <div *ngIf="order$ | async as order">
   <div *ngIf="order.dateShipped" class="alert alert-success">
-      <strong>This order has been shipped on: {{ order.dateShipped | date }}</strong>
+      <strong>This order has been shipped on: {{ order.dateShipped | date:'dd-MM-yyyy' }}</strong>
   </div>
   <div *ngIf="!order.dateShipped" class="alert alert-info">
       <div class="d-flex justify-content-end">
@@ -19,13 +19,13 @@
             <li *ngFor="let item of order.items" class="list-group-item">            
                 {{ item.quantity }} x {{ item.product.title }}
               <div class="float-right">
-                {{ item.totalPrice | currency:'USD':true }}
+                {{ item.totalPrice | currency:'ILS':true }}
               </div>
             </li>
             <li class="list-group-item font-weight-bold">
               Total 
               <div class="float-right">
-                {{ order.totalPrice | currency:'USD':true }}
+                {{ order.totalPrice | currency:'ILS':true }}
               </div>
             </li>
           </ul>

@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
@@ -40,6 +40,7 @@ import { MatDialogModule } from '@angular/material';
   ],
   providers: [
     AdminAuthGuard,
+    { provide: LOCALE_ID, useValue: 'he-IL' } //when using the currency pipe, it depend on angular locale system to detemine some settings like where to show the symbol (right / left)...
   ],
   bootstrap: [AppComponent]
 })
