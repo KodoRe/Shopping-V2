@@ -1,0 +1,5 @@
+
+.sticky-top { 
+  top: 80px;
+  z-index: 1000;
+}

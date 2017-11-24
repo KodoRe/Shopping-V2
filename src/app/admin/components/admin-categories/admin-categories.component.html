@@ -1,0 +1,38 @@
+ <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+ <div class="row">
+    <div class="col col-md-10">
+     <input 
+      #query
+      (keyup)="filter(query.value)"
+      type="text" class="form-control align-middle" placeholder="Search...">
+    </div>
+    <div class="col col-md-2">
+      <a routerLink="/admin/categories/new" class="btn btn-primary align-middle">Add New Category</a>
+    </div>
+  </div>
+  <div class="categories-table">
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)">
+  <data-table-column
+    [property]="'name'"  
+    [header]="'Name'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+  </data-table-column>
+
+  <data-table-column class="align-center"
+    [property]="'$key'" 
+  >
+    <ng-template #dataTableCell let-item="item">
+    <div class="align-center">
+      <button class="btn btn-primary" [routerLink]="['/admin/categories/', item.$key, item.name]">Edit</button>
+      <button class="btn btn-danger" (click)="delete(item)">Delete</button>
+    </div>
+    </ng-template>
+  </data-table-column>
+
+</data-table>
+</div>

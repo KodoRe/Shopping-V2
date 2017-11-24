@@ -1,0 +1,61 @@
+ <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+    <div class="col col-md-10">
+     <input 
+      #query
+      (keyup)="filter(query.value)"
+      type="text" class="form-control align-middle" placeholder="Search...">
+    </div>
+    <div class="col col-md-2">
+      <a routerLink="/admin/products/new" class="btn btn-primary align-middle">Add New Product</a>
+    </div>
+  </div>
+  <div class="products-table">
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)">
+  <data-table-column
+    [property]="'title'"  
+    [header]="'Title'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+  </data-table-column>
+  
+  <data-table-column
+    [property]="'price'"  
+    [header]="'Price'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      {{ item.price | currency:'USD':true }}
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column
+  [property]="'category'"  
+  [header]="'Category'"
+  [sortable]="true"
+  [resizable]="true"
+>
+  <ng-template #dataTableCell let-item="item">
+    {{ item.category }}
+  </ng-template>
+</data-table-column>
+
+  <data-table-column class="align-center"
+    [property]="'$key'" 
+  >
+    <ng-template #dataTableCell let-item="item">
+    <div class="align-center">
+      <button class="btn btn-primary" [routerLink]="['/admin/products/', item.$key]">Edit</button>
+      <button class="btn btn-danger" (click)="delete(item)">Delete</button>
+    </div>
+    </ng-template>
+  </data-table-column>
+
+</data-table>
+</div>
+
