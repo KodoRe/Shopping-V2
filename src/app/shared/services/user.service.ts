@@ -2,6 +2,7 @@ import { AppUser } from '../models/app-user';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase'; 
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -17,5 +18,13 @@ export class UserService {
 
   get(uid: string): FirebaseObjectObservable<AppUser> { 
     return this.db.object('/users/' + uid);
+  }
+
+  getUserByUserId(uid: string): Observable<{userName: string}> {
+    return this.db.object('/users/' + uid).map(u => {
+      return {
+        userName: u.name
+      }
+    });
   }
 }

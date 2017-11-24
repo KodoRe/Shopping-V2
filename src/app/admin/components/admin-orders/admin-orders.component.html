@@ -13,7 +13,7 @@
   <tbody>
     <tr *ngFor="let order of orders$ | async; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>User made this</td>
+      <td>{{ getUserNameByUserId(order.userId) }} {{ userName }}</td>
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date:'dd-MM-yyyy'}}</td>
       <td *ngIf="order.dateShipped">{{ order.dateShipped | date:'dd-MM-yyyy' }}</td>      
