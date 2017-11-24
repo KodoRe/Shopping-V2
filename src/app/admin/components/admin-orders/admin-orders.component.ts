@@ -13,5 +13,10 @@ export class AdminOrdersComponent {
   constructor(private orderService: OrderService) { 
     this.orders$ = orderService.getOrders();
   }
+ 
+  markShipped(orderId) {
+    if (!confirm('Are you sure you want to mark this order as shipped?')) return;    
+    this.orderService.markShipped(orderId, new Date().getTime()); //When click on Mark as Shipped, it send the current date time.
+  }
   
 }

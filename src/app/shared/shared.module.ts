@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
+import { ProductViewComponent } from '../shopping/components/product-view/product-view.component';
+import { OrderViewComponent } from './components/order-view/order-view.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
@@ -19,6 +21,7 @@ import { UserService } from './services/user.service';
 
 @NgModule({
   imports: [
+//    ProductViewComponent,
     CommonModule,
     FormsModule,
     CustomFormsModule,
@@ -29,11 +32,14 @@ import { UserService } from './services/user.service';
   ],
   declarations: [
     ProductCardComponent,
+//    ProductViewComponent,
     ProductQuantityComponent,
+    OrderViewComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
+    OrderViewComponent,
     CommonModule,
     FormsModule,
     CustomFormsModule,

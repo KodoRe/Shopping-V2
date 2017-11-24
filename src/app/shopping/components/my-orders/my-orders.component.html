@@ -1,18 +1,21 @@
-<h1>Orders</h1>
+<h1>My Orders</h1>
 <table class="table">
   <thead>
     <tr>
-      <th>Customer</th>
-      <th>Date</th>
+      <th>#</th>
+      <th>Date Placed</th>
+      <th>Date Shipped</th>
       <th></th>
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
-      <td>{{ order.shipping.name }}</td>
+    <tr *ngFor="let order of orders$ | async; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ order.datePlaced | date}}</td>
+      <td *ngIf="order.dateShipped">{{ order.dateShipped | date }}</td>      
+      <td *ngIf="!order.dateShipped">Order not shipped yet</td>
       <td>
-        <a href="#">View</a>
+        <button class="btn btn-primary" [routerLink]="['/my/orders/', order.$key]">View</button>
       </td>
     </tr>
   </tbody> 

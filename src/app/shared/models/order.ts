@@ -32,12 +32,14 @@ export class Order {
 
   export class OrderView { 
     datePlaced: number; 
+    dateShipped: number;
     items: any[];
     shipping: any[];
 
-    constructor(datePlaced: number, items: any, shipping: any) {
-      this.datePlaced = datePlaced;
-      this.items = items.map(i => {
+    constructor(order) {
+      this.datePlaced = order.datePlaced;
+      this.dateShipped = order.dateShipped;
+      this.items = order.items.map(i => {
         return {
           product: {
             title: i.product.title,
@@ -48,7 +50,7 @@ export class Order {
           totalPrice: i.totalPrice
         }
       })
-      this.shipping = shipping;
+      this.shipping = order.shipping;
     }
        
       get totalItemsCount() {

@@ -2,17 +2,23 @@
 <table class="table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Customer</th>
       <th>Date</th>
+      <th>Date Shipped</th>
       <th></th>
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
+    <tr *ngFor="let order of orders$ | async; let i = index">
+      <td>{{ i + 1 }}</td>
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date}}</td>
+      <td *ngIf="order.dateShipped">{{ order.dateShipped | date }}</td>      
+      <td *ngIf="!order.dateShipped">Order not shipped yet</td>
       <td>
-        <button class="btn btn-primary" [routerLink]="['/admin/orders/', order.$key]">View</button>
+        <button class="btn btn-primary" [routerLink]="['/admin/orders/', order.$key]">View Order</button>
+        <button *ngIf="!order.dateShipped" class="btn btn-success" (click)="markShipped(order.$key)">Mark as Shipped</button>
       </td>
     </tr>
   </tbody> 

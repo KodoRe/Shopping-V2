@@ -5,8 +5,8 @@ import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';4
-import { OrderViewComponent } from './components/order-view/order-view.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { OrderViewComponent } from '../shared/components/order-view/order-view.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { NgModule } from '@angular/core';
@@ -62,7 +62,6 @@ import { AuthGuard } from "shared/services/auth-guard.service";
   declarations: [
     ProductFormComponent,
     AdminProductsComponent,
-    OrderViewComponent,
     AdminOrdersComponent,
     CategoryFormComponent,
     AdminCategoriesComponent

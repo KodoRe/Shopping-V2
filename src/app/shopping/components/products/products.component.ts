@@ -6,8 +6,6 @@ import { ShoppingCartService } from '../../../shared/services/shopping-cart.serv
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ProductViewComponent } from '../product-view/product-view.component';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -25,7 +23,6 @@ export class ProductsComponent implements OnInit  {
     private route: ActivatedRoute,
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
-    private dialog: MatDialog
   ) {
   }
 
@@ -48,22 +45,9 @@ export class ProductsComponent implements OnInit  {
       });
   }
 
-
   private applyFilter() { 
     this.filteredProducts = (this.category) ? 
     this.products.filter(p => p.category === this.category) : 
     this.products;
-  }
-
-  openDialog(product: Product) {
-    this.dialog.open(ProductViewComponent, {
-      data: {
-            title:product.title,
-            description:product.description,
-            imageUrl:product.imageUrl,
-            category:product.category,
-            price:product.price
-      }
-    });
   }
 }

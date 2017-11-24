@@ -32,4 +32,8 @@ export class OrderService {
    getOrderDetailsByOrderId(orderId: string) {
     return this.db.object('/orders/' + orderId);     
     }
+
+    markShipped(orderId, shippingDate) {
+      return this.db.object('/orders/' + orderId).update({dateShipped: shippingDate});
+    }
 }
