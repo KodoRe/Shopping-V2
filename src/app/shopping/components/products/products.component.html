@@ -4,11 +4,12 @@
   </div>
   <div class="col">
     <div class="row" *ngIf="cart$ | async as cart">
-        <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <ng-container *ngFor="let p of filteredProducts; let i = index; let l = last">
           <div class="col">
             <product-card [product]="p" [shopping-cart]="cart"></product-card>
           </div>
           <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+          <div *ngIf="(i + 1) % 2  === 1 && l" class="w-50"></div>          
         </ng-container>
       </div>
   </div>
