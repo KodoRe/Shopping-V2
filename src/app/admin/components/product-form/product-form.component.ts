@@ -1,4 +1,3 @@
-import { ServerUrl } from './../../../../../../my_Coach/src/consts/consts';
 import { Category } from './../../../shared/models/category';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -9,8 +8,6 @@ import 'rxjs/add/operator/take';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
 import { Product } from 'shared/models/product';
 
-
-
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -19,7 +16,8 @@ import { Product } from 'shared/models/product';
 export class ProductFormComponent implements OnInit {
   form: FormGroup;
   categories$;
-  product= {images: Array<string>()}; 
+  product = {images: []}; 
+  //product: any = {};
   id;
 
   constructor(
@@ -37,14 +35,22 @@ export class ProductFormComponent implements OnInit {
         images: fb.array([])
       })
 
-    
-
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.productService.get(this.id).take(1).subscribe(p => this.product = p);
+    if (this.id) {
+      this.productService.get(this.id).take(1).subscribe(
+      p => {
+        this.product = p;
+        this.product.images.forEach(image => {
+            this.images.push(new FormControl(image));
+          });
+          console.log(this.images);
+        }
+      );
+    }      
   }
 
+
   save() { 
-    console.log(this.id);
     if (this.id) this.productService.update(this.id, this.form.value);
     else this.productService.create(this.form.value);
     
@@ -83,15 +89,13 @@ export class ProductFormComponent implements OnInit {
     this.images.push(new FormControl(image.value));
     this.product.images.push(image.value);
     image.value = '';
+    }
   }
-  }
+
   removeImage(image: FormControl) {
-    console.log(1)
-    console.log(image)
-    console.log(this.images.controls)
     let index = this.images.controls.indexOf(image);
     this.images.removeAt(index);
-    console.log(this.images.controls) 
+    this.product.images.splice(index, 1);
   }
 
   ngOnInit() {

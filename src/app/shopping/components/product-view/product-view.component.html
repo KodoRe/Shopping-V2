@@ -1,7 +1,7 @@
 <div *ngIf="title" class="dlg" >
-  <div class="images">
-    <img class="imgsize" [src]="imageUrl" alt="{{ title }}">
-  </div>
+    <div class="carousel">
+        <carousel [sources]="images" [config]="config" class="slideImg"></carousel>
+      </div>
     <br>
   <div>
         <h4 >{{ title }}</h4>

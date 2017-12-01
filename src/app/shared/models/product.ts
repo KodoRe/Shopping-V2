@@ -6,5 +6,6 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  images: Array<string>;
+  //images: Array<string>;
+  images: FormArray;
 } 

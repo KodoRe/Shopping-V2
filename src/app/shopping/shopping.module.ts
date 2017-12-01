@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CarouselModule } from 'angular4-carousel';
+
 
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
@@ -20,6 +22,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 @NgModule({
   imports: [
     SharedModule,
+    CarouselModule,
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },

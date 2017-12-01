@@ -8,7 +8,7 @@
     <form [formGroup]="form" class="card-body" (ngSubmit)="save()">
         <div class="form-group">
           <label for="title">Title</label>
-          <input formControlName="title" name="title" id="title" type="text" class="form-control">
+          <input formControlName="title" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
             Title is required.
           </div>
@@ -16,7 +16,7 @@
 
         <div class="form-group">
             <label for="description">Description</label>
-            <input formControlName="description" name="description" id="description" class="form-control">
+            <input formControlName="description" [(ngModel)]="product.description" name="description" id="description" class="form-control">
             <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
                 Description is required.
               </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
           <label for="price">Price</label>
           <div class="input-group">
-            <input formControlName="price" name="price" id="price" type="number" class="form-control">
+            <input formControlName="price" [(ngModel)]="product.price" name="price" id="price" type="number" class="form-control">
             <span class="input-group-addon">₪</span>
           </div>
           <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
@@ -36,7 +36,7 @@
              
         <div class="form-group">
         <label for="category">Category</label>
-          <select formControlName="category" name="category" id="category" class="form-control" #category>
+          <select formControlName="category" [(ngModel)]="product.category" name="category" id="category" class="form-control" #category>
             <option value=""></option>
             <option *ngFor="let c of categories$ | async" [value]="c.name">
               {{ c.name }}
@@ -58,8 +58,22 @@
             <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
           </div>
       </div>
-       <div formArrayName="images" class="container-fluid no-gutters short-url">
+      <!-- <div class="container-fluid no-gutters short-url">
           <ul class="list-group" *ngIf="images != ''" name="images" > 
+              <li *ngFor="let image of product.images; let i = index" class="list-group-item" name="image">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-8">
+                  {{ (image.length>50)?(image | slice:0:50)+'..':(image) }}
+            </div>
+            <div class="col-6 col-md-4 ">
+                <button type="button" class="btn btn-success pull-right" (click)="removeImage(image)">-</button>
+            </div>
+          </div>
+          </li>
+        </ul>
+      </div> -->
+       <div formArrayName="images" class="container-fluid no-gutters short-url">
+          <ul class="list-group" name="images" > 
               <li *ngFor="let image of images.controls; let i = index" class="list-group-item" name="image">
           <div class="row" [formGroupName]="i">
             <div class="col-12 col-sm-6 col-md-8">
@@ -72,11 +86,7 @@
           </li>
         </ul>
       </div>
-      <div class="card-footer">
-        {{product.images | json }}
-        {{ form.value | json }}
-        {{ form.valid }}
-        
+      <div class="card-footer">        
           <button [disabled]="!form.valid" class="btn btn-primary">Save</button>
           <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
         </div> 
@@ -85,7 +95,7 @@
     </div>  
   </div>
   <div class="col-md-6">
-    <product-card [product]="product" [show-actions]="false"></product-card>
+     <product-card [product]="product" [show-actions]="false"></product-card> 
   </div>
 </div>
 <!-- 

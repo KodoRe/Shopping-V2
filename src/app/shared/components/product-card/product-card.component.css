@@ -18,3 +18,16 @@
 .card-footer button {
   text-transform: uppercase;
 }
+
+.carousel {
+  width: 100%;
+  height: 300px;
+}
+
+/* Fix carousel to display full detailed image instead of just fill the slider */
+.slide {
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
+  min-height: 0 !important;
+}

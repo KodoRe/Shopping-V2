@@ -1,7 +1,8 @@
-{{ product.images }}
 <div *ngIf="product.title" class="card">
-  <div class="dialog">
-  <img *ngFor="let i of product.images" class="card-img-top" [src]="i" alt="{{ product.title }}">
+  <div class="carousel card-image-top">
+    <carousel [sources]="product.images" [config]="config" class="slideImg"></carousel>
+  </div>
+  <div class="dialog" (click)="openDialog()">      
   <div class="card-body">
     <h4 class="card-title">{{ product.title }}</h4>
     <p class="card-text">{{ product.price | currency:'ILS':true }}</p>

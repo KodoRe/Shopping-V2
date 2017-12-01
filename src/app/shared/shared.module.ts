@@ -6,6 +6,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CarouselModule } from 'angular4-carousel';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
@@ -18,10 +19,12 @@ import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   imports: [
 //    ProductViewComponent,
+    CarouselModule,
     CommonModule,
     FormsModule,
     CustomFormsModule,
@@ -32,6 +35,7 @@ import { UserService } from './services/user.service';
   ],
   declarations: [
     ProductCardComponent,
+    CarouselComponent,
 //    ProductViewComponent,
     ProductQuantityComponent,
     OrderViewComponent,
@@ -41,6 +45,7 @@ import { UserService } from './services/user.service';
     ProductQuantityComponent,
     OrderViewComponent,
     CommonModule,
+    CarouselComponent,
     FormsModule,
     CustomFormsModule,
     DataTableModule,

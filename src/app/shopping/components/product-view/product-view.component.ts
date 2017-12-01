@@ -2,6 +2,7 @@ import { Product } from './../../../shared/models/product';
 import { ProductService } from './../../../shared/services/product.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ProductViewComponent implements OnInit {
   title: string;
   description: string;
   price: number;
-  imageUrl: string;
+  images = [];
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
@@ -23,13 +24,21 @@ export class ProductViewComponent implements OnInit {
     this.title = this.data.title;
     this.description = this.data.description;
     this.price = this.data.price;
-    this.imageUrl = this.data.imageUrl;
+    this.images = this.data.images;
   }
+
+  public config: ICarouselConfig = {
+    verifyBeforeLoad: true,
+    log: false,
+    animation: true,
+    animationType: AnimationConfig.SLIDE,
+    autoplay: false,
+    autoplayDelay: 2000,
+    stopAutoplayMinWidth: 768
+  };
 
   ngOnInit()
   {
     
-  }
-
- 
+  } 
 }
