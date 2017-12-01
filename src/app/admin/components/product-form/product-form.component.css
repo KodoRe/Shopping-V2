@@ -9,3 +9,15 @@
   .card-footer {
     text-align: center;
   }
+
+  .short-url {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 520px;
+  }
+  
+  .img-remove {
+    align-content: right;
+  }

@@ -25,15 +25,15 @@ export class ProductCardComponent {
     this.cartService.addToCart(this.product);
   }
 
-  openDialog() {
-    this.dialog.open(ProductViewComponent, {
-      data: {
-            title:this.product.title,
-            description:this.product.description,
-            imageUrl:this.product.imageUrl,
-            category:this.product.category,
-            price:this.product.price
-      }
-    });
-  }
+  // openDialog() {
+  //   this.dialog.open(ProductViewComponent, {
+  //     data: {
+  //           title:this.product.title,
+  //           description:this.product.description,
+  //           images:this.product.images,
+  //           category:this.product.category,
+  //           price:this.product.price
+  //     }
+  //   });
+  // }
 }

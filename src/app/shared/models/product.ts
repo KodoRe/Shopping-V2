@@ -1,3 +1,4 @@
+import { FormArray } from '@angular/forms';
 
 export interface Product {
   $key: string;
@@ -5,5 +6,5 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  imageUrl: string;
-}
+  images: Array<string>;
+} 
