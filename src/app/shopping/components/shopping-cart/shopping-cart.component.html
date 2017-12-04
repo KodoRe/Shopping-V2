@@ -19,7 +19,7 @@
     <tbody>
       <tr *ngFor="let item of cart.items">
         <td>
-          <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail">
+          <div [style.backgroundImage]="'url(' + item.images[0] + ')'" class="thumbnail">
           </div>
         </td>
         <td>

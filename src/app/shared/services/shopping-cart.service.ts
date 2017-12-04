@@ -58,7 +58,7 @@ export class ShoppingCartService {
       if (quantity === 0) item$.remove();
       else item$.update({ 
         title: product.title,
-        imageUrl: product.images,
+        images: product.images,
         price: product.price,
         quantity: quantity
       });
