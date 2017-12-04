@@ -58,26 +58,12 @@
             <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
           </div>
       </div>
-      <!-- <div class="container-fluid no-gutters short-url">
-          <ul class="list-group" *ngIf="images != ''" name="images" > 
-              <li *ngFor="let image of product.images; let i = index" class="list-group-item" name="image">
-          <div class="row">
-            <div class="col-12 col-sm-6 col-md-8">
-                  {{ (image.length>50)?(image | slice:0:50)+'..':(image) }}
-            </div>
-            <div class="col-6 col-md-4 ">
-                <button type="button" class="btn btn-success pull-right" (click)="removeImage(image)">-</button>
-            </div>
-          </div>
-          </li>
-        </ul>
-      </div> -->
        <div formArrayName="images" class="container-fluid no-gutters short-url">
           <ul class="list-group" name="images" > 
               <li *ngFor="let image of images.controls; let i = index" class="list-group-item" name="image">
           <div class="row" [formGroupName]="i">
             <div class="col-12 col-sm-6 col-md-8">
-                  {{ (image.value.length>50)?(image.value | slice:0:50)+'..':(image.value) }}
+                  {{ (image.value.length>50)?(image.value | slice:0:50)+'..':(image.value) }}               
             </div>
             <div class="col-6 col-md-4 ">
                 <button type="button" class="btn btn-success pull-right" (click)="removeImage(image)">-</button>
@@ -98,8 +84,3 @@
      <product-card [product]="product" [show-actions]="false"></product-card> 
   </div>
 </div>
-<!-- 
-  <div class="card-image-top"></div>
-  <div *ngIf="showActions && shoppingCart" class="card-footer">      
-  <div class="card-body"></div> -->
-  

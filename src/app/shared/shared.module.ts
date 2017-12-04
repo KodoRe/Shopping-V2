@@ -19,7 +19,6 @@ import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
-import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   imports: [
@@ -35,7 +34,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
   ],
   declarations: [
     ProductCardComponent,
-    CarouselComponent,
 //    ProductViewComponent,
     ProductQuantityComponent,
     OrderViewComponent,
@@ -45,7 +43,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     ProductQuantityComponent,
     OrderViewComponent,
     CommonModule,
-    CarouselComponent,
     FormsModule,
     CustomFormsModule,
     DataTableModule,

@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { CategoryService } from '../../../shared/services/category.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
 import { Product } from 'shared/models/product';
+import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
+
 
 @Component({
   selector: 'app-product-form',
@@ -16,8 +18,8 @@ import { Product } from 'shared/models/product';
 export class ProductFormComponent implements OnInit {
   form: FormGroup;
   categories$;
-  product = {images: []}; 
-  //product: any = {};
+  product = {images: []};
+  @ViewChild(ProductCardComponent) pcc: ProductCardComponent; //Used to trigger function on child element (refreshCarousel)
   id;
 
   constructor(
@@ -34,7 +36,6 @@ export class ProductFormComponent implements OnInit {
         category: ['',Validators.required],
         images: fb.array([])
       })
-
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.productService.get(this.id).take(1).subscribe(
@@ -43,7 +44,6 @@ export class ProductFormComponent implements OnInit {
         this.product.images.forEach(image => {
             this.images.push(new FormControl(image));
           });
-          console.log(this.images);
         }
       );
     }      
@@ -87,8 +87,9 @@ export class ProductFormComponent implements OnInit {
     if (image.value != '')
     {
     this.images.push(new FormControl(image.value));
-    this.product.images.push(image.value);
+    this.product.images.push(image.value);          
     image.value = '';
+    this.pcc.refreshCarousel();
     }
   }
 
@@ -96,9 +97,10 @@ export class ProductFormComponent implements OnInit {
     let index = this.images.controls.indexOf(image);
     this.images.removeAt(index);
     this.product.images.splice(index, 1);
+    this.pcc.refreshCarousel();
   }
 
   ngOnInit() {
+    
   }
-
 }

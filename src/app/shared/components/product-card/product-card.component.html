@@ -1,6 +1,6 @@
 <div *ngIf="product.title" class="card">
   <div class="carousel card-image-top">
-    <carousel [sources]="product.images" [config]="config" class="slideImg"></carousel>
+    <carousel *ngIf="carouselEnabled" [sources]="product.images" [config]="carouselConfig" class="slideImg"></carousel>
   </div>
   <div class="dialog" (click)="openDialog()">      
   <div class="card-body">
