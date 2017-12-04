@@ -3,7 +3,7 @@
   <div *ngIf="order.dateShipped" class="alert alert-success">
       <strong>This order has been shipped on: {{ order.dateShipped | date:'dd-MM-yyyy' }}</strong>
   </div>
-  <div *ngIf="!order.dateShipped" class="alert alert-info">
+  <div *ngIf="!order.dateShipped" class="alert alert-warning" style="color: #23272B">
       <div class="d-flex justify-content-end">
           <div class="mr-auto p-2"><strong>This order has not been shipped yet</strong></div>
           <div class="p-2"><button *ngIf="appUser.isAdmin" class="btn btn-success" (click)="markShipped(orderId)">Mark as shipped</button></div>

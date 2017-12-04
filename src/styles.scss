@@ -3,11 +3,25 @@
 @import "~font-awesome/css/font-awesome.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-$primary-color: #7abaf7;
-$primary-color-hover: #739ff1;
+$primary-color: #ffbc00;
+$primary-color-hover: #23272B;
 
 body { 
-  padding-top: 80px; 
+  padding-top: 55px; 
+  background-image: url('assets/main-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hn {
+  background-image: url('assets/main-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.wrapper {
+  background-color: white;
+  padding: 30px;
 }
 
 h1, h2, h3 { 
@@ -15,15 +29,27 @@ h1, h2, h3 {
 }
 
 .navbar { 
-  border-bottom: 3px solid #e7e7e7;
+  border-bottom: 3px solid #ffbc00;
+}
+
+.nav-link {
+  // color: #ffbc00 !important;
+  color: #ffffff !important;
+  
 }
 
 .navbar-light .navbar-brand {
   color: $primary-color;
+  font-weight: bold;
 }
 
-.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-  color: $primary-color-hover;
+.navbar-light .navbar-brand:hover {
+    // color: $primary-color-hover;
+    color: #e7e7e7;
+}
+
+.navbar-light .navbar-brand:focus {
+  color: $primary-color;
 }
 
 .list-group-item.active {
@@ -38,7 +64,8 @@ h1, h2, h3 {
 
 .btn-primary:hover {
   background-color: $primary-color-hover;
-  border-color: $primary-color-hover;
+  border-color: $primary-color;
+  color: $primary-color;
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -57,3 +84,16 @@ h1, h2, h3 {
 .align-center {
   text-align: center;
 }
+
+.btn-secondary {
+  background-color: $primary-color;
+  color: $primary-color-hover;
+  border-color:  $primary-color;
+}
+
+.btn-secondary:hover {
+  background-color: $primary-color-hover;
+  color: $primary-color; 
+  border-color:  $primary-color;
+}  
+

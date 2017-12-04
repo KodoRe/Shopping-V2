@@ -51,7 +51,7 @@
           <label for="images">Image URL</label>
           <span class="input-group-btn">
           <input name="imageUrl" id="imageUrl" type="text" class="form-control" #imageUrl url>
-          <button type="button" class="btn btn-success pull-right" (click)="addToImages(imageUrl)">+</button>
+          <button type="button" class="btn btn-primary pull-right" (click)="addToImages(imageUrl)">+</button>
         </span>
           <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
             <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
@@ -66,7 +66,7 @@
                   {{ (image.value.length>50)?(image.value | slice:0:50)+'..':(image.value) }}               
             </div>
             <div class="col-6 col-md-4 ">
-                <button type="button" class="btn btn-success pull-right" (click)="removeImage(image)">-</button>
+                <button type="button" class="btn btn-primary pull-right" (click)="removeImage(image)">-</button>
             </div>
           </div>
           </li>
