@@ -102,14 +102,3 @@ h1, h2, h3 {
   color: $primary-color; 
   border-color:  $primary-color;
 }  
-
-// .category-filter {
-//   background-image: url('assets/category-filter-bg2.png');
-//   background-repeat: no-repeat;
-//   background-size: 100% 100%;
-// }
-
-.category-filter {
-  background-color: $primary-color-hover;
-  color: $primary-color !important; 
-}

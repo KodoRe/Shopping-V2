@@ -31,3 +31,16 @@
   object-position: center !important;
   min-height: 0 !important;
 }
+
+.card-title {
+  height: 50px;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.badge {
+  background-color: #ffbc00;
+  color: #23272B;
+}

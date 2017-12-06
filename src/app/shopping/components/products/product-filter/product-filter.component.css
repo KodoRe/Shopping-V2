@@ -3,3 +3,21 @@
   top: 80px;
   z-index: 1000;
 }
+
+ /* .category-filter {
+     background-image: url('assets/category-filter-bg2.png');
+     background-repeat: no-repeat;
+    background-size: 100% 100%;
+   } */
+  
+  .category-filter {
+    background-color: #23272B;
+    color: #ffbc00 !important; 
+  }
+  
+  .shadow {  
+    font: bold 22px Helvetica, Arial, Sans-Serif;
+    text-shadow: 1px 1px #5e4b0d, 
+                 2px 2px #5e4b0d, 
+                 3px 3px #5e4b0d;
+ }
