@@ -12,6 +12,7 @@
   
   .category-filter {
     font-weight: 700;
+    font-size: 1.1em;
     background: rgb(252,234,187); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 4%, rgba(252,205,77,1) 4%, rgba(252,205,77,1) 57%, rgba(255,188,0,1) 82%, rgba(71,71,71,1) 97%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(252,234,187,1) 0%,rgba(252,205,77,1) 4%,rgba(252,205,77,1) 4%,rgba(252,205,77,1) 57%,rgba(255,188,0,1) 82%,rgba(71,71,71,1) 97%); /* Chrome10-25,Safari5.1-6 */

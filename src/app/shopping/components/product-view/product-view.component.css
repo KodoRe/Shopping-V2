@@ -1,6 +1,5 @@
 .dlg
 {
-  text-align: center;
   width: 550px;
   height: 650px;
 }
@@ -10,6 +9,12 @@
   color: #23272B;
   line-height: 2em;
   margin-top: 5px;
+  font-weight: 700;
+}
+
+.dlg .product-title 
+{
+  font-weight: 700;
 }
 
 .dlg .description {

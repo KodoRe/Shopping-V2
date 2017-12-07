@@ -11,3 +11,7 @@
 .fixed-top {
   z-index: 1000 !important;
 }
+
+.badge {
+  font-weight: 700;
+}
