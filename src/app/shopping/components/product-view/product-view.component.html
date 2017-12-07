@@ -5,7 +5,9 @@
     <br>
   <div>
         <h4 >{{ title }}</h4>
-        <p>{{ description }}</p>
+        <div class="description">
+          <p>{{ description }}</p>
+        </div>
         <h3 class="product-price">Only for <span class="badge badge-pill" style="background-color: #ffbc00;">{{ price | currency:'ILS':true }}<i class="fa fa-exclamation" aria-hidden="true" style="margin-left: 6px;"></i></span></h3>
   </div>
 </div>    

@@ -7,3 +7,7 @@
 .dropdown-toggle::after {
   color: #ffbc00;
 }
+
+.fixed-top {
+  z-index: 1000 !important;
+}

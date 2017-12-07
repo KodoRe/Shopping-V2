@@ -2,11 +2,19 @@
 {
   text-align: center;
   width: 550px;
+  height: 650px;
 }
 
-.product-price
+.dlg .product-price
 {
   color: #23272B;
+  line-height: 2em;
+  margin-top: 5px;
+}
+
+.dlg .description {
+  height: 220px;
+  overflow-y: auto;
 }
 
 .carousel {
