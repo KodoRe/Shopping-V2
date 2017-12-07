@@ -1,9 +1,10 @@
+import { FormArray } from '@angular/forms';
 import { Product } from './product';
 
 export class ShoppingCartItem {
   $key: string;
   title: string;
-  imageUrl: string;
+  images: FormArray;
   price: number; 
   quantity: number; 
 

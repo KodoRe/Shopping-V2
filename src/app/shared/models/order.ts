@@ -11,7 +11,7 @@ export class Order {
       return {
         product: {
           title: i.title,
-          imageUrl: i.imageUrl,
+          images: i.images,
           price: i.price
         },
         quantity: i.quantity,
