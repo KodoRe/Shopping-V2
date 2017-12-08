@@ -78,6 +78,15 @@ h1, h2, h3 {
 .btn-primary.disabled, .btn-primary:disabled {
   background-color: $primary-color;
   border-color: $primary-color;
+  opacity: 0.70; 
+  cursor: not-allowed;
+  color: #ffffff;
+}
+
+.btn-primary:disabled:hover {
+  background-color: black;
+  border-color: $primary-color;
+  color: $primary-color;
 }
 
 .form-control:focus {

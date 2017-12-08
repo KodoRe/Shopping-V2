@@ -19,6 +19,7 @@ export class ProductFormComponent implements OnInit {
   form: FormGroup;
   categories$;
   product = {images: []};
+  imageLink = "";
   @ViewChild(ProductCardComponent) pcc: ProductCardComponent; //Used to trigger function on child element (refreshCarousel)
   id;
 
@@ -34,7 +35,8 @@ export class ProductFormComponent implements OnInit {
         description: ['',Validators.required],
         price: ['',Validators.required],
         category: ['',Validators.required],
-        images: fb.array([])
+        imageUrl: ['', Validators.pattern("https?://.+")],
+        images: fb.array([], Validators.required),
       })
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
@@ -51,10 +53,11 @@ export class ProductFormComponent implements OnInit {
 
 
   save() { 
+    this.form.removeControl("imageUrl"); //imageUrl is only used in the form, but don't needed in firebase database. so i remove the control.
     if (this.id) this.productService.update(this.id, this.form.value);
     else this.productService.create(this.form.value);
-    
-    this.router.navigate(['/admin/products']);
+    this.form.addControl("imageUrl", new FormControl('', Validators.pattern("https?://.+"))); //To prevent the not found in console (because the removal of the control)
+    this.router.navigate(['/admin/products']); //done, navigate.
   }
 
   delete() {
@@ -79,6 +82,11 @@ export class ProductFormComponent implements OnInit {
   get category() {
     return this.form.get('category');
   }
+
+  get imageUrl() {
+    return this.form.get('imageUrl');
+  }
+
   get images() {
     return this.form.get('images') as FormArray;
   }
@@ -88,7 +96,7 @@ export class ProductFormComponent implements OnInit {
     {
     this.images.push(new FormControl(image.value));
     this.product.images.push(image.value);          
-    image.value = '';
+    this.imageLink = "";
     this.pcc.refreshCarousel();
     }
   }
