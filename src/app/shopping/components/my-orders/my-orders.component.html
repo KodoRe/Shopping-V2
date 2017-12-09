@@ -1,22 +1,43 @@
 <h1>My Orders</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Date Placed</th>
-      <th>Date Shipped</th>
-      <th></th>
-    </tr>
-  </thead> 
-  <tbody>
-    <tr *ngFor="let order of orders$ | async; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ order.datePlaced | date:'dd-MM-yyyy'}}</td>
-      <td *ngIf="order.dateShipped">{{ order.dateShipped | date:'dd-MM-yyyy' }}</td>      
-      <td *ngIf="!order.dateShipped">Order not shipped yet</td>
-      <td>
-        <button class="btn btn-primary" [routerLink]="['/my/orders/', order.$key]">View Order</button>
-      </td>
-    </tr>
-  </tbody> 
-</table>
+
+<div class="my-orders-table">
+    <data-table
+      [items]="items"
+      [itemCount]="itemCount"
+      (reload)="reloadItems($event)">
+      <data-table-column
+        [property]="'datePlaced'"  
+        [header]="'Date Placed'"
+        [sortable]="true"
+        [resizable]="true"
+      >
+      <ng-template #dataTableCell let-item="item">
+        {{ item.datePlaced | date:'dd-MM-yyyy' }}
+      </ng-template>
+      </data-table-column>
+  
+    <data-table-column
+    [property]="'dateShipped'"
+    [header]="'Date Shipped'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      <div *ngIf="item.dateShipped">
+      {{ item.dateShipped | date:'dd-MM-yyyy' }}
+    </div>
+    <div *ngIf="!item.dateShipped">Order not shipped yet</div>
+    </ng-template>
+  </data-table-column>
+    
+      <data-table-column class="align-center"
+        [property]="'$key'" 
+      >
+        <ng-template #dataTableCell let-item="item">
+        <div class="align-center">
+          <button class="btn btn-primary" [routerLink]="['/my/orders/', item.$key]">View Order</button>
+        </div>
+        </ng-template>
+      </data-table-column>
+    
+    </data-table>
