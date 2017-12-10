@@ -46,11 +46,12 @@ h1, h2, h3 {
 .navbar-light .navbar-brand {
   color: $primary-color;
   font-weight: bold;
+  text-shadow: 2px 2px #000000;  
 }
 
 .navbar-light .navbar-brand:hover {
     // color: $primary-color-hover;
-    color: #e7e7e7;
+    color: #e7e7e7;    
 }
 
 .navbar-light .navbar-brand:focus {

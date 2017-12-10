@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
 
 
+import { LoginComponent } from '../core/components/login/login.component';
+
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
@@ -25,7 +27,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     CarouselModule,
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
+      { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
@@ -36,7 +38,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     //This is for now, maybe later when we add calling to service and more things it will not be neccessery.
     //Its neccessery now because nothing loaded in the dom, so angular don't know that component.
     //Hen Tz.
-    ProductViewComponent    
+    ProductViewComponent,
   ],
   declarations: [
     ProductsComponent,

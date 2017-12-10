@@ -1,4 +1,23 @@
-
+<div class="col-md-12">
+    <div class="login-logo-main">
+      H<i class="fa fa-music" aria-hidden="true" style="margin-left: -5px;"></i>NShopping
+    </div>
+    <div class="login-logo-sub">
+      Please Login
+    </div>
+  <div class="spaceing">
 <button 
-  (click)="login()"
-  class="btn btn-primary">Login with Google</button>
+  (click)="login('google')"
+  class="btn btn-primary w-100">Login with Google</button>
+</div>
+<div class="spaceing">
+  <button 
+  (click)="login('twitter')"
+  class="btn btn-primary w-100">Login with Twitter</button>
+</div>
+<div class="spaceing">
+  <button 
+  (click)="login('facebook')"
+  class="btn btn-primary w-100">Login with Facebook</button>
+</div>
+</div>

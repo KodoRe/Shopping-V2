@@ -1,3 +1,4 @@
+import { AuthService } from '../../services/auth.service';
 import { ShoppingCart } from '../../models/shopping-cart';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Product } from '../../models/product';
@@ -5,6 +6,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation }
 import { MatDialog } from '@angular/material';
 import { ProductViewComponent } from '../../../shopping/components/product-view/product-view.component';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'product-card',
@@ -12,21 +15,38 @@ import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent implements OnInit, OnDestroy {
   @Input('product') product: Product;
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') shoppingCart: ShoppingCart; 
   @Input('showDescription') showDescription = false;
   public carouselEnabled = true;
+  public userName: string = null; //  by this parameter i know if the user is authenticated or not, so i can popup an alert "login needed".
+  public subscription: Subscription;
 
   constructor(
     private cartService: ShoppingCartService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private auth: AuthService
+  ){ 
+    this.subscription = this.auth.appUser$.subscribe(u => {
+      if (u !== null)
+        this.userName = u.name;   
+      else
+        this.userName = null;   
+    });
+  }
 
   addToCart() {
-    this.cartService.addToCart(this.product);
-  }
+    if (this.userName)
+    {
+      this.cartService.addToCart(this.product);     
+    }
+    else
+    {
+      alert("Please Login in order to use this feature");
+    }
+ }
 
   openDialog() {
     this.dialog.open(ProductViewComponent, {
@@ -64,5 +84,9 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

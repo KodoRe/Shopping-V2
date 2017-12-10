@@ -1,6 +1,6 @@
 import { UserService } from './user.service';
 import { AppUser } from '../models/app-user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
@@ -15,15 +15,34 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private afAuth: AngularFireAuth, 
-    private route: ActivatedRoute) { 
-    this.user$ = afAuth.authState;    
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { 
+    this.user$ = afAuth.authState;   
   }
 
-  login() {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  login(provider: string) {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')  || window.location.pathname || '/';
     localStorage.setItem('returnUrl', returnUrl);
-    
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+
+    switch (provider)
+    {
+      case "google":
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(r => {
+        this.router.navigate([returnUrl]);      
+      });  
+            break;
+      case "facebook":
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(r => {
+        this.router.navigate([returnUrl]);      
+      });  
+            break;
+      case "twitter":
+      this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then(r => {
+        this.router.navigate([returnUrl]);      
+      });  
+            break;
+    }
   }
 
   logout() { 
