@@ -25,7 +25,14 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   ) { 
     this.subscription = this.orderService.getOrders()
     .subscribe(orders => {
-      this.orders = orders;
+      this.orders = orders;   
+      for(let i = 0; i < this.orders.length; i++)
+      {
+        let subscribtion = this.userService.get(this.orders[i].userId).subscribe(u => {
+          this.orders[i].userName = u.name;
+          this.subscription.unsubscribe();
+        });
+      }
       this.initializeTable(orders);
     });
   }
@@ -33,7 +40,9 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   private initializeTable(orders: Order[]) {
     this.tableResource = new DataTableResource(orders);
     this.tableResource.query({ offset: 0 })
-      .then(items => this.items = items);
+      .then(items => {
+        this.items = items
+      });
     this.tableResource.count()
       .then(count => this.itemCount = count);
   }
@@ -45,12 +54,13 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
       .then(items => this.items = items);    
   }
 
+  filter(query: string) { 
+    let filteredOrders = (query) ?
+      this.orders.filter(o => o.userName.toLowerCase().includes(query.toLowerCase())) :
+      this.orders;
 
- getUserNameByUserId(userId) {
-  this.userService.getUserByUserId(userId).forEach(u => {
-    this.userName = u.userName;
-  });      
- }
+    this.initializeTable(filteredOrders);
+  }
 
   markShipped(orderId) {
     if (!confirm('Are you sure you want to mark this order as shipped?')) return;    

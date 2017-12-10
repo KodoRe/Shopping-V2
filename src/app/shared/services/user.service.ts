@@ -19,12 +19,4 @@ export class UserService {
   get(uid: string): FirebaseObjectObservable<AppUser> { 
     return this.db.object('/users/' + uid);
   }
-
-  getUserByUserId(uid: string): Observable<{userName: string}> {
-    return this.db.object('/users/' + uid).map(u => {
-      return {
-        userName: u.name
-      }
-    });
-  }
 }
