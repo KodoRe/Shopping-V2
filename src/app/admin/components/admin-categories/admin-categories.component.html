@@ -7,7 +7,7 @@
       type="text" class="form-control align-middle" placeholder="Search...">
     </div>
     <div class="col col-md-2">
-      <a routerLink="/admin/categories/new" class="btn btn-primary align-middle">Add New Category</a>
+      <button class="btn btn-primary" (click)="openDialog()">New Category</button>            
     </div>
   </div>
   <div class="categories-table">
@@ -28,7 +28,7 @@
   >
     <ng-template #dataTableCell let-item="item">
     <div class="align-center">
-      <button class="btn btn-primary" [routerLink]="['/admin/categories/', item.$key, item.name]">Edit</button>
+      <button class="btn btn-primary" (click)="openDialog(item.name, item.$key)">Edit</button>      
       <button class="btn btn-danger" (click)="delete(item)">Delete</button>
     </div>
     </ng-template>

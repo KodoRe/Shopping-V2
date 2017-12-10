@@ -3,6 +3,8 @@ import { Category } from '../../../shared/models/category';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataTableResource } from 'angular-4-data-table';
+import { MatDialog } from '@angular/material';
+import { CategoryFormComponent } from 'app/admin/components/category-form/category-form.component';
 
 @Component({
   selector: 'app-admin-categories',
@@ -16,7 +18,10 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   items: Category[] = [];
   itemCount: number; 
 
-  constructor(private categoryService: CategoryService) { 
+  constructor(
+    private categoryService: CategoryService,
+    private dialog: MatDialog   
+  ) { 
     this.subscription = this.categoryService.getAll()
       .subscribe(categories => {
         this.categories = categories;
@@ -45,6 +50,15 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
       this.categories;
 
     this.initializeTable(filteredCategories);
+  }
+
+  openDialog(namereplace, key) {
+    this.dialog.open(CategoryFormComponent, {
+      data: {
+        catKey: key,
+        nameToReplace: namereplace
+      }
+    });
   }
 
   delete(item: Category) {

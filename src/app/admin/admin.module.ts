@@ -19,16 +19,6 @@ import { AuthGuard } from "shared/services/auth-guard.service";
     ReactiveFormsModule,
     RouterModule.forChild([
       { 
-        path: 'admin/categories/new', 
-        component: CategoryFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      },
-      { 
-        path: 'admin/categories/:id/:name', 
-        component: CategoryFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      },
-      { 
         path: 'admin/categories', 
         component: AdminCategoriesComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
@@ -60,6 +50,7 @@ import { AuthGuard } from "shared/services/auth-guard.service";
       }
     ])            
   ],
+  entryComponents: [CategoryFormComponent],
   declarations: [
     ProductFormComponent,
     AdminProductsComponent,

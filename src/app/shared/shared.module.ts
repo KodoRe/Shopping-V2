@@ -20,6 +20,10 @@ import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
 
+import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
+
+import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
+
 @NgModule({
   imports: [
 //    ProductViewComponent,
@@ -30,17 +34,22 @@ import { UserService } from './services/user.service';
     DataTableModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
+    }),
     NgbModule.forRoot(),
   ],
   declarations: [
     ProductCardComponent,
 //    ProductViewComponent,
     ProductQuantityComponent,
+    ngSelectLocation,    
     OrderViewComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
+    ngSelectLocation,    
     OrderViewComponent,
     CommonModule,
     FormsModule,

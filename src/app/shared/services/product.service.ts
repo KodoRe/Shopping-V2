@@ -38,19 +38,12 @@ export class ProductService {
         equalTo: oldName
       }
     }).subscribe(p => {
-      //console.log(p);
       p.forEach(product => {
-        console.log(product);
+        //console.log(product);  //with this on, i seen the memory leak in the console.
         this.updateCategoryName(product.$key, newName);
-      })
+      });
+      subscribe.unsubscribe(); //important to unsubscribe to prevent memory leak..
     });
-
-    /*
-      ===============================
-      UNSUBSCRIBE METHOD NECCESSERY HERE?
-      ===============================
-    */
-
   }
 
 }
