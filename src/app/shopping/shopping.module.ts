@@ -1,3 +1,4 @@
+
 import { SharedModule } from './../shared/shared.module';
 import { AuthGuard } from 'shared/services/auth-guard.service';
 import { RouterModule } from '@angular/router';
@@ -16,23 +17,31 @@ import { OrderViewComponent } from '../shared/components/order-view/order-view.c
 import { ProductFilterComponent } from './components/products/product-filter/product-filter.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ContactFormComponent } from './components/contact-us/contact-form/contact-form.component';
 
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
+
 
 @NgModule({
   imports: [
     SharedModule,
     CarouselModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
+    }),
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-      { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },      
-    ])
+      { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },    
+      { path: 'contact-us', component: ContactUsComponent, canActivate: [AuthGuard] },  
+    ]),
   ],
   entryComponents: [
     //This is for now, maybe later when we add calling to service and more things it will not be neccessery.
@@ -50,6 +59,9 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent,
+    ContactUsComponent,
+    ContactFormComponent,
+    
   ]
 })
 export class ShoppingModule { }

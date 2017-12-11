@@ -1,3 +1,4 @@
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -18,9 +19,9 @@ import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
 
-import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 
 import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 
@@ -34,9 +35,6 @@ import { ngSelectLocation } from './components/location/browser-location'; //Get
     DataTableModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
-    }),
     NgbModule.forRoot(),
   ],
   declarations: [
@@ -67,6 +65,7 @@ import { ngSelectLocation } from './components/location/browser-location'; //Get
     ProductService,
     ShoppingCartService,
     OrderService,
+    ContactService
   ]
 })
 export class SharedModule { }
