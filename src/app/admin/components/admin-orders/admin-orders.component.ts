@@ -30,7 +30,7 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
       {
         let subscribtion = this.userService.get(this.orders[i].userId).subscribe(u => {
           this.orders[i].userName = u.name;
-          this.subscription.unsubscribe();
+          subscribtion.unsubscribe();
         });
       }
       this.initializeTable(orders);
