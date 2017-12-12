@@ -1,17 +1,38 @@
 <div class="row">
   <div class="col-md-12">
-      <div class='agm-map-container-inner sebm-google-map-container-inner'></div>
-      <div class='agm-map-content'>
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-      </agm-map>
+    <div class='agm-map-content'>
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+            <agm-marker [latitude]="lat" [longitude]="lng">
+                <agm-info-window [disableAutoPan]="false" [isOpen]="true">
+                    <p class="text-center"><strong>HNShopping</strong></p>
+                    <p><strong>Address: </strong>Rolls Royce 21</p>
+                    <p><strong>City: </strong>Beverly Hills</p>
+                    <p><strong>Country: </strong>United States</p>
+                    <p><strong>Phone Number: </strong> (+999)-99-9999</p>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
       </div>
   </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-6"><contact-form></contact-form></div>
-  <div class="col-md-6">About Us (Content)
-    <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et sem ligula. Nulla felis dolor, venenatis non ullamcorper tempor, viverra id erat. Vivamus eleifend nibh purus, sed tristique nulla luctus nec. Aliquam tristique varius iaculis. Morbi condimentum sed felis a aliquam. Cras tincidunt ligula eget risus varius condimentum. Nunc ultricies tincidunt lorem, id pretium ligula.  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <contact-form></contact-form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">         
+      <div class="card-body"> 
+        <p class="text-center"><strong>HNShopping</strong></p>
+        <p><strong>Address: </strong>Rolls Royce 21</p>
+        <p><strong>City: </strong>Beverly Hills</p>
+        <p><strong>Country: </strong>United States</p>
+        <p><strong>Phone Number: </strong> (+999)-99-9999</p> 
+     </div>
+    </div>
+  </div>
 </div>

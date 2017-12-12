@@ -7,18 +7,18 @@ export class ContactService {
   constructor(private db: AngularFireDatabase) { }
 
   create(contact) { 
-    return this.db.list('/contacts').push(contact);
+    return this.db.list('/messages').push(contact);
   }
 
   getAll() { 
-    return this.db.list('/contacts');
+    return this.db.list('/messages');
   }
 
   get(contactId) {
-    return this.db.object('/contacts/' + contactId);    
+    return this.db.object('/messages/' + contactId);    
   }
   
   update(contactId, contact) { 
-    return this.db.object('/products/' + contactId).update(contact);
+    return this.db.object('/messages/' + contactId).update(contact);
   }
 }

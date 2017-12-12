@@ -1,4 +1,3 @@
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -22,8 +21,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
 
-
-import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
+//import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 
 @NgModule({
   imports: [
@@ -41,13 +39,13 @@ import { ngSelectLocation } from './components/location/browser-location'; //Get
     ProductCardComponent,
 //    ProductViewComponent,
     ProductQuantityComponent,
-    ngSelectLocation,    
+    //ngSelectLocation,    
     OrderViewComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
-    ngSelectLocation,    
+    //ngSelectLocation,    
     OrderViewComponent,
     CommonModule,
     FormsModule,

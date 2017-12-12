@@ -40,7 +40,7 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
       { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },    
-      { path: 'contact-us', component: ContactUsComponent, canActivate: [AuthGuard] },  
+      { path: 'contact-us', component: ContactUsComponent },  
     ]),
   ],
   entryComponents: [
