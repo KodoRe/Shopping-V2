@@ -8,6 +8,10 @@
   color: #ffbc00;
 }
 
+.dropdown-item:active {
+  background-color: #ffbc00;
+}
+
 .fixed-top {
   z-index: 1000 !important;
 }
