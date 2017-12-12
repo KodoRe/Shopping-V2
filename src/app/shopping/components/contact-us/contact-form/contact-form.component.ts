@@ -21,6 +21,10 @@ export class ContactFormComponent implements OnInit {
     this.subscription =  this.auth.user$.subscribe(u => {
       if (u)
         this.userId = u.uid;
+      else
+      {
+        this.userId = null;
+      }
     });
    }
 
