@@ -9,7 +9,7 @@ import { ContactService } from 'shared/services/contact.service';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
-  contact = {};
+  contact = {name: "", email: ""};
   id;
   userId = null;
   subscription: Subscription;
@@ -20,10 +20,14 @@ export class ContactFormComponent implements OnInit {
     ) {  
     this.subscription =  this.auth.user$.subscribe(u => {
       if (u)
+      {
         this.userId = u.uid;
+        this.contact.name = u.displayName;
+        this.contact.email = u.email ? u.email : "";
+      } 
       else
       {
-        this.userId = null;
+        this.userId = null;     
       }
     });
    }
