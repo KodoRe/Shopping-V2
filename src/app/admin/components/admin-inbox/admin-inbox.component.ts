@@ -22,7 +22,7 @@ export class AdminInboxComponent implements OnInit {
 constructor(private contactService: ContactService) {
   this.contactService.getAll()
   .subscribe(r => {
-    this.requests = r;
+    this.requests = r.reverse(); //Did a trick, for desc ordering ;)
     this.registered = [];
     this.registeredHandled = [];
     this.registeredNotHandled = [];
@@ -72,6 +72,7 @@ constructor(private contactService: ContactService) {
   }
 
   ngOnInit() {
+    
   }
 
 }
