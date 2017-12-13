@@ -11,17 +11,17 @@ import { map } from 'rxjs/operator/map';
   styleUrls: ['./admin-inbox.component.css']
 })
 export class AdminInboxComponent implements OnInit {
-  requests: Contact[] =[];
-  registered: Contact[] =[];
-  anonymous : Contact[];
+  requests: Contact[] = [];
+  registered: Contact[] = [];
+  anonymous : Contact[] = [];
   subscription: Subscription;
 
 constructor(private contactService: ContactService) {
   this.contactService.getAll()
   .subscribe(r => {
-  this.requests = r;
+    this.requests = r;
+    this.populateLists();
   })
-  this.populateLists();
 }
 
   populateLists() { 
