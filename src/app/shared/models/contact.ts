@@ -7,5 +7,5 @@ export class Contact {
     phone: string;
     message: string;
     userId: string;
-    isHanled: boolean;
+    isHandled: boolean;
 }

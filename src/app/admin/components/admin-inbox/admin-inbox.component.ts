@@ -2,7 +2,6 @@ import { ContactService } from 'shared/services/contact.service';
 import { Contact } from 'shared/models/contact';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { forEach } from '@angular/router/src/utils/collection';
 import { map } from 'rxjs/operator/map';
 
 @Component({
@@ -24,32 +23,52 @@ constructor(private contactService: ContactService) {
   this.contactService.getAll()
   .subscribe(r => {
     this.requests = r;
+    this.registered = [];
+    this.registeredHandled = [];
+    this.registeredNotHandled = [];
+    this.anonymous = [];
+    this.anonymousHandled = [];
+    this.anonymousNotHandled = [];
     this.populateLists();
   })
 }
 
   populateLists() { 
-    this.requests.forEach( item => {
-      if(!!item.userId)
+    //Break down to Registered and Annonymous Messages
+    this.requests.forEach( r => {
+      if(!!r.userId)
       {
-        this.registered.push(item);
+        this.registered.push(r);
       }
       else
       {
-      this.anonymous.push(item);
+      this.anonymous.push(r);
       }
-    })
+    });
+
+    //Break down to Handled and Not Handled Messages for Registered Users
     this.registered.forEach( r => {
-  if(r.isHanled)
-  {
-    this.registeredHandled.push(r);
-    
-  }
-  else 
-  {
-    this.registeredNotHandled.push(r);
-  }
-})
+        if(r.isHandled)
+        {
+          this.registeredHandled.push(r);
+        }
+        else 
+        {
+          this.registeredNotHandled.push(r);
+        }
+      });
+
+    //Break down to Handled and Not Handled Messages for Registered Users
+    this.anonymous.forEach( r => {
+      if(r.isHandled)
+      {
+        this.anonymousHandled.push(r);
+      }
+      else 
+      {
+        this.anonymousNotHandled.push(r);
+      }
+    });
   }
 
   ngOnInit() {

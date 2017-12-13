@@ -1,70 +1,140 @@
 <div class="card">
-    <div class="card-header"><h5>Inbox</h5></div>
+    <div class="card-header text-center"><h3><strong>Message Inbox</strong></h3></div>
   <div class="card-body">
       <div class="card">
-          <div class="card-header"><h5>Registered</h5></div>
+          <div class="card-header"><h4><strong>Registered Users</strong></h4></div>
           <div class="card-body">
                 <div class="card">
-                    <div class="card-header"><h5>Not Handled</h5></div>
+                <div class="card-header"><h5>Awaiting for Action</h5></div>
                   <div class="card-body">
                       <table class="table table-hover">
                           <thead>
                             <tr>
                               <th>#</th>
+                              <th>Date</th>
                               <th>Name</th>
                               <th>Email</th>
                               <th>Phone</th>
                               <th>Message</th>
-                              <th></th>
+                              <th>Done?</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let rh of registeredNotHandled; let i = index">
+                            <tr *ngFor="let rnh of registeredNotHandled; let i = index">
                               <th scope="row">{{i}}</th>
-                              <td>{{rh.name}}</td>
-                              <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top" >{{rh.email}}</a></td>
-                              <td>{{rh.phone}}</td>
-                              <td>{{rh.message}}</td>
-                              <td>Handled</td>
-                            </tr>
-                            
+                              <td>AddDate</td>
+                              <td>{{rnh.name}}</td>
+                              <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
+                              <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
+                              <td>{{rnh.message}}</td>
+                              <td class="text-center"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                            </tr>    
                           </tbody>
                         </table>
-                </div>
+                 </div>
                  </div>
                   <div class="card">
-                      <div class="card-header"><h5>Handled</h5></div>
-                      <div class="card-body">
-                        
-                      </div>
+                    <div class="card-header"><h5>Message History</h5></div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Message</th>
+                                <th>Handled By</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let rh of registeredHandled; let i = index">
+                                <th scope="row">{{i}}</th>
+                                <td>{{rh.name}}</td>
+                                <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rh.email}}</a></td>
+                                <td><a href="tel:{{rh.email}}" target="_top">{{rh.phone}}</a></td>
+                                <td>{{rh.message}}</td>
+                                <td>Add Admin Name</td>
+                              </tr>    
+                            </tbody>
+                          </table>
+                   </div>
                     </div>
           </div>
         </div>
         <div class="card">
-            <div class="card-header"><h5>Not Registered</h5></div>
+            <div class="card-header"><h4><strong>Not Registered</strong></h4></div>
             <div class="card-body">
                   <div class="card" >
-                      <div class="card-header"><h5>Not Handled</h5></div>
-                    <div class="card-body">
+                      <div class="card-header"><h5>Awaiting for action</h5></div>
+                      <div class="card-body">
                         <p *ngIf="anonymousNotHandled.length == 0">No Messages</p>
                         <div *ngIf="anonymousNotHandled.length > 0">
-                            render the anonymous not handled table
+                            
+                              <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Name</th>
+                                      <th>Email</th>
+                                      <th>Phone</th>
+                                      <th>Message</th>
+                                      <th>Done?</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let anh of anonymousNotHandled; let i = index">
+                                      <th scope="row">{{i}}</th>
+                                      <td>{{anh.name}}</td>
+                                      <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
+                                      <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
+                                      <td>{{anh.message}}</td>
+                                      <td class="text-center"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                                    </tr>    
+                                  </tbody>
+                                </table>
+                         </div>
+
                         </div>
                   </div>
-                   </div>
+                  
+                   
                     <div class="card">
-                        <div class="card-header"><h5>Handled</h5></div>
+                        <div class="card-header"><h5>Messages History</h5></div>
                         <div class="card-body">
                             <p *ngIf="anonymousHandled.length == 0">No Messages</p>
                             <div *ngIf="anonymousHandled.length > 0">
-                                render the anonymous handled table
+
+                                  <table class="table table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Name</th>
+                                          <th>Email</th>
+                                          <th>Phone</th>
+                                          <th>Message</th>
+                                          <th>Handled By</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let ah of anonymousHandled; let i = index">
+                                          <th scope="row">{{i}}</th>
+                                          <td>{{ah.name}}</td>
+                                          <td><a href="mailto:{{ah.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{ah.email}}</a></td>
+                                          <td><a href="tel:{{ah.email}}" target="_top">{{ah.phone}}</a></td>
+                                          <td>{{ah.message}}</td>
+                                          <td>Add Admin Name</td>
+                                        </tr>    
+                                      </tbody>
+                                    </table>
+                             </div>
+
                             </div>
                         </div>
                       </div>
             </div>
-          </div>
+          
   </div>
-</div>
 
 
 
