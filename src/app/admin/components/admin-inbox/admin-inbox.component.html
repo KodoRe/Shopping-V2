@@ -22,7 +22,7 @@
                           <tbody>
                             <tr *ngFor="let rnh of registeredNotHandled; let i = index">
                               <th scope="row">{{i}}</th>
-                              <td>AddDate</td>
+                              <td width="17%">{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
                               <td>{{rnh.name}}</td>
                               <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
                               <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
@@ -40,6 +40,7 @@
                             <thead>
                               <tr>
                                 <th>#</th>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -50,6 +51,7 @@
                             <tbody>
                               <tr *ngFor="let rh of registeredHandled; let i = index">
                                 <th scope="row">{{i}}</th>
+                                <td>{{rh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                
                                 <td>{{rh.name}}</td>
                                 <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rh.email}}</a></td>
                                 <td><a href="tel:{{rh.email}}" target="_top">{{rh.phone}}</a></td>
@@ -75,6 +77,7 @@
                                   <thead>
                                     <tr>
                                       <th>#</th>
+                                      <th>Date</th>
                                       <th>Name</th>
                                       <th>Email</th>
                                       <th>Phone</th>
@@ -85,6 +88,7 @@
                                   <tbody>
                                     <tr *ngFor="let anh of anonymousNotHandled; let i = index">
                                       <th scope="row">{{i}}</th>
+                                      <td>{{anh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                      
                                       <td>{{anh.name}}</td>
                                       <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
                                       <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
@@ -109,6 +113,7 @@
                                       <thead>
                                         <tr>
                                           <th>#</th>
+                                          <th>Date</th>
                                           <th>Name</th>
                                           <th>Email</th>
                                           <th>Phone</th>
@@ -119,6 +124,7 @@
                                       <tbody>
                                         <tr *ngFor="let ah of anonymousHandled; let i = index">
                                           <th scope="row">{{i}}</th>
+                                          <td>{{ah.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                          
                                           <td>{{ah.name}}</td>
                                           <td><a href="mailto:{{ah.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{ah.email}}</a></td>
                                           <td><a href="tel:{{ah.email}}" target="_top">{{ah.phone}}</a></td>
@@ -134,27 +140,7 @@
                       </div>
             </div>
           
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          </div>
 
 <!-- <div class="row">
   <div class="col col-md-12">
