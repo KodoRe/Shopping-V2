@@ -13,7 +13,11 @@ import { map } from 'rxjs/operator/map';
 export class AdminInboxComponent implements OnInit {
   requests: Contact[] = [];
   registered: Contact[] = [];
+  registeredHandled: Contact[] = [];
+  registeredNotHandled: Contact[] = [];
   anonymous : Contact[] = [];
+  anonymousHandled: Contact[] = [];
+  anonymousNotHandled: Contact[] = [];
   subscription: Subscription;
 
 constructor(private contactService: ContactService) {
@@ -35,7 +39,19 @@ constructor(private contactService: ContactService) {
       this.anonymous.push(item);
       }
     })
+    this.registered.forEach( r => {
+  if(r.isHanled)
+  {
+    this.registeredHandled.push(r);
+    
   }
+  else 
+  {
+    this.registeredNotHandled.push(r);
+  }
+})
+  }
+
   ngOnInit() {
   }
 

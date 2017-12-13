@@ -1,37 +1,64 @@
 <div class="card">
+    <div class="card-header"><h5>Inbox</h5></div>
   <div class="card-body">
-    <h4>Inbox</h4>
       <div class="card">
+          <div class="card-header"><h5>Registered</h5></div>
           <div class="card-body">
-            <h5>Registered</h5>
                 <div class="card">
+                    <div class="card-header"><h5>Not Handled</h5></div>
                   <div class="card-body">
-                    <ul>
-                      <li *ngFor="let register of registered">
-                          {{register.name}}
-                      </li>
-                    </ul>
-                    
+                      <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Message</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let rh of registeredNotHandled; let i = index">
+                              <th scope="row">{{i}}</th>
+                              <td>{{rh.name}}</td>
+                              <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top" >{{rh.email}}</a></td>
+                              <td>{{rh.phone}}</td>
+                              <td>{{rh.message}}</td>
+                              <td>Handled</td>
+                            </tr>
+                            
+                          </tbody>
+                        </table>
                 </div>
                  </div>
                   <div class="card">
+                      <div class="card-header"><h5>Handled</h5></div>
                       <div class="card-body">
-                        handled
+                        
                       </div>
                     </div>
           </div>
         </div>
         <div class="card">
+            <div class="card-header"><h5>Not Registered</h5></div>
             <div class="card-body">
-                <h5>Not Registered</h5>
-                  <div class="card">
+                  <div class="card" >
+                      <div class="card-header"><h5>Not Handled</h5></div>
                     <div class="card-body">
-                      not handled
+                        <p *ngIf="anonymousNotHandled.length == 0">No Messages</p>
+                        <div *ngIf="anonymousNotHandled.length > 0">
+                            render the anonymous not handled table
+                        </div>
                   </div>
                    </div>
                     <div class="card">
+                        <div class="card-header"><h5>Handled</h5></div>
                         <div class="card-body">
-                          handled
+                            <p *ngIf="anonymousHandled.length == 0">No Messages</p>
+                            <div *ngIf="anonymousHandled.length > 0">
+                                render the anonymous handled table
+                            </div>
                         </div>
                       </div>
             </div>
