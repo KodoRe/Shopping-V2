@@ -21,4 +21,12 @@ export class ContactService {
   update(contactId, contact) { 
     return this.db.object('/messages/' + contactId).update(contact);
   }
+
+  getRegisteredMessage() {
+    return this.db.list('/messages', {
+      query: {
+        orderByChild: 'userId' 
+      }
+    });
+  }
 }

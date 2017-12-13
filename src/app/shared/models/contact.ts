@@ -6,5 +6,6 @@ export class Contact {
     email: string;
     phone: string;
     message: string;
+    userId: string;
     isHanled: boolean;
 }

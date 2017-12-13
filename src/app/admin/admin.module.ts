@@ -3,14 +3,16 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { AdminProductsComponent } from './components/admin-products/admin-products.component';4
+import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminInboxComponent } from './components/admin-inbox/admin-inbox.component';
 import { OrderViewComponent } from '../shared/components/order-view/order-view.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
+
 
 @NgModule({
   imports: [
@@ -46,6 +48,11 @@ import { AuthGuard } from "shared/services/auth-guard.service";
         path: 'admin/orders', 
         component: AdminOrdersComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/inbox', 
+        component: AdminInboxComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
   ],
@@ -55,7 +62,8 @@ import { AuthGuard } from "shared/services/auth-guard.service";
     AdminProductsComponent,
     AdminOrdersComponent,
     CategoryFormComponent,
-    AdminCategoriesComponent
+    AdminCategoriesComponent,
+    AdminInboxComponent
   ]
 })
 export class AdminModule { }

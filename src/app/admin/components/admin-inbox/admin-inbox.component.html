@@ -1,0 +1,135 @@
+<div class="card">
+  <div class="card-body">
+    <h4>Inbox</h4>
+      <div class="card">
+          <div class="card-body">
+            <h5>Registered</h5>
+                <div class="card">
+                  <div class="card-body">
+                    <ul>
+                      <li *ngFor="let register of registered">
+                          {{register.name}}
+                      </li>
+                    </ul>
+                    
+                </div>
+                 </div>
+                  <div class="card">
+                      <div class="card-body">
+                        handled
+                      </div>
+                    </div>
+          </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5>Not Registered</h5>
+                  <div class="card">
+                    <div class="card-body">
+                      not handled
+                  </div>
+                   </div>
+                    <div class="card">
+                        <div class="card-body">
+                          handled
+                        </div>
+                      </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+  <div class="col col-md-12">
+   <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control align-middle" placeholder="Filter by Customer Name...">
+  </div>
+</div>
+<div class="contact-table">
+  <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    (reload)="reloadItems($event)">
+    <data-table-column
+      [property]="'name'"  
+      [header]="'Name'"
+      [sortable]="true"
+      [resizable]="true"
+      width="150px"
+    >
+    <ng-template #dataTableCell let-item="item">
+       {{ item.name }}
+    </ng-template>
+    </data-table-column>
+
+    <data-table-column
+    [property]="'email'"
+    [header]="'Email'"
+    [sortable]="true"
+    [resizable]="true"
+    width="150px"
+  >
+  <ng-template #dataTableCell let-item="item">
+     {{ item.email }}
+  </ng-template>
+  </data-table-column>
+
+  <data-table-column
+  [property]="'phone'"  
+  [header]="'Phone'"
+  [sortable]="true"
+  [resizable]="true"
+  width="150px"
+>
+<ng-template #dataTableCell let-item="item">
+   {{ item.phone }}
+</ng-template>
+</data-table-column>
+
+    <data-table-column
+    [property]="'datePlaced'"
+    [header]="'Date Placed'"
+    [sortable]="true"
+    [resizable]="true"
+    width="120px"
+  >
+    <ng-template #dataTableCell let-item="item">
+      {{ item.datePlaced | date:'dd-MM-yyyy' }}
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column
+  [property]="'message'"  
+  [header]="'Message'"
+  [sortable]="true"
+  [resizable]="true"
+  width="150px"
+>
+<ng-template #dataTableCell let-item="item">
+   {{ item.message }}
+</ng-template>
+</data-table-column>
+  </data-table>
+</div> -->

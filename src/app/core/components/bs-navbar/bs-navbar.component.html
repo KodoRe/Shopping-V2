@@ -33,6 +33,7 @@
             <hr>
             <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
             <ng-container *ngIf="appUser.isAdmin">
+                <a class="dropdown-item" routerLink="/admin/inbox">Manage Inbox</a>
               <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
               <a class="dropdown-item" routerLink="/admin/categories">Manage Categories</a>              
               <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
