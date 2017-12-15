@@ -1,13 +1,13 @@
-import { Category } from './../../../shared/models/category';
+import { Category } from './../../../../shared/models/category';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ProductService } from '../../../shared/services/product.service';
-import { CategoryService } from '../../../shared/services/category.service';
+import { ProductService } from '../../../../shared/services/product.service';
+import { CategoryService } from '../../../../shared/services/category.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
-import { Product } from 'shared/models/product';
-import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
+import { Product } from './../../../../shared/models/product';
+import { ProductCardComponent } from './../../../../shared/components/product-card/product-card.component';
 
 
 @Component({

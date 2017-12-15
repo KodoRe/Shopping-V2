@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataTableResource } from 'angular-4-data-table';
 import { MatDialog } from '@angular/material';
-import { CategoryFormComponent } from 'app/admin/components/category-form/category-form.component';
+import { CategoryFormComponent } from './../../components/admin-categories/category-form/category-form.component';
 
 @Component({
   selector: 'app-admin-categories',

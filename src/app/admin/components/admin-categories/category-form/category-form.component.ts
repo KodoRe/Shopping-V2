@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ProductService } from '../../../shared/services/product.service';
-import { CategoryService } from '../../../shared/services/category.service';
+import { ProductService } from '../../../../shared/services/product.service';
+import { CategoryService } from '../../../../shared/services/category.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
