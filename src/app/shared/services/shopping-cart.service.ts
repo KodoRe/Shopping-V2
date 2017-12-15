@@ -46,6 +46,20 @@ export class ShoppingCartService {
        this.db.object('/shopping-carts/' + cartId).update({userId: uid});
   }
 
+  removeOldCarts(uid: string) {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) 
+    {
+      let subscription = this.db.list('/shopping-carts').subscribe(c => {
+        c.forEach(c => {
+          if (c.$key == cartId) return; //if your the same cart, don't remove yourself, just the others.
+          this.db.object('/shopping-carts/' + c.$key).remove();
+        });
+        subscription.unsubscribe();
+      });  
+    }
+  }
+
 
   private async getOrCreateCartId(): Promise<string> { 
       let cartId = localStorage.getItem('cartId');

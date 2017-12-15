@@ -31,22 +31,22 @@ export class AuthService {
     {
       case "google":
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(r => {
-        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })
+        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); this.shoppingCartService.removeOldCarts(user.uid); subscription.unsubscribe();  })
         this.router.navigate([returnUrl]);      
       });  
-            break;
+       break;
       case "facebook":
       this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(r => {
-        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })        
+        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); this.shoppingCartService.removeOldCarts(user.uid); subscription.unsubscribe();  })        
         this.router.navigate([returnUrl]);      
       });  
-            break;
+        break;
       case "twitter":
       this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then(r => {
-        let subscription = this.user$.subscribe(user => { this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })        
+        let subscription = this.user$.subscribe(user => { this.shoppingCartService.setCartUserId(user.uid); this.shoppingCartService.removeOldCarts(user.uid); subscription.unsubscribe();  })        
         this.router.navigate([returnUrl]);      
       });  
-            break;
+        break;
     }
   }
 
