@@ -21,31 +21,15 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   @Input('shopping-cart') shoppingCart: ShoppingCart; 
   @Input('showDescription') showDescription = false;
   public carouselEnabled = true;
-  public userName: string = null; //  by this parameter i know if the user is authenticated or not, so i can popup an alert "login needed".
-  public subscription: Subscription;
 
   constructor(
     private cartService: ShoppingCartService,
     private dialog: MatDialog,
-    private auth: AuthService
   ){ 
-    this.subscription = this.auth.appUser$.subscribe(u => {
-      if (u !== null)
-        this.userName = u.name;   
-      else
-        this.userName = null;   
-    });
   }
 
   addToCart() {
-    if (this.userName)
-    {
       this.cartService.addToCart(this.product);     
-    }
-    else
-    {
-      alert("Please Login in order to use this feature");
-    }
  }
 
   openDialog() {
@@ -87,6 +71,5 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

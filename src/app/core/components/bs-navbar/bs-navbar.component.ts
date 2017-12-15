@@ -26,7 +26,11 @@ export class BsNavbarComponent implements OnInit {
 
   async ngOnInit() { 
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    this.cart$ = await this.shoppingCartService.getCart();
+    //this.cart$ = await this.shoppingCartService.getCart(); // << This line caused the bug of first time user, make 2 carts in firebase.
+    // V - this method fix the 2 carts by delaying the shoppingCart.getQuantity, so when it execute there is already a userID.
+    setTimeout(async () => {
+      this.cart$ = await this.shoppingCartService.getCart();
+      }, 1200);
   }
 
   openLoginDialog() {

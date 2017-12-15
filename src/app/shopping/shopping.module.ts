@@ -35,7 +35,7 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     }),
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
+      { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
@@ -61,7 +61,6 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     ShippingFormComponent,
     ContactUsComponent,
     ContactFormComponent,
-    
   ]
 })
 export class ShoppingModule { }

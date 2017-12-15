@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of'; 
 import * as firebase from 'firebase'; 
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
+    private shoppingCartService: ShoppingCartService,
     private afAuth: AngularFireAuth, 
     private route: ActivatedRoute,
     private router: Router,
@@ -29,16 +31,19 @@ export class AuthService {
     {
       case "google":
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(r => {
+        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })
         this.router.navigate([returnUrl]);      
       });  
             break;
       case "facebook":
       this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(r => {
+        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })        
         this.router.navigate([returnUrl]);      
       });  
             break;
       case "twitter":
       this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then(r => {
+        let subscription = this.user$.subscribe(user => { this.shoppingCartService.setCartUserId(user.uid); subscription.unsubscribe();  })        
         this.router.navigate([returnUrl]);      
       });  
             break;
