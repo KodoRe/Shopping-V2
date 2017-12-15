@@ -36,13 +36,13 @@ export class BsNavbarComponent implements OnInit {
   openLoginDialog() {
     this.dialog.open(LoginComponent, {
       data: {
-
       }
     });
   }
 
   logout() {
     this.auth.logout();
+    
   }
 
 }

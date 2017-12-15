@@ -25,7 +25,6 @@ import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 
-
 @NgModule({
   imports: [
     SharedModule,
@@ -61,6 +60,6 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     ShippingFormComponent,
     ContactUsComponent,
     ContactFormComponent,
-  ]
+  ],
 })
 export class ShoppingModule { }

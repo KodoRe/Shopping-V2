@@ -51,7 +51,11 @@ export class AuthService {
   }
 
   logout() { 
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')  || window.location.pathname || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
     this.afAuth.auth.signOut();
+    this.router.navigate([returnUrl], {replaceUrl: true});
   }
 
   get appUser$() : Observable<AppUser> {
