@@ -22,10 +22,11 @@ export class ContactService {
     return this.db.object('/messages/' + contactId).update(contact);
   }
 
-  getRegisteredMessage() {
+  getMessagesByUser(userId: string) {
     return this.db.list('/messages', {
       query: {
-        orderByChild: 'userId' 
+        orderByChild: 'userId',
+        equalTo: userId        
       }
     });
   }

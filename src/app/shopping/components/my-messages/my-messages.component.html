@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header text-center"><h3><strong>My Messages</strong></h3></div>
+<div class="card-body">
+<div class="my-messages-table">
+    <data-table
+      [items]="items"
+      [itemCount]="itemCount"
+      (reload)="reloadItems($event)">
+      <data-table-column
+        [property]="'datePlaced'"  
+        [header]="'Date Placed'"
+        [sortable]="true"
+        [resizable]="true"
+        width = "150px"
+      >
+      <ng-template #dataTableCell let-item="item">
+        {{ item.datePlaced | date:'dd-MM-yyyy hh:mm' }}
+      </ng-template>
+      </data-table-column>
+  
+    <data-table-column
+    [property]="'message'"
+    [header]="'Message'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      <div>
+      {{ item.message }}
+    </div>
+    </ng-template>
+  </data-table-column>
+    
+      <data-table-column class="align-center"
+      [property]="'isHandled'"
+      [header]="'Handled'"
+      [sortable]="true"
+      [resizable]="true"
+      width = "150px"
+      >
+        <ng-template #dataTableCell let-item="item">
+        <div class="align-center">
+          <div *ngIf="item.isHandled">
+            <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+          </div>
+          <div *ngIf="!item.isHandled">
+          <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+        </div>
+        </div>
+        </ng-template>
+      </data-table-column>
+    
+    </data-table>
+  </div>
+</div>

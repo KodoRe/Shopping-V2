@@ -19,11 +19,13 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ContactFormComponent } from './components/contact-us/contact-form/contact-form.component';
+import { MyMessagesComponent } from './components/my-messages/my-messages.component'; 
 
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
+
 
 @NgModule({
   imports: [
@@ -39,7 +41,8 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
       { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },    
-      { path: 'contact-us', component: ContactUsComponent },  
+      { path: 'contact-us', component: ContactUsComponent }, 
+      { path: 'my/messages', component: MyMessagesComponent },   
     ]),
   ],
   entryComponents: [
@@ -60,6 +63,7 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     ShippingFormComponent,
     ContactUsComponent,
     ContactFormComponent,
+    MyMessagesComponent,
   ],
 })
 export class ShoppingModule { }
