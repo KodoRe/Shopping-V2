@@ -51,7 +51,8 @@ export class ShoppingCartService {
     if (cartId) 
     {
       let subscription = this.db.list('/shopping-carts').subscribe(c => {
-        c.forEach(c => {
+        c.forEach(c => { 
+          if (c.userId != uid) return; //this is not your cart, don't remove it.
           if (c.$key == cartId) return; //if your the same cart, don't remove yourself, just the others.
           this.db.object('/shopping-carts/' + c.$key).remove();
         });
