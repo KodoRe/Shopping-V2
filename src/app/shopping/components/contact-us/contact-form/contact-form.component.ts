@@ -35,6 +35,7 @@ export class ContactFormComponent implements OnInit {
   save(contact) {
     contact.datePlaced = new Date().getTime();
     contact.isHandled = false;
+    contact.adminName = '';
     if (this.userId)
     {
        contact.userId = this.userId;

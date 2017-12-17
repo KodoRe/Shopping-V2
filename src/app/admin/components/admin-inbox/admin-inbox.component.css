@@ -1,3 +1,29 @@
 .card {
     margin-bottom: 20px;
 }
+
+
+table {
+    display: block;
+    height: 300px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+.page-title {
+    background-color: #ffbc00;
+}
+
+.heading {
+    background-color: #23272B;
+    color: #ffbc00;
+}
+
+.fa {
+    float: right;
+    cursor:pointer;
+}
+
+.toggle {
+    cursor:pointer;
+}
+

@@ -1,12 +1,22 @@
 <div class="card">
-    <div class="card-header text-center"><h3><strong>Message Inbox</strong></h3></div>
+    <div class="card-header text-center page-title"><h3><strong>Message Inbox</strong></h3></div>
   <div class="card-body">
       <div class="card">
-          <div class="card-header"><h4><strong>Registered Users</strong></h4></div>
+          <div class="card-header heading"><h4><strong>Registered Users</strong></h4></div>
           <div class="card-body">
                 <div class="card">
-                <div class="card-header"><h5>Awaiting for Action</h5></div>
-                  <div class="card-body">
+                <div class="card-header toggle" (click)="rnhToggle()">Awaiting Action
+                  <span class="fa"
+                  [ngClass]="{
+                    'fa-chevron-up': rnhExpanded,
+                    'fa-chevron-down': !rnhExpanded
+                  }"
+                ></span>
+              </div>
+                  <div class="card-body" [@expandCollapse]="rnhExpanded ? 
+                  'expanded' : 'collapsed'">
+                  <p *ngIf="registeredNotHandled.length == 0">No Messages</p>
+                  <div *ngIf="registeredNotHandled.length > 0">
                       <table class="table table-hover">
                           <thead>
                             <tr>
@@ -20,22 +30,34 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let rnh of registeredNotHandled; let i = index">
+                            <tr *ngFor="let rnh of registeredNotHandled; let i = index" @slideOut>
                               <th scope="row">{{i}}</th>
                               <td width="17%">{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
                               <td>{{rnh.name}}</td>
                               <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
                               <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
                               <td>{{rnh.message}}</td>
-                              <td class="text-center"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                              <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(rnh)" ></i></td>
                             </tr>    
                           </tbody>
                         </table>
+                      </div>
                  </div>
                  </div>
                   <div class="card">
-                    <div class="card-header"><h5>Message History</h5></div>
-                    <div class="card-body">
+                    <div class="card-header toggle" (click)="rhToggle()">Message History
+                      <span class="fa"
+                      [ngClass]="{
+                        'fa-chevron-up': rhExpanded,
+                        'fa-chevron-down': !rhExpanded
+                      }"
+                    ></span>
+                  </div>
+                    <div class="card-body" 
+                    [@expandCollapse]="rhExpanded ? 
+                    'expanded' : 'collapsed'">
+                    <p *ngIf="registeredHandled.length == 0">No Messages</p>
+                    <div *ngIf="registeredHandled.length > 0">
                         <table class="table table-hover">
                             <thead>
                               <tr>
@@ -56,20 +78,30 @@
                                 <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rh.email}}</a></td>
                                 <td><a href="tel:{{rh.email}}" target="_top">{{rh.phone}}</a></td>
                                 <td>{{rh.message}}</td>
-                                <td>Add Admin Name</td>
+                                <td>{{rh.adminName}}</td>
                               </tr>    
                             </tbody>
                           </table>
+                    </div>
                    </div>
                     </div>
           </div>
         </div>
         <div class="card">
-            <div class="card-header"><h4><strong>Not Registered</strong></h4></div>
+            <div class="card-header heading"><h4><strong>Non Registered Users</strong></h4></div>
             <div class="card-body">
-                  <div class="card" >
-                      <div class="card-header"><h5>Awaiting for action</h5></div>
-                      <div class="card-body">
+                  <div class="card">
+                      <div class="card-header toggle" (click)="anhToggle()">Awaiting Action
+                        <span class="fa"
+                        [ngClass]="{
+                          'fa-chevron-up': anhExpanded,
+                          'fa-chevron-down': !anhExpanded
+                        }"
+                      ></span>
+                    </div>
+                      <div class="card-body" 
+                      [@expandCollapse]="anhExpanded ? 
+                      'expanded' : 'collapsed'">
                         <p *ngIf="anonymousNotHandled.length == 0">No Messages</p>
                         <div *ngIf="anonymousNotHandled.length > 0">
                             
@@ -86,14 +118,14 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr *ngFor="let anh of anonymousNotHandled; let i = index">
+                                    <tr *ngFor="let anh of anonymousNotHandled; let i = index" @slideOut>
                                       <th scope="row">{{i}}</th>
                                       <td>{{anh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                      
                                       <td>{{anh.name}}</td>
                                       <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
                                       <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
                                       <td>{{anh.message}}</td>
-                                      <td class="text-center"><i class="fa fa-check-circle-o" aria-hidden="true"></i></td>
+                                      <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh)"></i></td>
                                     </tr>    
                                   </tbody>
                                 </table>
@@ -104,8 +136,17 @@
                   
                    
                     <div class="card">
-                        <div class="card-header"><h5>Messages History</h5></div>
-                        <div class="card-body">
+                        <div class="card-header toggle" (click)="ahToggle()">Message History
+                            <span class="fa"
+                            [ngClass]="{
+                              'fa-chevron-up': ahExpanded,
+                              'fa-chevron-down': !ahExpanded
+                            }"
+                          ></span>
+                        </div>
+                        <div class="card-body"
+                        [@expandCollapse]="ahExpanded ? 
+                        'expanded' : 'collapsed'">
                             <p *ngIf="anonymousHandled.length == 0">No Messages</p>
                             <div *ngIf="anonymousHandled.length > 0">
 
@@ -129,7 +170,7 @@
                                           <td><a href="mailto:{{ah.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{ah.email}}</a></td>
                                           <td><a href="tel:{{ah.email}}" target="_top">{{ah.phone}}</a></td>
                                           <td>{{ah.message}}</td>
-                                          <td>Add Admin Name</td>
+                                          <td>{{ah.adminName}}</td>
                                         </tr>    
                                       </tbody>
                                     </table>

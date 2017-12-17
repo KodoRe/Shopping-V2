@@ -8,4 +8,5 @@ export class Contact {
     message: string;
     userId: string;
     isHandled: boolean;
+    adminName: string;
 }
