@@ -45,7 +45,8 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
     this.anonymousHandled = [];
     this.anonymousNotHandled = [];
     this.populateLists();
-  })
+    this.subscription.unsubscribe();
+  });
   this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
 
 }
@@ -88,7 +89,7 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
         else 
         {
           this.registeredNotHandled.push(r);
-        }
+        }        
       });
 
     //Break down to Handled and Not Handled Messages for Registered Users
@@ -101,15 +102,29 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
       {
         this.anonymousNotHandled.push(r);
       }
-    });
+    });    
   }
 
-  markAsDone(request) {
+  markAsDone(request, section) {
   this.request = request;
   this.request.isHandled = true;
   this.request.adminName = this.appUser.name;
   this.contactService.update(this.request.$key, this.request);
+  let msgIndex;
+  switch(section)
+  {
+    case "annonymousNotHandled":
+        msgIndex = this.anonymousNotHandled.indexOf(request);         
+        this.anonymousNotHandled.splice(msgIndex, 1);                     
+        this.anonymousHandled.unshift(request);
+    break;
+    case "registeredNotHandled":
+        msgIndex = this.registeredNotHandled.indexOf(request);         
+        this.registeredNotHandled.splice(msgIndex, 1);                     
+        this.registeredHandled.unshift(request);  
+    break;
   }
+}
 
   ngOnInit() {
     

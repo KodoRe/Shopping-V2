@@ -27,3 +27,6 @@ table {
     cursor:pointer;
 }
 
+.badge {
+    background-color: #ffbc00;
+}

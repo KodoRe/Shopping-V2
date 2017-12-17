@@ -19,7 +19,7 @@ export const expandCollapse = trigger('expandCollapse', [
   
     transition('expanded => collapsed', [
       animate('300ms ease-in')
-    ])
+    ]),
   ]);
   
    let bounceOutRightAnimation = animation(
@@ -38,8 +38,12 @@ export const expandCollapse = trigger('expandCollapse', [
 
   export const slideOut = trigger('slideOut', [
     transition(':leave', [
-     style({ backgroundColor: '#34961E' }),
+     style({ backgroundColor: '#e3e3e3' }),
      animate(500),
     useAnimation(bounceOutRightAnimation)
-    ])
-]);
+    ]),
+    transition(':enter', [
+      style({ opacity: 0, backgroundColor: "#e3e3e3" }),
+      animate(750, style({ opacity: 1 }))
+   ])
+  ]);

@@ -5,19 +5,20 @@
           <div class="card-header heading"><h4><strong>Registered Users</strong></h4></div>
           <div class="card-body">
                 <div class="card">
-                <div class="card-header toggle" (click)="rnhToggle()">Awaiting Action
+                <div class="card-header toggle" (click)="rnhToggle()">
+                  <strong>Awaiting Action <span class="badge badge-pill"> {{ registeredNotHandled.length }}</span></strong>
                   <span class="fa"
                   [ngClass]="{
                     'fa-chevron-up': rnhExpanded,
                     'fa-chevron-down': !rnhExpanded
-                  }"
-                ></span>
+                  }">
+                </span>
               </div>
                   <div class="card-body" [@expandCollapse]="rnhExpanded ? 
                   'expanded' : 'collapsed'">
                   <p *ngIf="registeredNotHandled.length == 0">No Messages</p>
-                  <div *ngIf="registeredNotHandled.length > 0">
-                      <table class="table table-hover">
+                  <div>
+                      <table *ngIf="registeredNotHandled.length > 0" class="table table-hover" @slideOut>
                           <thead>
                             <tr>
                               <th>#</th>
@@ -31,13 +32,13 @@
                           </thead>
                           <tbody>
                             <tr *ngFor="let rnh of registeredNotHandled; let i = index" @slideOut>
-                              <th scope="row">{{i}}</th>
+                              <th scope="row">{{i + 1}}</th>
                               <td width="17%">{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
                               <td>{{rnh.name}}</td>
                               <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
                               <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
                               <td>{{rnh.message}}</td>
-                              <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(rnh)" ></i></td>
+                              <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(rnh,'registeredNotHandled')" ></i></td>
                             </tr>    
                           </tbody>
                         </table>
@@ -45,7 +46,8 @@
                  </div>
                  </div>
                   <div class="card">
-                    <div class="card-header toggle" (click)="rhToggle()">Message History
+                    <div class="card-header toggle" (click)="rhToggle()">
+                        <strong>Message History <span class="badge badge-pill"> {{ registeredHandled.length }}</span></strong>
                       <span class="fa"
                       [ngClass]="{
                         'fa-chevron-up': rhExpanded,
@@ -58,7 +60,7 @@
                     'expanded' : 'collapsed'">
                     <p *ngIf="registeredHandled.length == 0">No Messages</p>
                     <div *ngIf="registeredHandled.length > 0">
-                        <table class="table table-hover">
+                        <table class="table table-hover" @slideOut>
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -71,8 +73,8 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr *ngFor="let rh of registeredHandled; let i = index">
-                                <th scope="row">{{i}}</th>
+                              <tr *ngFor="let rh of registeredHandled; let i = index" @slideOut>
+                                <th scope="row">{{i + 1}}</th>
                                 <td>{{rh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                
                                 <td>{{rh.name}}</td>
                                 <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rh.email}}</a></td>
@@ -88,10 +90,11 @@
           </div>
         </div>
         <div class="card">
-            <div class="card-header heading"><h4><strong>Non Registered Users</strong></h4></div>
+            <div class="card-header heading"><h4><strong>Annonymous Users</strong></h4></div>
             <div class="card-body">
                   <div class="card">
-                      <div class="card-header toggle" (click)="anhToggle()">Awaiting Action
+                      <div class="card-header toggle" (click)="anhToggle()">
+                       <strong>Awaiting Action <span class="badge badge-pill"> {{ anonymousNotHandled.length }}</span></strong>
                         <span class="fa"
                         [ngClass]="{
                           'fa-chevron-up': anhExpanded,
@@ -103,9 +106,8 @@
                       [@expandCollapse]="anhExpanded ? 
                       'expanded' : 'collapsed'">
                         <p *ngIf="anonymousNotHandled.length == 0">No Messages</p>
-                        <div *ngIf="anonymousNotHandled.length > 0">
-                            
-                              <table class="table table-hover">
+                        <div>  
+                              <table class="table table-hover" *ngIf="anonymousNotHandled.length > 0" @slideOut>
                                   <thead>
                                     <tr>
                                       <th>#</th>
@@ -119,13 +121,13 @@
                                   </thead>
                                   <tbody>
                                     <tr *ngFor="let anh of anonymousNotHandled; let i = index" @slideOut>
-                                      <th scope="row">{{i}}</th>
+                                      <th scope="row">{{i + 1}}</th>
                                       <td>{{anh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                      
                                       <td>{{anh.name}}</td>
                                       <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
                                       <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
                                       <td>{{anh.message}}</td>
-                                      <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh)"></i></td>
+                                      <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh,'annonymousNotHandled')"></i></td>
                                     </tr>    
                                   </tbody>
                                 </table>
@@ -136,7 +138,8 @@
                   
                    
                     <div class="card">
-                        <div class="card-header toggle" (click)="ahToggle()">Message History
+                        <div class="card-header toggle" (click)="ahToggle()">
+                            <strong>Message History <span class="badge badge-pill"> {{ anonymousHandled.length }}</span></strong>
                             <span class="fa"
                             [ngClass]="{
                               'fa-chevron-up': ahExpanded,
@@ -150,7 +153,7 @@
                             <p *ngIf="anonymousHandled.length == 0">No Messages</p>
                             <div *ngIf="anonymousHandled.length > 0">
 
-                                  <table class="table table-hover">
+                                  <table class="table table-hover" @slideOut>
                                       <thead>
                                         <tr>
                                           <th>#</th>
@@ -163,8 +166,8 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr *ngFor="let ah of anonymousHandled; let i = index">
-                                          <th scope="row">{{i}}</th>
+                                        <tr *ngFor="let ah of anonymousHandled; let i = index" @slideOut>
+                                          <th scope="row">{{i + 1}}</th>
                                           <td>{{ah.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                          
                                           <td>{{ah.name}}</td>
                                           <td><a href="mailto:{{ah.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{ah.email}}</a></td>
