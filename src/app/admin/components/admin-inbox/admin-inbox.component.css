@@ -10,12 +10,8 @@ table {
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 .page-title {
+    height: 70px;
     background-color: #ffbc00;
-}
-
-.heading {
-    background-color: #23272B;
-    color: #ffbc00;
 }
 
 .fa {

@@ -1,8 +1,16 @@
 
+.fa-info-circle {
+  color: #ffbc00;
+}
+
+.active-link {
+	background-color: #ffbc00;;
+	font-weight: bold;
+}
+
 .dropdown-toggle { 
   cursor: pointer;
 }
-
 
 .dropdown-toggle::after {
   color: #ffbc00;
