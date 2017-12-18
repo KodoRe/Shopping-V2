@@ -25,4 +25,7 @@ table {
 
 .badge {
     background-color: #ffbc00;
+}.table {
+    overflow-x: auto;
+    font-size: 90%;
 }

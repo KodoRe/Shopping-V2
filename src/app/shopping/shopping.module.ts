@@ -53,6 +53,7 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     //Its neccessery now because nothing loaded in the dom, so angular don't know that component.
     //Hen Tz.
     ProductViewComponent,
+    ContactSuccessComponent
   ],
   declarations: [
     ProductsComponent,

@@ -33,11 +33,11 @@
                           <tbody>
                             <tr *ngFor="let rnh of registeredNotHandled; let i = index" @slideOut>
                               <th scope="row">{{i + 1}}</th>
-                              <td width="17%">{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
+                              <td>{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
                               <td>{{rnh.name}}</td>
                               <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
                               <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
-                              <td>{{rnh.message}}</td>
+                              <td style="word-break:break-word;">{{rnh.message}}</td>
                               <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(rnh,'registeredNotHandled')" ></i></td>
                             </tr>    
                           </tbody>
@@ -69,7 +69,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Message</th>
-                                <th>Handled By</th>
+                                <th style="width: 120px">Handled By</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -79,7 +79,7 @@
                                 <td>{{rh.name}}</td>
                                 <td><a href="mailto:{{rh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rh.email}}</a></td>
                                 <td><a href="tel:{{rh.email}}" target="_top">{{rh.phone}}</a></td>
-                                <td>{{rh.message}}</td>
+                                <td style="word-break:break-word;">{{rh.message}}</td>
                                 <td>{{rh.adminName}}</td>
                               </tr>    
                             </tbody>
@@ -116,7 +116,7 @@
                                       <th>Email</th>
                                       <th>Phone</th>
                                       <th>Message</th>
-                                      <th>Done?</th>
+                                      <th>Done</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -126,8 +126,8 @@
                                       <td>{{anh.name}}</td>
                                       <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
                                       <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
-                                      <td>{{anh.message}}</td>
-                                      <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh,'annonymousNotHandled')"></i></td>
+                                      <td style="word-break:break-word;">{{anh.message}}</td>
+                                      <td><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh,'annonymousNotHandled')"></i></td>
                                     </tr>    
                                   </tbody>
                                 </table>
@@ -162,7 +162,7 @@
                                           <th>Email</th>
                                           <th>Phone</th>
                                           <th>Message</th>
-                                          <th>Handled By</th>
+                                          <th style="width: 120px">Handled By</th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -172,7 +172,7 @@
                                           <td>{{ah.name}}</td>
                                           <td><a href="mailto:{{ah.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{ah.email}}</a></td>
                                           <td><a href="tel:{{ah.email}}" target="_top">{{ah.phone}}</a></td>
-                                          <td>{{ah.message}}</td>
+                                          <td style="word-break:break-word;">{{ah.message}}</td>
                                           <td>{{ah.adminName}}</td>
                                         </tr>    
                                       </tbody>
@@ -185,6 +185,7 @@
             </div>
           
           </div>
+</div>
 
 <!-- <div class="row">
   <div class="col col-md-12">
