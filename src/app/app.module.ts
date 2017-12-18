@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 
+//import { DataTableModule } from 'angular-4-data-table/src/index';
+import { DataTableModule } from './modules/angular-4-data-table';
+
+
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
@@ -29,6 +33,7 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     BrowserModule,
     MatDialogModule,
+    DataTableModule,
     SharedModule,
     AdminModule,
     ShoppingModule,

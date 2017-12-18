@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from 'shared/models/contact';
 import { Observable, Subscription } from 'rxjs';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from '../../../modules/angular-4-data-table';
 import { AuthService } from 'shared/services/auth.service';
 import { ContactService } from 'shared/services/contact.service';
 

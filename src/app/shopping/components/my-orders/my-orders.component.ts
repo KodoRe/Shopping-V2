@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Order } from 'shared/models/order';
 import { Subscription } from 'rxjs/Subscription';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from '../../../modules/angular-4-data-table';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

@@ -4,7 +4,8 @@ import { Order, OrderView } from '../../../shared/models/order';
 import { OrderService } from '../../../shared/services/order.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { DataTableResource } from 'angular-4-data-table';
+//import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from '../../../modules/angular-4-data-table';
 
 @Component({
   selector: 'app-admin-orders',

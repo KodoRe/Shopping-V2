@@ -12,12 +12,17 @@ import { AdminCategoriesComponent } from './components/admin-categories/admin-ca
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
-
+import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DataTableModule } from './../modules/angular-4-data-table';
 
 @NgModule({
   imports: [
     SharedModule,
+    DataTableModule,
     ReactiveFormsModule,
+    NgxChartsModule,
+    
     RouterModule.forChild([
       { 
         path: 'admin/categories', 
@@ -53,6 +58,11 @@ import { AuthGuard } from "shared/services/auth-guard.service";
         path: 'admin/inbox', 
         component: AdminInboxComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/statistics', 
+        component: AdminStatisticsComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
   ],
@@ -63,7 +73,8 @@ import { AuthGuard } from "shared/services/auth-guard.service";
     AdminOrdersComponent,
     CategoryFormComponent,
     AdminCategoriesComponent,
-    AdminInboxComponent
+    AdminInboxComponent,
+    AdminStatisticsComponent
   ]
 })
 export class AdminModule { }

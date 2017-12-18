@@ -2,7 +2,7 @@ import { CategoryService } from '../../../shared/services/category.service';
 import { Category } from '../../../shared/models/category';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataTableResource } from 'angular-4-data-table';
+import { DataTableResource } from '../../../modules/angular-4-data-table';
 import { MatDialog } from '@angular/material';
 import { CategoryFormComponent } from './../../components/admin-categories/category-form/category-form.component';
 

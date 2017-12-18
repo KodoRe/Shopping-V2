@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
 
-
 import { LoginComponent } from '../core/components/login/login.component';
 
 import { CheckOutComponent } from './components/check-out/check-out.component';
@@ -28,11 +27,14 @@ import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 
+import { DataTableModule } from './../modules/angular-4-data-table';
+
 
 
 @NgModule({
   imports: [
     SharedModule,
+    DataTableModule,
     CarouselModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
