@@ -1,7 +1,11 @@
-import { AuthService } from '../../../../shared/services/auth.service';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { AuthService } from 'shared/services/auth.service';
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from 'shared/services/contact.service';
+import { MatDialog } from '@angular/material';
+import { ContactSuccessComponent } from '../../contact-success/contact-success.component';
+
 
 @Component({
   selector: 'contact-form',
@@ -13,10 +17,12 @@ export class ContactFormComponent implements OnInit {
   id;
   userId = null;
   subscription: Subscription;
+  form: NgForm;
 
   constructor(
     private contactService: ContactService,
-    private auth: AuthService
+    private auth: AuthService,
+    private dialog: MatDialog 
     ) {  
     this.subscription =  this.auth.user$.subscribe(u => {
       if (u)
@@ -42,6 +48,15 @@ export class ContactFormComponent implements OnInit {
     }
     this.contactService.create(contact);
   }
+
+  clearForm(form : any) {
+    form.reset();
+  }
+
+  openDialog() {
+    this.dialog.open(ContactSuccessComponent);  
+  }
+
   ngOnInit() {
   }
 

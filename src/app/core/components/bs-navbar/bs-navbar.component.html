@@ -32,17 +32,17 @@
             <hr>
             <a class="dropdown-item">Welcome, {{ appUser.name }}</a>
             <hr>
-            <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
-            <a class="dropdown-item" routerLink="/my/messages">My Messages</a>
+            <a class="dropdown-item" routerLink="/my/orders" routerLinkActive="active-link">My Orders</a>
+            <a class="dropdown-item" routerLink="/my/messages" routerLinkActive="active-link">My Messages</a>
             <ng-container *ngIf="appUser.isAdmin">
               <br>
             <hr>
                 <a class="dropdown-item">Admin Tools</a>                
             <hr>
-                <a class="dropdown-item" routerLink="/admin/inbox">Manage Inbox</a>
-              <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-              <a class="dropdown-item" routerLink="/admin/categories">Manage Categories</a>              
-              <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+                <a class="dropdown-item" routerLink="/admin/inbox" routerLinkActive="active-link">Manage Inbox</a>
+              <a class="dropdown-item" routerLink="/admin/orders" routerLinkActive="active-link">Manage Orders</a>
+              <a class="dropdown-item" routerLink="/admin/categories" routerLinkActive="active-link">Manage Categories</a>              
+              <a class="dropdown-item" routerLink="/admin/products" routerLinkActive="active-link">Manage Products</a>
             </ng-container>
             <br>
             <hr>

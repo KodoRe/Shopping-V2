@@ -104,8 +104,10 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
       }
     });    
   }
+  
 
   markAsDone(request, section) {
+  if (!confirm('Are You Sure You Want To Mark This As Handled?')) return;        
   this.request = request;
   this.request.isHandled = true;
   this.request.adminName = this.appUser.name;

@@ -1,3 +1,7 @@
 .categories-table {
     padding-bottom: 25px;
 }
+.card-header {
+    height: 70px;
+    background-color: #ffbc00;
+}

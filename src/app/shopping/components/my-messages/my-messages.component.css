@@ -6,5 +6,6 @@
 }
 
 .card-header {
+    height: 70px;    
     background-color: #ffbc00;
 }

@@ -17,14 +17,17 @@ import { OrderViewComponent } from '../shared/components/order-view/order-view.c
 import { ProductFilterComponent } from './components/products/product-filter/product-filter.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { MyMessagesComponent } from './components/my-messages/my-messages.component'; 
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ContactFormComponent } from './components/contact-us/contact-form/contact-form.component';
-import { MyMessagesComponent } from './components/my-messages/my-messages.component'; 
+import { ContactSuccessComponent } from './components/contact-success/contact-success.component'; 
+
 
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
+
 
 
 @NgModule({
@@ -64,6 +67,7 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
     ContactUsComponent,
     ContactFormComponent,
     MyMessagesComponent,
+    ContactSuccessComponent,
   ],
 })
 export class ShoppingModule { }
