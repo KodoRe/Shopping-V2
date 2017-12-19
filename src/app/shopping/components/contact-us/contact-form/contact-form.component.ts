@@ -13,7 +13,7 @@ import { ContactSuccessComponent } from '../../contact-success/contact-success.c
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
-  contact = {name: "", email: ""};
+  contact = {name: "", email: "", phone: "", message: ""};
   id;
   userId = null;
   subscription: Subscription;
@@ -47,14 +47,28 @@ export class ContactFormComponent implements OnInit {
        contact.userId = this.userId;
     }
     this.contactService.create(contact);
+    this.clearForm();
   }
-
-  clearForm(form : any) {
-    form.reset();
-  }
-
+clearForm() {
+  let form = this.contact;
+   form.phone = ''
+   form.message = '';
+  // if(!this.auth.user$)
+  // {
+  // form.phone = ''
+  // form.message = '';
+  // }
+  // else 
+  // {
+  //   form.name = ''
+  //   form.email = '';
+  //   form.phone = ''
+  //   form.message = '';
+  // }
+}
   openDialog() {
     this.dialog.open(ContactSuccessComponent);  
+    
   }
 
   ngOnInit() {

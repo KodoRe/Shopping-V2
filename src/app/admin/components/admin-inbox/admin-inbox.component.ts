@@ -104,7 +104,33 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
       }
     });    
   }
-  
+
+  filter(query: string, list) { 
+    switch(list) {
+      case 'registeredNotHandled':
+      let filteredMessages = (query) ?
+      this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
+      this.registeredNotHandled;
+      console.log(filteredMessages);
+      // this.registeredNotHandled = filteredMessages;
+      break;
+      // case 'registeredHandled':
+      // let filteredMessages = (query) ?
+      // this.registeredHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
+      // this.registeredHandled;
+      // break;
+      // case 'registeredNotHandled':
+      // let filteredMessages = (query) ?
+      // this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
+      // this.registeredNotHandled;
+      // break;
+      // case 'registeredNotHandled':
+      // let filteredMessages = (query) ?
+      // this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
+      // this.registeredNotHandled;
+      // break;
+    }
+  }
 
   markAsDone(request, section) {
   if (!confirm('Are You Sure You Want To Mark This As Handled?')) return;        

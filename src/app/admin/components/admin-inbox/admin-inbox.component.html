@@ -18,6 +18,13 @@
                   'expanded' : 'collapsed'">
                   <p *ngIf="registeredNotHandled.length == 0">No Messages</p>
                   <div>
+                      <div class="row">
+                          <div class="col col-md-12">
+                           <input 
+                            #query
+                            (keyup)="filter(query.value, 'registeredNotHandled')"
+                            type="text" class="form-control align-middle" placeholder="Filter by Name...">
+                          </div>
                       <table *ngIf="registeredNotHandled.length > 0" class="table table-hover" @slideOut>
                           <thead>
                             <tr>
