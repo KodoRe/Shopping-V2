@@ -47,3 +47,14 @@ export const expandCollapse = trigger('expandCollapse', [
       animate(750, style({ opacity: 1 }))
    ])
   ]);
+
+  export const fadeInOut = trigger('fadeInOut', [
+    transition(':leave', [
+      style({ opacity: 1 }),
+      animate(750, style({ opacity: 0 }))
+    ]),
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate(750, style({ opacity: 1 }))
+   ])
+  ]);

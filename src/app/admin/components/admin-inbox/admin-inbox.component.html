@@ -16,16 +16,19 @@
               </div>
                   <div class="card-body" [@expandCollapse]="rnhExpanded ? 
                   'expanded' : 'collapsed'">
-                  <p *ngIf="registeredNotHandled.length == 0">No Messages</p>
-                  <div>
-                      <div class="row">
-                          <div class="col col-md-12">
-                           <input 
-                            #query
-                            (keyup)="filter(query.value, 'registeredNotHandled')"
-                            type="text" class="form-control align-middle" placeholder="Filter by Name...">
-                          </div>
-                      <table *ngIf="registeredNotHandled.length > 0" class="table table-hover" @slideOut>
+                  <div class="col col-md-12 pb-3">
+                      <input 
+                       *ngIf="registeredNotHandled.length > 0"
+                       #rnhQuery
+                       (keyup)="filter(rnhQuery.value, 'registeredNotHandled')"
+                       type="text" class="form-control align-middle" placeholder="Filter by Name...">
+                  </div>
+                  <div class="pu-4" *ngIf="registeredNotHandled.length == 0 || registeredNotHandledFiltered.length == 0" @fadeInOut>
+                      <span *ngIf="registeredNotHandledFiltered.length == 0 && registeredNotHandled.length == 0">No Messages Found.</span>
+                      <span *ngIf="registeredNotHandledFiltered.length == 0 && registeredNotHandled.length > 0">No Messages found for your filter.</span>                  
+                  </div>
+                  <div *ngIf="registeredNotHandledFiltered.length > 0" @fadeInOut >
+                      <table class="table table-hover">
                           <thead>
                             <tr>
                               <th>#</th>
@@ -38,7 +41,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let rnh of registeredNotHandled; let i = index" @slideOut>
+                            <tr *ngFor="let rnh of registeredNotHandledFiltered; let i = index" @slideOut>
                               <th scope="row">{{i + 1}}</th>
                               <td>{{rnh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>
                               <td>{{rnh.name}}</td>
@@ -65,9 +68,20 @@
                     <div class="card-body" 
                     [@expandCollapse]="rhExpanded ? 
                     'expanded' : 'collapsed'">
-                    <p *ngIf="registeredHandled.length == 0">No Messages</p>
-                    <div *ngIf="registeredHandled.length > 0">
-                        <table class="table table-hover" @slideOut>
+                    <div class="col col-md-12 pb-3">
+                        <input 
+                         *ngIf="registeredHandled.length > 0"
+                         #rhQuery
+                         (keyup)="filter(rhQuery.value, 'registeredHandled')"
+                         type="text" class="form-control align-middle" placeholder="Filter by Name...">
+                    </div>
+                    <div class="pu-4" *ngIf="registeredHandled.length == 0 || registeredHandledFiltered.length == 0" @fadeInOut>
+                        <span *ngIf="registeredHandledFiltered.length == 0 && registeredHandled.length == 0">No Messages Found.</span>
+                        <span *ngIf="registeredHandledFiltered.length == 0 && registeredHandled.length > 0">No Messages found for your filter.</span>                  
+                    </div>
+                    <div>
+                    <div *ngIf="registeredHandledFiltered.length > 0" @fadeInOut>
+                        <table class="table table-hover">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -80,7 +94,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr *ngFor="let rh of registeredHandled; let i = index" @slideOut>
+                              <tr *ngFor="let rh of registeredHandledFiltered; let i = index" @slideOut>
                                 <th scope="row">{{i + 1}}</th>
                                 <td>{{rh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                
                                 <td>{{rh.name}}</td>
@@ -112,9 +126,19 @@
                       <div class="card-body" 
                       [@expandCollapse]="anhExpanded ? 
                       'expanded' : 'collapsed'">
-                        <p *ngIf="anonymousNotHandled.length == 0">No Messages</p>
-                        <div>  
-                              <table class="table table-hover" *ngIf="anonymousNotHandled.length > 0" @slideOut>
+                      <div class="col col-md-12 pb-3">
+                          <input 
+                           *ngIf="anonymousNotHandled.length > 0"                          
+                           #anhQuery
+                           (keyup)="filter(anhQuery.value, 'anonymousNotHandled')"
+                           type="text" class="form-control align-middle" placeholder="Filter by Name...">
+                      </div>
+                      <div class="pu-4" *ngIf="anonymousNotHandled.length == 0 || anonymousNotHandledFiltered.length == 0" @fadeInOut>
+                          <span *ngIf="anonymousNotHandledFiltered.length == 0 && anonymousNotHandled.length == 0">No Messages Found.</span>
+                          <span *ngIf="anonymousNotHandledFiltered.length == 0 && anonymousNotHandled.length > 0">No Messages found for your filter.</span>                  
+                      </div>
+                        <div *ngIf="anonymousNotHandledFiltered.length > 0" @fadeInOut>  
+                              <table class="table table-hover">
                                   <thead>
                                     <tr>
                                       <th>#</th>
@@ -127,7 +151,7 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr *ngFor="let anh of anonymousNotHandled; let i = index" @slideOut>
+                                    <tr *ngFor="let anh of anonymousNotHandledFiltered; let i = index" @slideOut>
                                       <th scope="row">{{i + 1}}</th>
                                       <td>{{anh.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                      
                                       <td>{{anh.name}}</td>
@@ -157,10 +181,19 @@
                         <div class="card-body"
                         [@expandCollapse]="ahExpanded ? 
                         'expanded' : 'collapsed'">
-                            <p *ngIf="anonymousHandled.length == 0">No Messages</p>
-                            <div *ngIf="anonymousHandled.length > 0">
-
-                                  <table class="table table-hover" @slideOut>
+                        <div class="col col-md-12 pb-3">
+                            <input 
+                             #ahQuery
+                             *ngIf="anonymousHandled.length > 0"                             
+                             (keyup)="filter(ahQuery.value, 'anonymousHandled')"
+                             type="text" class="form-control align-middle" placeholder="Filter by Name...">
+                        </div>
+                        <div class="pu-4" *ngIf="anonymousHandled.length == 0 || anonymousHandledFiltered.length == 0" @fadeInOut>
+                            <span *ngIf="anonymousHandledFiltered.length == 0 && anonymousHandled.length == 0">No Messages Found.</span>
+                            <span *ngIf="anonymousHandledFiltered.length == 0 && anonymousHandled.length > 0">No Messages found for your filter.</span>                  
+                        </div>
+                            <div *ngIf="anonymousHandledFiltered.length > 0" @fadeInOut>
+                                  <table class="table table-hover">
                                       <thead>
                                         <tr>
                                           <th>#</th>
@@ -173,7 +206,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr *ngFor="let ah of anonymousHandled; let i = index" @slideOut>
+                                        <tr *ngFor="let ah of anonymousHandledFiltered; let i = index" @slideOut>
                                           <th scope="row">{{i + 1}}</th>
                                           <td>{{ah.datePlaced | date:'dd-MM-yyyy hh:mm'}}</td>                                                                          
                                           <td>{{ah.name}}</td>

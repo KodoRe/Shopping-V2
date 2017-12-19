@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operator/map';
 import { AppUser } from 'shared/models/app-user';
 import { AuthService } from 'shared/services/auth.service';
-import { expandCollapse, slideOut } from './admin-inbox.component.animations';
+import { expandCollapse, slideOut, fadeInOut } from './admin-inbox.component.animations';
 
 
 
@@ -14,17 +14,21 @@ import { expandCollapse, slideOut } from './admin-inbox.component.animations';
   selector: 'app-admin-inbox',
   templateUrl: './admin-inbox.component.html',
   styleUrls: ['./admin-inbox.component.css'],
-  animations: [ expandCollapse , slideOut ]
+  animations: [ expandCollapse , slideOut, fadeInOut ]
 })
 export class AdminInboxComponent implements OnInit, OnDestroy {
   request: Contact;
   requests: Contact[] = [];
   registered: Contact[] = [];
   registeredHandled: Contact[] = [];
+  registeredHandledFiltered: Contact[] = [];  
   registeredNotHandled: Contact[] = [];
+  registeredNotHandledFiltered: Contact[] = [];
   anonymous : Contact[] = [];
   anonymousHandled: Contact[] = [];
+  anonymousHandledFiltered: Contact[] = [];
   anonymousNotHandled: Contact[] = [];
+  anonymousNotHandledFiltered: Contact[] = [];
   subscription: Subscription;
   appUser: AppUser;
   rhExpanded: boolean;
@@ -40,10 +44,14 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
     this.requests = r.reverse(); //Did a trick, for desc ordering ;)
     this.registered = [];
     this.registeredHandled = [];
+    this.registeredHandledFiltered = [];
     this.registeredNotHandled = [];
+    this.registeredNotHandledFiltered = [];
     this.anonymous = [];
     this.anonymousHandled = [];
+    this.anonymousHandledFiltered = [];
     this.anonymousNotHandled = [];
+    this.anonymousNotHandledFiltered = [];
     this.populateLists();
     this.subscription.unsubscribe();
   });
@@ -79,7 +87,7 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
       this.anonymous.push(r);
       }
     });
-
+  
     //Break down to Handled and Not Handled Messages for Registered Users
     this.registered.forEach( r => {
         if(r.isHandled)
@@ -91,8 +99,11 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
           this.registeredNotHandled.push(r);
         }        
       });
+      //initialize filtered arrays.
+      this.registeredHandledFiltered = this.registeredHandled;
+      this.registeredNotHandledFiltered = this.registeredNotHandled;
 
-    //Break down to Handled and Not Handled Messages for Registered Users
+    //Break down to Handled and Not Handled Messages for Annonymous Users
     this.anonymous.forEach( r => {
       if(r.isHandled)
       {
@@ -102,44 +113,39 @@ constructor(private contactService: ContactService, private auth: AuthService,) 
       {
         this.anonymousNotHandled.push(r);
       }
+      //initialize filtered arrays.
+      this.anonymousHandledFiltered = this.anonymousHandled;
+      this.anonymousNotHandledFiltered = this.anonymousNotHandled;
+
     });    
   }
 
-  filter(query: string, list) { 
-    switch(list) {
-      case 'registeredNotHandled':
-      let filteredMessages = (query) ?
-      this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
-      this.registeredNotHandled;
-      console.log(filteredMessages);
-      // this.registeredNotHandled = filteredMessages;
+  filter(query: string, messageBox: string) { 
+    console.log(messageBox);
+    switch(messageBox) {
+      case 'registeredHandled':
+      this.registeredHandledFiltered = this.registeredHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase()));
       break;
-      // case 'registeredHandled':
-      // let filteredMessages = (query) ?
-      // this.registeredHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
-      // this.registeredHandled;
-      // break;
-      // case 'registeredNotHandled':
-      // let filteredMessages = (query) ?
-      // this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
-      // this.registeredNotHandled;
-      // break;
-      // case 'registeredNotHandled':
-      // let filteredMessages = (query) ?
-      // this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase())) :
-      // this.registeredNotHandled;
-      // break;
+      case 'registeredNotHandled':
+      this.registeredNotHandledFiltered = this.registeredNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase()));
+      break;
+      case 'anonymousHandled':
+      this.anonymousHandledFiltered = this.anonymousHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase()));
+      break;
+      case 'anonymousNotHandled':
+      this.anonymousNotHandledFiltered = this.anonymousNotHandled.filter(o => o.name.toLowerCase().includes(query.toLowerCase()));
+      break;
     }
   }
 
-  markAsDone(request, section) {
+  markAsDone(request: Contact, messageBox: string) {
   if (!confirm('Are You Sure You Want To Mark This As Handled?')) return;        
   this.request = request;
   this.request.isHandled = true;
   this.request.adminName = this.appUser.name;
   this.contactService.update(this.request.$key, this.request);
   let msgIndex;
-  switch(section)
+  switch(messageBox)
   {
     case "annonymousNotHandled":
         msgIndex = this.anonymousNotHandled.indexOf(request);         
