@@ -14,10 +14,8 @@ import { ContactSuccessComponent } from '../../contact-success/contact-success.c
 })
 export class ContactFormComponent implements OnInit {
   contact = {name: "", email: "", phone: "", message: ""};
-  id;
-  userId = null;
+  userId = null; //if there is a userId, user is logged in..
   subscription: Subscription;
-  form: NgForm;
 
   constructor(
     private contactService: ContactService,
@@ -47,28 +45,22 @@ export class ContactFormComponent implements OnInit {
        contact.userId = this.userId;
     }
     this.contactService.create(contact);
-    this.clearForm();
   }
-clearForm() {
-  let form = this.contact;
-   form.phone = ''
-   form.message = '';
-  // if(!this.auth.user$)
-  // {
-  // form.phone = ''
-  // form.message = '';
-  // }
-  // else 
-  // {
-  //   form.name = ''
-  //   form.email = '';
-  //   form.phone = ''
-  //   form.message = '';
-  // }
-}
+
+  clearForm(form: NgForm) {
+    if(this.userId)
+    {
+      form.controls["message"].reset();
+      form.controls["phone"].reset();
+    }
+    else
+    {
+      form.reset();
+    }  
+  }
+
   openDialog() {
     this.dialog.open(ContactSuccessComponent);  
-    
   }
 
   ngOnInit() {
