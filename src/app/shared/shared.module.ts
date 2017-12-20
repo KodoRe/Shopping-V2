@@ -7,9 +7,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
 
-import { DataTableModule } from '../modules/angular-4-data-table';
-
-
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { ProductViewComponent } from '../shopping/components/product-view/product-view.component';
@@ -34,7 +31,6 @@ import { UserService } from './services/user.service';
     CustomFormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    DataTableModule,
     NgbModule.forRoot(),
   ],
   declarations: [

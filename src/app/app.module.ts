@@ -3,10 +3,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
-
-//import { DataTableModule } from 'angular-4-data-table/src/index';
-import { DataTableModule } from './modules/angular-4-data-table';
-
+//import { DataTableModule } from './modules/angular-4-data-table';
 
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
@@ -33,7 +30,7 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     BrowserModule,
     MatDialogModule,
-    DataTableModule,
+    //DataTableModule,
     SharedModule,
     AdminModule,
     ShoppingModule,
