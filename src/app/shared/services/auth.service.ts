@@ -36,8 +36,12 @@ export class AuthService {
       });  
        break;
       case "facebook":
-      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(r => {
-        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); this.shoppingCartService.removeOldCarts(user.uid); subscription.unsubscribe();  })        
+      // Sign in using a popup.
+        let provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email');
+
+      this.afAuth.auth.signInWithPopup(provider).then(r => {
+        let subscription = this.user$.subscribe(user => {  this.shoppingCartService.setCartUserId(user.uid); this.shoppingCartService.removeOldCarts(user.uid); subscription.unsubscribe();  })
         this.router.navigate([returnUrl]);      
       });  
         break;

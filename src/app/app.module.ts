@@ -17,6 +17,8 @@ import { ShoppingModule } from './shopping/shopping.module';
 
 import { MatDialogModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
 //https://stackblitz.com/edit/material-dialogs-sample?file=app%2Fapp.module.ts
 //for more material imports (this is material 2 and not 5!)
 //https://kyleledbetter.gitbooks.io/angular-material-2/dialog.html
@@ -36,6 +38,7 @@ import { HttpModule } from '@angular/http';
     ShoppingModule,
     CoreModule,
     HttpModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },

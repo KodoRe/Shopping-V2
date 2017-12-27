@@ -1,18 +1,36 @@
-<div>
-    <ngx-charts-bar-vertical
-    [view]="view"
-    [scheme]="colorScheme"
-    [results]="single"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    (select)="onSelect($event)"
-    class="bar-vertical"
-    >
-  </ngx-charts-bar-vertical>
+<div class="card">
+  <div class="card-header">
+    <strong>Abandoned Carts</strong>
+</div>
+<div class="card-body">
+  <ul>
+    <li *ngFor="let ac of abandonedCarts">userId: {{ac.userId}} - total items: {{ac.totalQuantity}} - <button class="btn btn-primary" (click)="sendMail(ac.userId)">send mail</button></li>
+  </ul>
+  <div *ngIf="abandonedCarts.length == 0">No abandoned carts found</div>
+</div>
+</div>
+<div class="card mt-2">
+  <div class="card-header">
+   <strong>Shop Statistics</strong>
+  </div>
+  <div class="card-body">
+  <p class="card-text">Total abandoned carts for registered users: <strong>{{ this.registeredUsersAbandonedCarts }}</strong></p>
+  <p class="card-text">Total anonymous carts: <strong>{{ this.totalAnonymousCarts }}</strong></p>  
+  <p class="card-text">Total registered carts: <strong>{{ this.totalRegisterdedCarts }}</strong></p>  
+  <p class="card-text">Total money earned from sells: <strong>{{ this.totalMoneyEarned | currency:'ILS':true }}</strong></p>    
+  <p class="card-text">Total items sold: <strong>{{ this.totalItemsSoldInShop }}</strong></p> 
+  <div class="col-md-12 text-center m-2">
+    <p class="card-text"><strong>Top 5 Items</strong></p>
+    <div class="row">
+     <div *ngFor="let t5i of top5items; let i = index" class="card top5 m-1">
+       <div class="card-body">
+       <div class="top5title text-center">{{i + 1}}. {{t5i[0]}}</div>        
+       <img src="{{t5i[2]}}" class="top5img"/>
+       <div>Sold: {{t5i[1]}}</div>
+     </div>
+    </div>
+    </div>
+    <p *ngIf="top5items.length == 0" class="card-text">No items bought in your shop.</p>
+  </div>        
+</div>
 </div>

@@ -13,15 +13,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
 import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataTableModule } from './../modules/angular-4-data-table';
+import { AdminStatisticsService } from 'app/admin/services/admin-statistics.service';
 
 @NgModule({
   imports: [
     SharedModule,
     DataTableModule,
     ReactiveFormsModule,
-    NgxChartsModule,
     
     RouterModule.forChild([
       { 
@@ -75,6 +74,9 @@ import { DataTableModule } from './../modules/angular-4-data-table';
     AdminCategoriesComponent,
     AdminInboxComponent,
     AdminStatisticsComponent
+  ],
+  providers: [
+    AdminStatisticsService
   ]
 })
 export class AdminModule { }

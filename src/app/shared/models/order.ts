@@ -10,6 +10,7 @@ export class Order {
     this.datePlaced = new Date().getTime();
     this.items = shoppingCart.items.map(i => {
       return {
+        key: i.$key,
         product: {
           title: i.title,
           images: i.images,

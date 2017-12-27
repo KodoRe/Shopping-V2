@@ -5,10 +5,15 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import 'rxjs/add/operator/map'; 
+import { UserService } from '../services/user.service';
+import { EmailService } from '../services/email.service';
 
 @Injectable()
 export class ShoppingCartService {
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private userService: UserService,
+    private emailService: EmailService) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
@@ -32,7 +37,8 @@ export class ShoppingCartService {
 
   private create() { 
     return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
+      dateCreated: new Date().getTime(),
+      lastActionDate: new Date().getTime()    
     });
   }
 
@@ -44,6 +50,12 @@ export class ShoppingCartService {
     let cartId = localStorage.getItem('cartId');
     if (cartId) 
        this.db.object('/shopping-carts/' + cartId).update({userId: uid});
+  }
+
+  setCartEmailSentDate(uid: string) {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) 
+       this.db.object('/shopping-carts/' + cartId).update({emailSentDate : Date.now()});
   }
 
   removeOldCarts(uid: string) {
@@ -61,6 +73,24 @@ export class ShoppingCartService {
     }
   }
 
+  sendMail(userId: string)
+  {
+    const subject =  "HNShopping is missing you";
+    const body = "We have seen that you interested in our products but didnt make a purchase";
+    this.userService.get(userId).subscribe(u => {
+      if (u.email)
+      { 
+         this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
+            console.log(data);  
+            this.setCartEmailSentDate(userId);          
+        },
+        errors => {
+          //Handle error caused by sending of 400 status code.
+            console.log(errors);
+        })
+      }
+    }).unsubscribe();
+  }
 
   private async getOrCreateCartId(): Promise<string> { 
       let cartId = localStorage.getItem('cartId');
@@ -73,6 +103,7 @@ export class ShoppingCartService {
 
   private async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId).update({lastActionDate: Date.now()});
     let item$ = this.getItem(cartId, product.$key);
     item$.take(1).subscribe(item => {
       let quantity = (item.quantity || 0) + change;
