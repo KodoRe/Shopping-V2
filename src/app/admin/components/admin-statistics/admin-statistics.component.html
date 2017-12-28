@@ -1,11 +1,36 @@
 <div class="card">
   <div class="card-header">
-    <strong>Abandoned Carts</strong>
+    <strong>Abandoned Carts <span class="badge badge-pill">{{ this.registeredUsersAbandonedCarts }}</span></strong>
 </div>
 <div class="card-body">
-  <ul>
-    <li *ngFor="let ac of abandonedCarts">userId: {{ac.userId}} - total items: {{ac.totalQuantity}} - <button class="btn btn-primary" (click)="sendMail(ac.userId)">send mail</button></li>
-  </ul>
+  <div class="text-center">
+    <div class="col-md-12">
+      <div class="row abandonedCartsHeaders">
+      <div class="col-md-3"><strong>#</strong></div>
+      <div class="col-md-3"><strong>Customer Name</strong></div>
+      <div class="col-md-3"><strong>Total Quantity</strong></div>
+      <div class="col-md-3"><strong>Action</strong></div>
+    </div>
+    <div class="abandonedCartsBody">
+    <div *ngFor="let ac of abandonedCarts; let i = index">
+      <div class="row abandonedCartsCart">
+        <div class="col-md-3">
+          {{ i + 1 }}
+        </div>
+        <div class="col-md-3">
+           {{ ac.userName }}
+      </div>
+      <div class="col-md-3">
+          {{ ac.totalQuantity }}
+      </div>
+      <div class="col-md-3">
+       <button class="btn btn-primary" (click)="sendMail(ac.userId)">Send Email</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
   <div *ngIf="abandonedCarts.length == 0">No abandoned carts found</div>
 </div>
 </div>
@@ -14,7 +39,6 @@
    <strong>Shop Statistics</strong>
   </div>
   <div class="card-body">
-  <p class="card-text">Total abandoned carts for registered users: <strong>{{ this.registeredUsersAbandonedCarts }}</strong></p>
   <p class="card-text">Total anonymous carts: <strong>{{ this.totalAnonymousCarts }}</strong></p>  
   <p class="card-text">Total registered carts: <strong>{{ this.totalRegisterdedCarts }}</strong></p>  
   <p class="card-text">Total money earned from sells: <strong>{{ this.totalMoneyEarned | currency:'ILS':true }}</strong></p>    

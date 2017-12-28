@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+import { UserService } from '../../../shared/services/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminStatisticsService } from 'app/admin/services/admin-statistics.service';
 import { ShoppingCart } from 'shared/models/shopping-cart';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -10,7 +12,7 @@ import { ProductService } from 'shared/services/product.service';
   templateUrl: './admin-statistics.component.html',
   styleUrls: ['./admin-statistics.component.css']
 })
-export class AdminStatisticsComponent implements OnInit {
+export class AdminStatisticsComponent implements OnInit, OnDestroy {
   abandonedCarts: any[] = [];
   registeredUsersAbandonedCarts: number = 0;
   totalAnonymousCarts: number = 0;
@@ -18,14 +20,17 @@ export class AdminStatisticsComponent implements OnInit {
   totalItemsSoldInShop: number = 0;
   totalMoneyEarned: number = 0;
   top5items: any[] = [];
+  ordersSubscription: Subscription; //general subscription when something changes in firebase > orders
+  registeredUsersCartsSubscription: Subscription; //general subscription when something changes in firebase > registered users shopping-carts
 
   constructor(
     private statisticsService: AdminStatisticsService,
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private userService: UserService
       ){
       //Statistics of shopping carts
-       statisticsService.getRegisteredUsersCarts().subscribe(c => 
+       this.registeredUsersCartsSubscription = statisticsService.getRegisteredUsersCarts().subscribe(c =>  
       {
         this.abandonedCarts = [];
         this.registeredUsersAbandonedCarts = 0;
@@ -41,7 +46,7 @@ export class AdminStatisticsComponent implements OnInit {
 
             let milliSecondsPastBetweenTodayAndLastActionDate = (Date.now() - c.lastActionDate);
             let hoursPastLastActionDate = Math.floor(milliSecondsPastBetweenTodayAndLastActionDate/1000/3600);            
-            
+
             if (c.emailSentDate) //Anti-SPAM, send email once in 2 weeks.
             {
               let milliSecondsPastBetweenTodayAndEmailSent = (Date.now() - c.emailSentDate);   
@@ -60,11 +65,15 @@ export class AdminStatisticsComponent implements OnInit {
               }
               this.registeredUsersAbandonedCarts++;
               c.totalQuantity = totalQuantity;
+              let userSubscription = this.userService.get(c.userId).subscribe(u => {
+                c.userName  = u.name;
+                userSubscription.unsubscribe();
+              });
               this.abandonedCarts.push(c);  
           }
          }
         })
-        
+
         //Other Statistics
         c.forEach(c => { 
           //Total Carts:
@@ -73,12 +82,11 @@ export class AdminStatisticsComponent implements OnInit {
           else
             this.totalAnonymousCarts++;
         });
-        //UNSUBSCRIBE? <<<<<<<<<<<<<<<<<<
       });
     
     //Statistics of orders
     let hotItems: any;
-    this.statisticsService.getOrders().subscribe(o => {
+    this.ordersSubscription = this.statisticsService.getOrders().subscribe(o => {      
       hotItems = {};
       //Total Price and Items Sold from Orders and not shopping carts.
       this.totalItemsSoldInShop = 0;
@@ -97,47 +105,43 @@ export class AdminStatisticsComponent implements OnInit {
           else
           {
             hotItems[o.items[item].key] = { quantity: o.items[item].quantity , imgUrl: o.items[item].product.images[0] };
-            console.log(hotItems[o.items[item].key]);                  
           }            
         }
       })
 
       //transform hotItems object into sortable array to so i know which item sold the most, at place [0], [1] ..., take their id and ask for their name.
       let hotItemsSortable = [];
-      for (let item in hotItems) {
-          hotItemsSortable.push([item, hotItems[item].quantity, hotItems[item].imgUrl]);
-      }
-
-      hotItemsSortable.sort(function(a, b) {
-          //for sort like : 16 15 14 13:
-          return  b[1] - a[1];
-          //for sort like: 13 14 15 16:
-          //return a[1] - b[1];
-      });
-      
-      //Transforming keys to products names
-      for (let i = 0; i < hotItemsSortable.length; i++) 
-      {
-          this.productService.get(hotItemsSortable[i][0]).subscribe(p => {
-            hotItemsSortable[i][0] = p.title;
-            //unsubscribe??
-         })
-      }
-
-      //Getting top 5 hottest items.
       this.top5items = []; //reset in case of re-enter the function by the subscription (like all the above resets)
-      this.top5items = hotItemsSortable.slice(0,5);
-        //UNSUBSCRIBE? <<<<<<<<<<<<
+      
+      for (let item in hotItems) {
+        let productSubscription = this.productService.get(item).subscribe(p => {
+             hotItemsSortable.push([p.title, hotItems[item].quantity, hotItems[item].imgUrl]);
+          this.top5items = hotItemsSortable.slice(0,5);
+          hotItemsSortable.sort(function(a, b) {
+            //for sort like : 16 15 14 13:
+            return  b[1] - a[1];
+            //for sort like: 13 14 15 16:
+            //return a[1] - b[1];
+        });
+        productSubscription.unsubscribe();
+       })
+      }      
     })
   }
 
   sendMail(userId: string)
   {
-    //Implement survey.. <<<<<<<<<<<<<<<<<
+    //Implement survey url here.. <<<<<<<<<<<<<<<<<
     this.shoppingCartService.sendMail(userId);
   }
+
   ngOnInit() {
 
+  }
+
+  ngOnDestroy(): void {
+    this.registeredUsersCartsSubscription.unsubscribe();
+    this.ordersSubscription.unsubscribe();
   }
 
 }

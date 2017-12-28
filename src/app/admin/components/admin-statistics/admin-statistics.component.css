@@ -15,3 +15,23 @@
     height: 50px;
     overflow-y: auto;
 }
+
+.abandonedCartsHeaders {
+    border-bottom: black solid 1px;
+    margin-bottom: 5px;
+}
+
+.abandonedCartsBody {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.abandonedCartsCart {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.badge-pill {
+    background-color: #ffbc00;
+}
