@@ -46,50 +46,50 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  setCartUserId(uid: string) {
-    let cartId = localStorage.getItem('cartId');
-    if (cartId) 
-       this.db.object('/shopping-carts/' + cartId).update({userId: uid});
+  setCartUserId(uid: string) { 
+       this.db.object('/shopping-carts/' + uid).update({userId: uid});
   }
 
   setCartEmailSentDate(uid: string) {
-    let cartId = localStorage.getItem('cartId');
-    if (cartId) 
-       this.db.object('/shopping-carts/' + cartId).update({emailSentDate : Date.now()});
+       this.db.object('/shopping-carts/' + uid).update({emailSentDate : Date.now()});
   }
 
   removeOldCarts(uid: string) {
-    let cartId = localStorage.getItem('cartId');
-    if (cartId) 
-    {
       let subscription = this.db.list('/shopping-carts').subscribe(c => {
         c.forEach(c => { 
           if (c.userId != uid) return; //this is not your cart, don't remove it.
-          if (c.$key == cartId) return; //if your the same cart, don't remove yourself, just the others.
+          if (c.$key == uid) return; //if your the same cart, don't remove yourself, just the others.
           this.db.object('/shopping-carts/' + c.$key).remove();
         });
         subscription.unsubscribe();
       });  
     }
-  }
 
   sendMail(userId: string)
   {
     const subject =  "HNShopping is missing you";
     const body = "We have seen that you interested in our products but didnt make a purchase";
-    this.userService.get(userId).subscribe(u => {
+    let emailSub = this.userService.get(userId).subscribe(u => {
       if (u.email)
       { 
          this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
-            console.log(data);  
-            this.setCartEmailSentDate(userId);          
+            //console.log(data);  
+            this.setCartEmailSentDate(userId); 
+            alert("Email Sent Successfully");         
         },
         errors => {
-          //Handle error caused by sending of 400 status code.
+            alert("Failed to send email");
             console.log(errors);
         })
       }
-    }).unsubscribe();
+      emailSub.unsubscribe();
+    },
+  errors => {
+    alert("Failed to send email, user has no email updated.");    
+    console.log(errors);
+    emailSub.unsubscribe();
+    //alert("User has no email updated");    
+  });
   }
 
   private async getOrCreateCartId(): Promise<string> { 
