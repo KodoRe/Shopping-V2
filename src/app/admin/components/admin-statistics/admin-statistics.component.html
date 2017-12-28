@@ -5,7 +5,7 @@
 <div class="card-body">
   <div class="text-center">
     <div class="col-md-12">
-      <div class="row abandonedCartsHeaders">
+      <div *ngIf="abandonedCarts.length > 0" class="row abandonedCartsHeaders">
       <div class="col-md-3"><strong>#</strong></div>
       <div class="col-md-3"><strong>Customer Name</strong></div>
       <div class="col-md-3"><strong>Total Quantity</strong></div>
@@ -24,7 +24,7 @@
           {{ ac.totalQuantity }}
       </div>
       <div class="col-md-3">
-       <button class="btn btn-primary" (click)="sendMail(ac.userId)">Send Email</button>
+       <button class="btn btn-primary" (click)="sendMail(ac.userId, ac.$key)">Send Email</button>
       </div>
     </div>
     </div>

@@ -129,10 +129,10 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
     })
   }
 
-  sendMail(userId: string)
+  sendMail(userId: string, cartId: string)
   {
     //Implement survey url here.. <<<<<<<<<<<<<<<<<
-    this.shoppingCartService.sendMail(userId);
+    this.shoppingCartService.sendMail(userId, cartId);
   }
 
   ngOnInit() {

@@ -46,15 +46,20 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
-  setCartUserId(uid: string) { 
-       this.db.object('/shopping-carts/' + uid).update({userId: uid});
+  setCartUserId(uid: string) {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) 
+       this.db.object('/shopping-carts/' + cartId).update({userId: uid});
   }
 
-  setCartEmailSentDate(uid: string) {
-       this.db.object('/shopping-carts/' + uid).update({emailSentDate : Date.now()});
+  setCartEmailSentDate(cartId: string) {
+       this.db.object('/shopping-carts/' + cartId).update({emailSentDate : Date.now()});
   }
 
   removeOldCarts(uid: string) {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) 
+    {
       let subscription = this.db.list('/shopping-carts').subscribe(c => {
         c.forEach(c => { 
           if (c.userId != uid) return; //this is not your cart, don't remove it.
@@ -64,8 +69,9 @@ export class ShoppingCartService {
         subscription.unsubscribe();
       });  
     }
+  }
 
-  sendMail(userId: string)
+  sendMail(userId: string, cartId: string)
   {
     const subject =  "HNShopping is missing you";
     const body = "We have seen that you interested in our products but didnt make a purchase";
@@ -74,21 +80,21 @@ export class ShoppingCartService {
       { 
          this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
             //console.log(data);  
-            this.setCartEmailSentDate(userId); 
-            alert("Email Sent Successfully");         
+            this.setCartEmailSentDate(cartId); 
+            alert("Email Sent Successfully");       
+            emailSub.unsubscribe();                    
         },
         errors => {
             alert("Failed to send email");
             console.log(errors);
+            emailSub.unsubscribe();                    
         })
       }
-      emailSub.unsubscribe();
     },
   errors => {
     alert("Failed to send email, user has no email updated.");    
     console.log(errors);
     emailSub.unsubscribe();
-    //alert("User has no email updated");    
   });
   }
 
