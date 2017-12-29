@@ -14,7 +14,7 @@
                   }">
                 </span>
               </div>
-                  <div class="card-body" [@expandCollapse]="rnhExpanded ? 
+                  <div class="card-body margin-auto" [@expandCollapse]="rnhExpanded ? 
                   'expanded' : 'collapsed'">
                   <div class="col col-md-12 pb-3">
                       <input 
@@ -28,7 +28,7 @@
                       <span *ngIf="registeredNotHandledFiltered.length == 0 && registeredNotHandled.length > 0">No Messages found for your filter.</span>                  
                   </div>
                   <div *ngIf="registeredNotHandledFiltered.length > 0" @fadeInOut >
-                      <table class="table table-hover">
+                      <table class="table table-hover" [ngClass]="{'table-show': rnhExpanded}">
                           <thead>
                             <tr>
                               <th>#</th>
@@ -65,7 +65,7 @@
                       }"
                     ></span>
                   </div>
-                    <div class="card-body" 
+                    <div class="card-body margin-auto" 
                     [@expandCollapse]="rhExpanded ? 
                     'expanded' : 'collapsed'">
                     <div class="col col-md-12 pb-3">
@@ -81,7 +81,7 @@
                     </div>
                     <div>
                     <div *ngIf="registeredHandledFiltered.length > 0" @fadeInOut>
-                        <table class="table table-hover">
+                        <table class="table table-hover" [ngClass]="{'table-show': rhExpanded}">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -110,6 +110,7 @@
                     </div>
           </div>
         </div>
+        </div>
         <div class="card">
             <div class="card-header"><h4><strong>Annonymous Users</strong></h4></div>
             <div class="card-body">
@@ -123,7 +124,7 @@
                         }"
                       ></span>
                     </div>
-                      <div class="card-body" 
+                      <div class="card-body margin-auto" 
                       [@expandCollapse]="anhExpanded ? 
                       'expanded' : 'collapsed'">
                       <div class="col col-md-12 pb-3">
@@ -138,7 +139,7 @@
                           <span *ngIf="anonymousNotHandledFiltered.length == 0 && anonymousNotHandled.length > 0">No Messages found for your filter.</span>                  
                       </div>
                         <div *ngIf="anonymousNotHandledFiltered.length > 0" @fadeInOut>  
-                              <table class="table table-hover">
+                              <table class="table table-hover" [ngClass]="{'table-show': anhExpanded}">
                                   <thead>
                                     <tr>
                                       <th>#</th>
@@ -178,7 +179,7 @@
                             }"
                           ></span>
                         </div>
-                        <div class="card-body"
+                        <div class="card-body margin-auto"
                         [@expandCollapse]="ahExpanded ? 
                         'expanded' : 'collapsed'">
                         <div class="col col-md-12 pb-3">
@@ -193,7 +194,7 @@
                             <span *ngIf="anonymousHandledFiltered.length == 0 && anonymousHandled.length > 0">No Messages found for your filter.</span>                  
                         </div>
                             <div *ngIf="anonymousHandledFiltered.length > 0" @fadeInOut>
-                                  <table class="table table-hover">
+                                  <table class="table table-hover" [ngClass]="{'table-show': ahExpanded}">
                                       <thead>
                                         <tr>
                                           <th>#</th>
@@ -225,79 +226,5 @@
             </div>
           
           </div>
-</div>
-
-<!-- <div class="row">
-  <div class="col col-md-12">
-   <input 
-    #query
-    (keyup)="filter(query.value)"
-    type="text" class="form-control align-middle" placeholder="Filter by Customer Name...">
+          
   </div>
-</div>
-<div class="contact-table">
-  <data-table
-    [items]="items"
-    [itemCount]="itemCount"
-    (reload)="reloadItems($event)">
-    <data-table-column
-      [property]="'name'"  
-      [header]="'Name'"
-      [sortable]="true"
-      [resizable]="true"
-      width="150px"
-    >
-    <ng-template #dataTableCell let-item="item">
-       {{ item.name }}
-    </ng-template>
-    </data-table-column>
-
-    <data-table-column
-    [property]="'email'"
-    [header]="'Email'"
-    [sortable]="true"
-    [resizable]="true"
-    width="150px"
-  >
-  <ng-template #dataTableCell let-item="item">
-     {{ item.email }}
-  </ng-template>
-  </data-table-column>
-
-  <data-table-column
-  [property]="'phone'"  
-  [header]="'Phone'"
-  [sortable]="true"
-  [resizable]="true"
-  width="150px"
->
-<ng-template #dataTableCell let-item="item">
-   {{ item.phone }}
-</ng-template>
-</data-table-column>
-
-    <data-table-column
-    [property]="'datePlaced'"
-    [header]="'Date Placed'"
-    [sortable]="true"
-    [resizable]="true"
-    width="120px"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.datePlaced | date:'dd-MM-yyyy' }}
-    </ng-template>
-  </data-table-column>
-
-  <data-table-column
-  [property]="'message'"  
-  [header]="'Message'"
-  [sortable]="true"
-  [resizable]="true"
-  width="150px"
->
-<ng-template #dataTableCell let-item="item">
-   {{ item.message }}
-</ng-template>
-</data-table-column>
-  </data-table>
-</div> -->

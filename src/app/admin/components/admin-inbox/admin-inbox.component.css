@@ -2,10 +2,14 @@
     margin-bottom: 20px;
 }
 
+.margin-auto {
+    margin: auto;
+    width: 100%;
+}
 
 table {
     display: block;
-    height: 300px;       /* Just for the demo          */
+    max-height: 300px;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
@@ -25,7 +29,15 @@ table {
 
 .badge {
     background-color: #ffbc00;
-}.table {
+}
+
+.table {
     overflow-x: auto;
     font-size: 90%;
+    display: none;    
 }
+
+.table-show {
+    display: block;
+}
+

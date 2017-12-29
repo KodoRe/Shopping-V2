@@ -24,6 +24,9 @@
     [sortable]="true"
     [resizable]="true"
   >
+  <ng-template #dataTableCell let-item="item">
+      {{ item.title }}
+    </ng-template>
   </data-table-column>
   
   <data-table-column
@@ -48,7 +51,8 @@
   </ng-template>
 </data-table-column>
 
-  <data-table-column class="align-center"
+  <data-table-column 
+    class="align-center"
     [property]="'$key'" 
   >
     <ng-template #dataTableCell let-item="item">
