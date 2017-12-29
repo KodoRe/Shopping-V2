@@ -1,3 +1,4 @@
+import { AdminStatisticsService } from './services/admin-statistics.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
@@ -84,6 +85,9 @@ import { AgmCoreModule } from '@agm/core';
     AdminInboxComponent,
     AdminStatisticsComponent,
     AdminShopComponent
+  ],
+  providers: [
+    AdminStatisticsService
   ]
 })
 export class AdminModule { }

@@ -67,7 +67,7 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
                 return;
             }
 
-            if(hoursPastLastActionDate <= 48) //Less then 2 days past before last action, its ok for now, dont show.
+            if(hoursPastLastActionDate <= 48) //Less then 2 days past before last action, its ok for now, dont show.`
               return;
             
               let totalQuantity = 0;
@@ -145,13 +145,13 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
       for (let item in hotItems) {
         let productSubscription = this.productService.get(item).subscribe(p => {
              hotItemsSortable.push([p.title, hotItems[item].quantity, hotItems[item].imgUrl]);
-          this.top5items = hotItemsSortable.slice(0,5);
           hotItemsSortable.sort(function(a, b) {
             //for sort like : 16 15 14 13:
             return  b[1] - a[1];
             //for sort like: 13 14 15 16:
             //return a[1] - b[1];
         });
+        this.top5items = hotItemsSortable.slice(0,5);
         productSubscription.unsubscribe();
        })
       }      

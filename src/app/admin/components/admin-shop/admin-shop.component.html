@@ -58,7 +58,7 @@
     </div>
   </form> 
   <div class="card-footer text-center">        
-      <button class="btn btn-primary" (click)="save()">Save</button>
+      <button [disabled]="!form.valid" class="btn btn-primary" (click)="save()">Save</button>
       <!-- <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button> -->
   </div> 
 

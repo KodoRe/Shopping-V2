@@ -1,3 +1,5 @@
+import { SurveyService } from 'shared/services/survey.service';
+import { EmailService } from './services/email.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -63,6 +65,8 @@ import { ShopInfoService } from 'shared/services/shop-info.service';
     OrderService,
     ContactService,
     ShopInfoService,
+    EmailService,
+    SurveyService
   ]
 })
 export class SharedModule { }
