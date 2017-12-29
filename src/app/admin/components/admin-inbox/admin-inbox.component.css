@@ -9,9 +9,9 @@
 
 table {
     display: block;
-    max-height: 300px;       /* Just for the demo          */
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
+    max-height: 300px;    
+    overflow-y: auto;   
+    overflow-x: hidden; 
 }
 .page-title {
     height: 70px;

@@ -67,21 +67,18 @@
   <div class="card-body">
   <strong>Shop have high prices</strong>
   <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - highPrice.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - highPrice.no)*100 + "%" }}</strong></div>
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - highPrice.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - highPrice.yes)*100 + "%" }}</strong></div>    
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(highPrice.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ (highPrice.yes / this.totalSurveys)*100 + "%" }}</strong></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(highPrice.no / this.totalSurveys)*100 + '%'"><strong>No: {{ (highPrice.no / this.totalSurveys)*100 + "%" }}</strong></div>    
   </div>
   <strong>Shop missing items that usually bought toghter:</strong>
   <div class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - missingItems.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - missingItems.no)*100 + "%" }}</strong></div>
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - missingItems.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - missingItems.yes)*100 + "%" }}</strong></div>    
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(missingItems.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ (missingItems.yes / this.totalSurveys)*100 + "%" }}</strong></div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(missingItems.no / this.totalSurveys)*100 + '%'"><strong>No: {{ (missingItems.no / this.totalSurveys)*100 + "%" }}</strong></div>    
   </div>
   <strong>Shop needs to start do shippings:</strong>
   <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - notShipping.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - notShipping.no)*100 + "%" }}</strong></div>
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - notShipping.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - notShipping.yes)*100 + "%" }}</strong></div>    
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(notShipping.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ ( notShipping.yes / this.totalSurveys )*100 + "%" }}</strong></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(notShipping.no / this.totalSurveys)*100 + '%'"><strong>No: {{ ( notShipping.no / this.totalSurveys )*100 + "%" }}</strong></div>    
   </div>
-  <p class="card-text">Shop have high prices - <strong>Yes: {{ this.highPrice.yes }} || No: {{ this.highPrice.no }}</strong></p>  
-  <p class="card-text">Shop missing items that usually bought toghter - <strong>Yes: {{ this.missingItems.yes }} || No: {{ this.missingItems.no }}</strong></p>  
-  <p class="card-text">Shop needs to start do shippings - <strong>Yes: {{ this.notShipping.yes }} || No: {{ this.notShipping.no }}</strong></p>       
 </div>
 </div>
