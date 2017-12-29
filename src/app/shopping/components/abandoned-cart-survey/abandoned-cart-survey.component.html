@@ -1,0 +1,81 @@
+<div class="card" *ngIf="cartId && cartId != '-1'">
+  <div class="card-header"><strong>HNShopping Customers Survey</strong></div>
+<div class="card-body">
+<form #f="ngForm">
+  <div class="card">
+    <div class="card-header"><strong>Didn't you checked-out because shop has high price?</strong></div>
+    <div class="card-body text-center">
+    <label class="custom-control custom-radio">
+        <input type="radio" name="highPrice" value="1" 
+          ngModel required #highPrice="ngModel" class="custom-control-input"
+        />
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Yes</span>
+      </label>
+
+      <label class="custom-control custom-radio"> 
+        <input type="radio" name="highPrice" value="0" 
+          ngModel required #highPrice="ngModel" class="custom-control-input"
+        />
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">No</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header"><strong>Didn't you checked-out because shop missing some other items you usually buy toghter?</strong></div>
+      <div class="card-body text-center">
+      <label class="custom-control custom-radio">
+          <input type="radio" name="missingItems" value="1" 
+            ngModel required #missingItems="ngModel" class="custom-control-input"
+          />
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Yes</span>
+        </label>
+  
+        <label class="custom-control custom-radio"> 
+          <input type="radio" name="missingItems" value="0" 
+            ngModel required #missingItems="ngModel" class="custom-control-input"
+          />
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">No</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header"><strong>Didn't you checked-out because our shop dont do shipping right now?</strong></div>
+        <div class="card-body text-center">
+        <label class="custom-control custom-radio">
+            <input type="radio" name="notShipping" value="1" 
+              ngModel required #notShipping="ngModel" class="custom-control-input"
+            />
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Yes</span>
+          </label>
+    
+          <label class="custom-control custom-radio"> 
+            <input type="radio" name="notShipping" value="0" 
+              ngModel required #notShipping="ngModel" class="custom-control-input"
+            />
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">No</span>
+          </label>
+        </div>
+      </div>
+    <div class="text-center">
+
+      <button class="btn btn-primary" [disabled]="!f.valid" (click)="submitSurvey(f)">Submit Survey</button>
+</div>
+</form>  
+  </div>
+</div>
+  <div *ngIf="!cartId">
+    <div class="card">
+      <div class="card-body text-center">
+      <p><strong>Thank You!</strong></p> 
+      <p><strong>But this survey is not available anymore, sorry!</strong></p>  
+    </div>
+  </div>
+</div>

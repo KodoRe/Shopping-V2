@@ -13,7 +13,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
 import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataTableModule } from './../modules/angular-4-data-table';
 import { AdminShopComponent } from './components/admin-shop/admin-shop.component';
 import { AgmCoreModule } from '@agm/core';
@@ -23,7 +22,6 @@ import { AgmCoreModule } from '@agm/core';
     SharedModule,
     DataTableModule,
     ReactiveFormsModule,
-    NgxChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
     }),

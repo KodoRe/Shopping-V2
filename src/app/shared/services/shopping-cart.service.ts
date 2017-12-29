@@ -5,10 +5,15 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take'; 
 import 'rxjs/add/operator/map'; 
+import { UserService } from '../services/user.service';
+import { EmailService } from '../services/email.service';
 
 @Injectable()
 export class ShoppingCartService {
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private userService: UserService,
+    private emailService: EmailService) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
@@ -32,7 +37,8 @@ export class ShoppingCartService {
 
   private create() { 
     return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
+      dateCreated: new Date().getTime(),
+      lastActionDate: new Date().getTime()    
     });
   }
 
@@ -40,10 +46,18 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
+  get(cartId: string) {
+    return this.db.object('/shopping-carts/' + cartId);
+  }
+
   setCartUserId(uid: string) {
     let cartId = localStorage.getItem('cartId');
     if (cartId) 
        this.db.object('/shopping-carts/' + cartId).update({userId: uid});
+  }
+
+  setCartEmailSentDate(cartId: string) {
+       this.db.object('/shopping-carts/' + cartId).update({emailSentDate : Date.now()});
   }
 
   removeOldCarts(uid: string) {
@@ -61,6 +75,31 @@ export class ShoppingCartService {
     }
   }
 
+  sendMail(userId: string, cartId: string)
+  {
+    const subject =  "HNShopping is missing you";
+    const body = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://localhost:4200/survey/"+cartId+"'>Click Here</a>";
+    let emailSub = this.userService.get(userId).subscribe(u => {
+      if (u.email)
+      { 
+         this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
+            this.setCartEmailSentDate(cartId); 
+            alert("Email Sent Successfully");       
+            emailSub.unsubscribe();                    
+        },
+        errors => {
+            alert("Failed to send email");
+            console.log(errors);
+            emailSub.unsubscribe();                    
+        })
+      }
+    },
+  errors => {
+    alert("Failed to send email, user has no email updated.");    
+    console.log(errors);
+    emailSub.unsubscribe();
+  });
+  }
 
   private async getOrCreateCartId(): Promise<string> { 
       let cartId = localStorage.getItem('cartId');
@@ -73,6 +112,7 @@ export class ShoppingCartService {
 
   private async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId).update({lastActionDate: Date.now()});
     let item$ = this.getItem(cartId, product.$key);
     item$.take(1).subscribe(item => {
       let quantity = (item.quantity || 0) + change;

@@ -1,3 +1,37 @@
-.bar-vertical {
-    display: inline-block;
+.card .top5 {
+    width: 190px;
+    height: 260px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.top5img {
+    border-radius: 60px;
+    height: 150px;
+    width: 150px;
+}
+
+.top5title {
+    height: 50px;
+    overflow-y: auto;
+}
+
+.abandonedCartsHeaders {
+    border-bottom: black solid 1px;
+    margin-bottom: 5px;
+}
+
+.abandonedCartsBody {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.abandonedCartsCart {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.badge-pill {
+    background-color: #ffbc00;
 }
