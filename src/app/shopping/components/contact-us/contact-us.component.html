@@ -5,11 +5,8 @@
         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
             <agm-marker [latitude]="lat" [longitude]="lng">
                 <agm-info-window [disableAutoPan]="false" [isOpen]="true">
-                    <p class="text-center"><strong>HNShopping</strong></p>
-                    <p><strong>Address: </strong>Rolls Royce 21</p>
-                    <p><strong>City: </strong>Beverly Hills</p>
-                    <p><strong>Country: </strong>United States</p>
-                    <p><strong>Phone Number: </strong> (+999)-99-9999</p>
+                    <p class="text-center"><strong>{{ shop.name }}</strong></p>
+                    <p><strong>Address: </strong>{{ shop.address }}</p>
                 </agm-info-window>
             </agm-marker>
         </agm-map>
@@ -29,11 +26,12 @@
   <div class="col-md-6">
     <div class="card">         
       <div class="card-body"> 
-        <p class="text-center"><strong>HNShopping</strong></p>
-        <p><strong>Address: </strong>Rolls Royce 21</p>
-        <p><strong>City: </strong>Beverly Hills</p>
-        <p><strong>Country: </strong>United States</p>
-        <p><strong>Phone Number: </strong> (+999)-99-9999</p> 
+        <p class="text-center"><strong>{{ shop.name }}</strong></p>
+        <p><strong>Address: </strong>{{ shop.address }}</p>
+        <p><strong>Email: </strong>{{ shop.email }}</p>
+        <p><strong>Phone Number: </strong>{{ shop.phone }}</p>
+        <p><strong>Fax Number: </strong> {{ shop.fax }}</p> 
+        <p><strong>Opening Hours: </strong> {{ shop.workHours }}</p> 
      </div>
     </div>
   </div>

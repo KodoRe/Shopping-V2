@@ -15,6 +15,8 @@ import { AuthGuard } from "shared/services/auth-guard.service";
 import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DataTableModule } from './../modules/angular-4-data-table';
+import { AdminShopComponent } from './components/admin-shop/admin-shop.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -22,6 +24,9 @@ import { DataTableModule } from './../modules/angular-4-data-table';
     DataTableModule,
     ReactiveFormsModule,
     NgxChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
+    }),
     
     RouterModule.forChild([
       { 
@@ -63,6 +68,11 @@ import { DataTableModule } from './../modules/angular-4-data-table';
         path: 'admin/statistics', 
         component: AdminStatisticsComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/shop', 
+        component: AdminShopComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
   ],
@@ -74,7 +84,8 @@ import { DataTableModule } from './../modules/angular-4-data-table';
     CategoryFormComponent,
     AdminCategoriesComponent,
     AdminInboxComponent,
-    AdminStatisticsComponent
+    AdminStatisticsComponent,
+    AdminShopComponent
   ]
 })
 export class AdminModule { }

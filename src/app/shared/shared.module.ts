@@ -19,6 +19,7 @@ import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
+import { ShopInfoService } from 'shared/services/shop-info.service';
 
 //import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 
@@ -60,7 +61,8 @@ import { UserService } from './services/user.service';
     ProductService,
     ShoppingCartService,
     OrderService,
-    ContactService
+    ContactService,
+    ShopInfoService,
   ]
 })
 export class SharedModule { }

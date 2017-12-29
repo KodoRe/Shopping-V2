@@ -1,0 +1,83 @@
+<div class="card">
+    <div class="card-header text-center page-title"><h3><strong>Shop Configuration</strong></h3></div>
+  <div class="card-body">
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+          Shop Information
+        </div>
+        <form [formGroup]="form" class="card-body" (ngSubmit)="save()">            
+        <div class="card-block">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input formControlName="name" [(ngModel)]="shop.name" name="name" id="name" class="form-control">
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              Name is required.
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input formControlName="address" [(ngModel)]="shop.address" name="address" id="address" class="form-control">
+          <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+            Address is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" [(ngModel)]="shop.email" name="email" id="email" class="form-control">
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                Email is required.
+              </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input formControlName="phone" [(ngModel)]="shop.phone" name="phone" id="phone" class="form-control">
+            <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+              Phone is required.
+            </div>
+          </div>
+
+        <div class="form-group">
+          <label for="fax">Fax</label>
+            <input formControlName="fax" [(ngModel)]="shop.fax" name="fax" id="fax" class="form-control">
+          <div class="alert alert-danger" *ngIf="fax.touched && fax.invalid">
+            <div *ngIf="fax.errors.required">Fax is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="workHours">Working Hours</label>
+          <textarea formControlName="workHours" [(ngModel)]="shop.workHours" name="workHours" id="workHours" class="form-control"></textarea>
+          <div class="alert alert-danger" *ngIf="workHours.touched && workHours.invalid">
+            <div *ngIf="workHours.errors.required">Work Hours are required.</div>
+      </div>
+    </div>
+    </div>
+  </form> 
+  <div class="card-footer text-center">        
+      <button class="btn btn-primary" (click)="save()">Save</button>
+      <!-- <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button> -->
+  </div> 
+
+  </div>
+  </div>
+  <div class="col-md-6">
+      <div class="card">
+          <div class='agm-map-content'>
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                  <agm-marker [latitude]="lat" [longitude]="lng">
+                      <agm-info-window [disableAutoPan]="false" [isOpen]="true">
+                          <p class="text-center"><strong>{{ shop.name }}</strong></p>
+                          <p><strong>Address: </strong>{{ shop.address }}</p>
+                      </agm-info-window>
+                  </agm-marker>
+              </agm-map>
+            </div>
+        </div>
+  </div>
+</div>
+  </div>
+  </div>

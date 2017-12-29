@@ -1,0 +1,8 @@
+.page-title {
+    height: 70px;
+    background-color: #ffbc00;
+}
+
+agm-map {
+    height: 350px;
+  }
