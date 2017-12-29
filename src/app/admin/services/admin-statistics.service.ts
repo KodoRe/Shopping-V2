@@ -6,7 +6,7 @@ export class AdminStatisticsService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getRegisteredUsersCarts() {
+  getShoppingCarts() {
     return this.db.list('/shopping-carts');
   }
 

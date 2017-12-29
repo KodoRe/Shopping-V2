@@ -6,6 +6,7 @@ import { ShoppingCart } from 'shared/models/shopping-cart';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ProductService } from 'shared/services/product.service';
+import { SurveyService } from 'shared/services/survey.service';
 
 @Component({
   selector: 'app-admin-statistics',
@@ -13,37 +14,48 @@ import { ProductService } from 'shared/services/product.service';
   styleUrls: ['./admin-statistics.component.css']
 })
 export class AdminStatisticsComponent implements OnInit, OnDestroy {
+  //Abandoned Carts
   abandonedCarts: any[] = [];
+  //Shop Statistics
   registeredUsersAbandonedCarts: number = 0;
   totalAnonymousCarts: number = 0;
   totalRegisterdedCarts: number = 0;
   totalItemsSoldInShop: number = 0;
+  potentialBuyersOneHour: number = 0;
   totalMoneyEarned: number = 0;
   top5items: any[] = [];
+  //Survey Statistics
+  totalSurveys: number;
+  highPrice: {yes: 0, no: 0}; 
+  missingItems: {yes: 0, no: 0};
+  notShipping: {yes: 0, no: 0};
+  //Subscriptions
   ordersSubscription: Subscription; //general subscription when something changes in firebase > orders
   registeredUsersCartsSubscription: Subscription; //general subscription when something changes in firebase > registered users shopping-carts
+  surveysSubscription: Subscription; //general subscription when something changes in firebase > surveys
 
   constructor(
     private statisticsService: AdminStatisticsService,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
+    private surveyService: SurveyService,
     private userService: UserService
       ){
       //Statistics of shopping carts
-       this.registeredUsersCartsSubscription = statisticsService.getRegisteredUsersCarts().subscribe(c =>  
+       this.registeredUsersCartsSubscription = statisticsService.getShoppingCarts().subscribe(c =>  
       {
         this.abandonedCarts = [];
         this.registeredUsersAbandonedCarts = 0;
         this.totalAnonymousCarts = 0;
         this.totalRegisterdedCarts = 0;
-        
+        this.potentialBuyersOneHour = 0;
+
         c.forEach(c => { 
           //Registered Users Abandoned Carts Emails + Abandoned Carts Count Logic:
          if (c.userId)
          {
           if(c.items) //If there is no items, this is not abandoned carts for me (items got deleted after checkout)
           {
-
             let milliSecondsPastBetweenTodayAndLastActionDate = (Date.now() - c.lastActionDate);
             let hoursPastLastActionDate = Math.floor(milliSecondsPastBetweenTodayAndLastActionDate/1000/3600);            
 
@@ -81,6 +93,23 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
             this.totalRegisterdedCarts++;
           else
             this.totalAnonymousCarts++;
+
+          //Potential Buyers In the next 1 hour:
+          if (c.lastActionDate) {
+          let milliSecondsPastBetweenTodayAndLastActionDate = (Date.now() - c.lastActionDate);
+          let hoursPastLastActionDate = Math.floor(milliSecondsPastBetweenTodayAndLastActionDate/1000/3600);  
+
+          if (hoursPastLastActionDate > 1) //More then one hour past, don't count it as potential buyer for the next 1 hour.
+            return;
+          }
+          else {
+            return;
+          }
+
+          if (c.items)
+          {
+            this.potentialBuyersOneHour++;
+          }
         });
       });
     
@@ -127,11 +156,44 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
        })
       }      
     })
+
+    //Statistics of survey
+    this.totalSurveys = 0;
+    this.highPrice = {yes: 0, no: 0};
+    this.missingItems = {yes: 0, no: 0};
+    this.notShipping = {yes: 0, no: 0};
+    
+    this.surveysSubscription = this.surveyService.getSurveys().subscribe(s => {    
+      this.totalSurveys = 0;
+      this.highPrice = {yes: 0, no: 0};
+      this.missingItems = {yes: 0, no: 0};
+      this.notShipping = {yes: 0, no: 0};
+
+      s.forEach(s => {
+        this.totalSurveys++;
+        //High Price
+        if (s.survey.highPrice == 0)
+          this.highPrice.no++;
+        else
+          this.highPrice.yes++;
+          
+          //Missing Items in shop
+          if (s.survey.missingItems == 0)
+          this.missingItems.no++;
+        else
+          this.missingItems.yes++;
+
+          //Shop not do shippings
+          if (s.survey.notShipping == 0)
+          this.notShipping.no++;
+        else
+          this.notShipping.yes++;
+      })
+    });
   }
 
   sendMail(userId: string, cartId: string)
   {
-    //Implement survey url here.. <<<<<<<<<<<<<<<<<
     this.shoppingCartService.sendMail(userId, cartId);
   }
 
@@ -142,6 +204,7 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.registeredUsersCartsSubscription.unsubscribe();
     this.ordersSubscription.unsubscribe();
+    this.surveysSubscription.unsubscribe();
   }
 
 }

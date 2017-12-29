@@ -20,7 +20,7 @@ import { MyMessagesComponent } from './components/my-messages/my-messages.compon
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ContactFormComponent } from './components/contact-us/contact-form/contact-form.component';
 import { ContactSuccessComponent } from './components/contact-success/contact-success.component'; 
-
+import { AbandonedCartSurveyComponent } from './components/abandoned-cart-survey/abandoned-cart-survey.component';
 
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
@@ -28,6 +28,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 
 import { DataTableModule } from './../modules/angular-4-data-table';
+import { SurveySuccessComponent } from './components/abandoned-cart-survey/survey-success/survey-success.component';
 
 
 
@@ -48,6 +49,8 @@ import { DataTableModule } from './../modules/angular-4-data-table';
       { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },    
       { path: 'contact-us', component: ContactUsComponent }, 
       { path: 'my/messages', component: MyMessagesComponent },   
+      { path: 'survey/:id', component: AbandonedCartSurveyComponent},
+      { path: 'survey-success', component: SurveySuccessComponent}
     ]),
   ],
   entryComponents: [
@@ -71,6 +74,8 @@ import { DataTableModule } from './../modules/angular-4-data-table';
     ContactFormComponent,
     MyMessagesComponent,
     ContactSuccessComponent,
+    AbandonedCartSurveyComponent,
+    SurveySuccessComponent,
   ],
 })
 export class ShoppingModule { }

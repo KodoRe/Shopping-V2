@@ -46,6 +46,10 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
+  get(cartId: string) {
+    return this.db.object('/shopping-carts/' + cartId);
+  }
+
   setCartUserId(uid: string) {
     let cartId = localStorage.getItem('cartId');
     if (cartId) 
@@ -63,7 +67,7 @@ export class ShoppingCartService {
       let subscription = this.db.list('/shopping-carts').subscribe(c => {
         c.forEach(c => { 
           if (c.userId != uid) return; //this is not your cart, don't remove it.
-          if (c.$key == uid) return; //if your the same cart, don't remove yourself, just the others.
+          if (c.$key == cartId) return; //if your the same cart, don't remove yourself, just the others.
           this.db.object('/shopping-carts/' + c.$key).remove();
         });
         subscription.unsubscribe();
@@ -74,12 +78,11 @@ export class ShoppingCartService {
   sendMail(userId: string, cartId: string)
   {
     const subject =  "HNShopping is missing you";
-    const body = "We have seen that you interested in our products but didnt make a purchase";
+    const body = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://localhost:4200/survey/"+cartId+"'>Click Here</a>";
     let emailSub = this.userService.get(userId).subscribe(u => {
       if (u.email)
       { 
          this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
-            //console.log(data);  
             this.setCartEmailSentDate(cartId); 
             alert("Email Sent Successfully");       
             emailSub.unsubscribe();                    

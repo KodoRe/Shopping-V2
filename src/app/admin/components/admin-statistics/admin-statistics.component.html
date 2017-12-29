@@ -9,7 +9,7 @@
       <div class="col-md-3"><strong>#</strong></div>
       <div class="col-md-3"><strong>Customer Name</strong></div>
       <div class="col-md-3"><strong>Total Quantity</strong></div>
-      <div class="col-md-3"><strong>Action</strong></div>
+      <div class="col-md-3"><strong>Survey To Email</strong></div>
     </div>
     <div class="abandonedCartsBody">
     <div *ngFor="let ac of abandonedCarts; let i = index">
@@ -24,7 +24,7 @@
           {{ ac.totalQuantity }}
       </div>
       <div class="col-md-3">
-       <button class="btn btn-primary" (click)="sendMail(ac.userId, ac.$key)">Send Email</button>
+       <button class="btn btn-primary" (click)="sendMail(ac.userId, ac.$key)">Send</button>
       </div>
     </div>
     </div>
@@ -39,6 +39,7 @@
    <strong>Shop Statistics</strong>
   </div>
   <div class="card-body">
+  <p class="card-text">Potential buyers in the next hour: <strong>{{ this.potentialBuyersOneHour }}</strong></p>  
   <p class="card-text">Total anonymous carts: <strong>{{ this.totalAnonymousCarts }}</strong></p>  
   <p class="card-text">Total registered carts: <strong>{{ this.totalRegisterdedCarts }}</strong></p>  
   <p class="card-text">Total money earned from sells: <strong>{{ this.totalMoneyEarned | currency:'ILS':true }}</strong></p>    
@@ -56,5 +57,31 @@
     </div>
     <p *ngIf="top5items.length == 0" class="card-text">No items bought in your shop.</p>
   </div>        
+</div>
+</div>
+
+<div class="card mt-2">
+  <div class="card-header">
+   <strong>Survey Statistics</strong>
+  </div>
+  <div class="card-body">
+  <strong>Shop have high prices</strong>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - highPrice.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - highPrice.no)*100 + "%" }}</strong></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - highPrice.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - highPrice.yes)*100 + "%" }}</strong></div>    
+  </div>
+  <strong>Shop missing items that usually bought toghter:</strong>
+  <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - missingItems.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - missingItems.no)*100 + "%" }}</strong></div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - missingItems.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - missingItems.yes)*100 + "%" }}</strong></div>    
+  </div>
+  <strong>Shop needs to start do shippings:</strong>
+  <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - notShipping.no)*100 + '%'"><strong>Yes: {{ (this.totalSurveys - notShipping.no)*100 + "%" }}</strong></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [style.width]="(this.totalSurveys - notShipping.yes)*100 + '%'"><strong>No: {{ (this.totalSurveys - notShipping.yes)*100 + "%" }}</strong></div>    
+  </div>
+  <p class="card-text">Shop have high prices - <strong>Yes: {{ this.highPrice.yes }} || No: {{ this.highPrice.no }}</strong></p>  
+  <p class="card-text">Shop missing items that usually bought toghter - <strong>Yes: {{ this.missingItems.yes }} || No: {{ this.missingItems.no }}</strong></p>  
+  <p class="card-text">Shop needs to start do shippings - <strong>Yes: {{ this.notShipping.yes }} || No: {{ this.notShipping.no }}</strong></p>       
 </div>
 </div>
