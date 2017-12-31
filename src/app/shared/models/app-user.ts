@@ -4,4 +4,5 @@ export interface AppUser {
   email: string; 
   isAdmin: boolean;
   userId: string;
+  shipping: any;
 }

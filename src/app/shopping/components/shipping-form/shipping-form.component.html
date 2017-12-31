@@ -1,34 +1,50 @@
 <form #f="ngForm">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Shipping Information</h4>
   <div class="form-group">
-    <label for="">Name</label>
+    <label for=""><strong>Name</strong></label>
     <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
     <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
       <div *ngIf="name.errors.required">Name is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">Address</label>
+    <label for=""><strong>Address Line</strong></label>
     <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="Line 1" required>
     <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
       <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for=""></label>
+    <label for=""><strong>Address Line Ext.</strong></label>
     <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text" class="form-control" placeholder="Line 2" required>
     <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
       <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for="">City</label>
+    <label for=""><strong>City</strong></label>
     <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
     <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
       <div *ngIf="city.errors.required">City is required.</div>
     </div>
   </div>
+  <div>
+  <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+      <input type="checkbox" name="chkRemmberInfo" [(ngModel)]="chkRemmberInfo" class="custom-control-input">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description"><strong>Remember this shipping info for next orders</strong></span>
+  </label>
+</div>
+</div>
+<div class="text-center card-footer">
   <button 
     [disabled]="!f.valid"
     (click)="placeOrder()"
-    class="btn btn-primary">Place Order</button>
-</form>    
+    class="btn btn-primary">
+    Place Order
+  </button>
+</div>
+</div> 
+</form>   

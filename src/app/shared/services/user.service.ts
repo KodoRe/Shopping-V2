@@ -19,4 +19,8 @@ export class UserService {
   get(uid: string): FirebaseObjectObservable<AppUser> { 
     return this.db.object('/users/' + uid);
   }
+
+  setShippingInfo(uid: string, shippingInfo: any) {
+    return this.db.object('/users/' + uid).update({shipping: shippingInfo});
+  }
 }
