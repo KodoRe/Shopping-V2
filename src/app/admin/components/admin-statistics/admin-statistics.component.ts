@@ -197,6 +197,14 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
     this.shoppingCartService.sendMail(userId, cartId);
   }
 
+  resetSurveyStatistics() {
+
+    if(!confirm("Are you sure you want to reset all surveys statistics?"))
+      return;
+    
+    this.surveyService.reset();
+    
+  }
   ngOnInit() {
 
   }

@@ -22,4 +22,8 @@ export class SurveyService {
     return this.db.list('/surveys');
   }
 
+  reset() {
+    return this.db.list('/surveys/').remove();
+  }
+
 }

@@ -65,20 +65,35 @@
    <strong>Survey Statistics</strong>
   </div>
   <div class="card-body">
+  <!-- <div class="col-md-12"> -->
+    <div class="row mb-2">
+  <div class="col-md-8">
+  <p class="card-text">Total Surveys Filled: <strong>{{ totalSurveys }}</strong></p>
+  </div>
+  <div class="col-md-4 text-right">
+    <button class="btn btn-danger btn-sm" (click)="resetSurveyStatistics()">Reset Survey Statistics</button>
+  </div>
+</div>
+<!-- </div> -->
+<div *ngIf="totalSurveys > 0">
   <strong>Shop have high prices</strong>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(highPrice.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ (highPrice.yes / this.totalSurveys)*100 + "%" }}</strong></div>
-    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(highPrice.no / this.totalSurveys)*100 + '%'"><strong>No: {{ (highPrice.no / this.totalSurveys)*100 + "%" }}</strong></div>    
+  <div class="progress mt-1 mb-2">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(highPrice.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ ((highPrice.yes / this.totalSurveys)*100 | number : '1.0-2' ) + "%" }}</strong></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(highPrice.no / this.totalSurveys)*100 + '%'"><strong>No: {{ ((highPrice.no / this.totalSurveys)*100 | number : '1.0-2' ) + "%" }}</strong></div>    
   </div>
   <strong>Shop missing items that usually bought toghter:</strong>
-  <div class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(missingItems.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ (missingItems.yes / this.totalSurveys)*100 + "%" }}</strong></div>
-      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(missingItems.no / this.totalSurveys)*100 + '%'"><strong>No: {{ (missingItems.no / this.totalSurveys)*100 + "%" }}</strong></div>    
+  <div class="progress mt-1 mb-2">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(missingItems.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ ((missingItems.yes / this.totalSurveys)*100 | number : '1.0-2' ) + "%" }}</strong></div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(missingItems.no / this.totalSurveys)*100 + '%'"><strong>No: {{ ((missingItems.no / this.totalSurveys)*100 | number : '1.0-2' ) + "%" }}</strong></div>    
   </div>
   <strong>Shop needs to start do shippings:</strong>
-  <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(notShipping.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ ( notShipping.yes / this.totalSurveys )*100 + "%" }}</strong></div>
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(notShipping.no / this.totalSurveys)*100 + '%'"><strong>No: {{ ( notShipping.no / this.totalSurveys )*100 + "%" }}</strong></div>    
+  <div class="progress mt-1 mb-2">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" [style.width]="(notShipping.yes / this.totalSurveys)*100 + '%'"><strong>Yes: {{ ((notShipping.yes / this.totalSurveys )*100 | number : '1.0-2' ) + "%" }}</strong></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="(notShipping.no / this.totalSurveys)*100 + '%'"><strong>No: {{ ((notShipping.no / this.totalSurveys )*100 | number : '1.0-2' ) + "%" }}</strong></div>    
   </div>
+</div>
+<div *ngIf="totalSurveys == 0">
+  <p class="card-text"><strong>Cant to display statistics when there is no at least one survey filled.</strong></p>
+</div>
 </div>
 </div>
