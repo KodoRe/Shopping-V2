@@ -18,14 +18,14 @@
               <h4 class="card-title">Summary</h4>
               <p class="card-text">You have bought {{ order.totalItemsCount }} items.</p>
               <ul class="list-group list-group-flush">
-                <li *ngFor="let item of order.items" class="list-group-item">            
+                <li *ngFor="let item of order.items" class="list-group-item">
                     {{ item.quantity }} x {{ item.product.title }}
                   <div class="float-right">
                     {{ item.totalPrice | currency:'ILS':true }}
                   </div>
                 </li>
                 <li class="list-group-item font-weight-bold">
-                  Total 
+                  Total
                   <div class="float-right">
                     {{ order.totalPrice | currency:'ILS':true }}
                   </div>
@@ -38,10 +38,12 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Shipping Information</h4>
-                <p class="card-text">Name: {{ order.shipping.name }}</p>
-                <p class="card-text">Address 1: {{ order.shipping.addressLine1 }}</p>
-                <p class="card-text">Address 2: {{ order.shipping.addressLine2 }}</p>
-                <p class="card-text">City: {{ order.shipping.city }}</p>
+                <p class="card-text"><strong>Full Name:</strong> {{ order.shipping.fullName }}</p>
+                <p class="card-text"><strong>Phone Number:</strong> {{ order.shipping.phoneNumber }}</p>
+                <p class="card-text"><strong>Address:</strong> {{ order.shipping.address }}</p>
+                <p class="card-text"><strong>City:</strong> {{ order.shipping.city }}</p>
+                <p class="card-text"><strong>Postal Code:</strong> {{ order.shipping.postalCode }}</p>
+                <p class="card-text"><strong>Country:</strong> {{ order.shipping.country }}</p>
               </div>
             </div>
           </div>

@@ -1,8 +1,9 @@
 
-export interface AppUser { 
+export interface AppUser {
   name: string;
-  email: string; 
+  email: string;
   isAdmin: boolean;
   userId: string;
   shipping: any;
+
 }

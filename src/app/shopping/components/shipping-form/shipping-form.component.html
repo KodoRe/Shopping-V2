@@ -2,49 +2,63 @@
 <div class="card">
   <div class="card-body">
     <h4 class="card-title mb-3">Shipping Information</h4>
-  <div class="form-group">
-    <label for=""><strong>Name</strong></label>
-    <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
-    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-      <div *ngIf="name.errors.required">Name is required.</div>
+    <div class="form-group">
+    <label for="fullName"><strong>Full Name</strong></label>
+    <input #fullName="ngModel" id="fullName" name="fullName" [(ngModel)]="shipping.fullName" type="text" placeholder="Full Name" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="fullName.touched && fullName.invalid">
+      <div *ngIf="fullName.errors.required">Full Name is required.</div>
     </div>
   </div>
   <div class="form-group">
-    <label for=""><strong>Address Line</strong></label>
-    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="Line 1" required>
-    <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-      <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+    <label for="phoneNumber"><strong>Phone Number</strong></label>
+    <input #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber" [(ngModel)]="shipping.phoneNumber" type="text" class="form-control" placeholder="Phone Number" required>
+    <div class="alert alert-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">
+      <div *ngIf="phoneNumber.errors.required">Phone Number is required.</div>
     </div>
   </div>
+    <div class="form-group">
+      <label for="address"><strong>Address</strong></label>
+      <input #address="ngModel" id="address" name="address" [(ngModel)]="shipping.address" type="text" class="form-control" placeholder="Address" required>
+      <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+        <div *ngIf="address.errors.required">Address is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="city"><strong>City</strong></label>
+      <input #city="ngModel" id="city" name="city" [(ngModel)]="shipping.city" type="text" placeholder="City" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+        <div *ngIf="city.errors.required">City is required.</div>
+      </div>
+    </div>
   <div class="form-group">
-    <label for=""><strong>Address Line Ext.</strong></label>
-    <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text" class="form-control" placeholder="Line 2" required>
-    <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
-      <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+    <label for="postalCode"><strong>Postal Code</strong></label>
+    <input #postalCode="ngModel" id="postalCode" name="postalCode" [(ngModel)]="shipping.postalCode" placeholder="Postal Code" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="postalCode.touched && postalCode.invalid">
+      <div *ngIf="postalCode.errors.required">Postal Code is required.</div>
     </div>
   </div>
-  <div class="form-group">
-    <label for=""><strong>City</strong></label>
-    <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
-    <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-      <div *ngIf="city.errors.required">City is required.</div>
+    <div class="form-group">
+      <label for="country"><strong>Country</strong></label>
+      <input #country="ngModel" id="country" name="country" [(ngModel)]="shipping.country" placeholder="Country" type="text" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
+        <div *ngIf="country.errors.required">Country is required.</div>
+      </div>
     </div>
-  </div>
   <div>
   <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
       <input type="checkbox" name="chkRemmberInfo" [(ngModel)]="chkRemmberInfo" class="custom-control-input">
       <span class="custom-control-indicator"></span>
-      <span class="custom-control-description"><strong>Remember this shipping info for next orders</strong></span>
+      <span class="custom-control-description"><strong>Remember my shipping info for next orders</strong></span>
   </label>
 </div>
 </div>
 <div class="text-center card-footer">
-  <button 
+  <button
     [disabled]="!f.valid"
     (click)="placeOrder()"
     class="btn btn-primary">
     Place Order
   </button>
 </div>
-</div> 
-</form>   
+</div>
+</form>

@@ -14,12 +14,12 @@ import { Order } from "../../../shared/models/order";
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
-  shipping = {name: "", addressLine1: "", addressLine2: "", city: ""}; 
+  shipping = {fullName: "", phoneNumber: "", address: "", country: "", city: "", postalCode: ""};
   chkRemmberInfo: any; //checkbox for remmember shipping info.
   userSubscription: Subscription;
   shippingSubscription: Subscription;
   userId: string;
-  
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -30,33 +30,35 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSubscription = this.authService.user$.subscribe(user => { //get current user id      
+    this.userSubscription = this.authService.user$.subscribe(user => { //get current user id
       this.userId = user.uid
       this.shippingSubscription = this.userService.get(this.userId).subscribe(user => { //get other user details
         if(user.shipping)
         {
-          this.shipping.name = user.shipping.name;
-          this.shipping.addressLine1 = user.shipping.addressLine1;
-          this.shipping.addressLine2 = user.shipping.addressLine2;
+          this.shipping.fullName = user.shipping.fullName;
+          this.shipping.phoneNumber = user.shipping.phoneNumber;
+          this.shipping.address = user.shipping.address;
+          this.shipping.country = user.shipping.country;
           this.shipping.city = user.shipping.city;
+          this.shipping.postalCode = user.shipping.postalCode;
         }
       })
-    }); 
+    });
   }
 
-  ngOnDestroy() { 
+  ngOnDestroy() {
     this.userSubscription.unsubscribe();
     this.shippingSubscription.unsubscribe();
   }
- 
+
   async placeOrder() {
     let order = new Order(this.userId, this.shipping, this.cart);
     let result = await this.orderService.placeOrder(order);
     if (this.chkRemmberInfo)
     {
       //User choosed to save the current shipping info for next orders.
-      this.userService.setShippingInfo(this.userId, this.shipping);      
+      this.userService.setShippingInfo(this.userId, this.shipping);
     }
     this.router.navigate(['/order-success', result.key]);
-  }    
+  }
 }
