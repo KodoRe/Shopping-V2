@@ -35,3 +35,7 @@
 .badge-pill {
     background-color: #ffbc00;
 }
+
+.card-text {
+    text-align: left;
+}

@@ -6,7 +6,6 @@
     <p>
       <strong>You have {{ cart.totalItemsCount }} items in your shopping cart.</strong>
       <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-danger btn-sm">Clear Shopping Cart</button>
-
     </p>
   </div>
   <table class="table">
@@ -20,11 +19,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cart.items">
-        <td>
+        <td width="80px" >
           <div [style.backgroundImage]="'url(' + item.images[0] + ')'" class="thumbnail">
           </div>
         </td>
-        <td>
+        <td width="400px">
           {{ item.title }}
         </td>
         <td>

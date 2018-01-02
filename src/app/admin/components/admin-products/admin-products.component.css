@@ -6,3 +6,7 @@
     height: 70px;    
     background-color: #ffbc00;
 }
+
+.card-text {
+    text-align: left;
+}
