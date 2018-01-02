@@ -12,9 +12,9 @@ import { AgmMap } from '@agm/core';
 })
 export class AdminShopComponent implements OnInit {
   form: FormGroup;
-  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" };
-  lat: number = 32.342286;
-  lng: number = 34.912262;
+  lat: number;
+  lng: number;
+  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" , location: {lat: "", lng: ""} };
   zoom: number = 14;
 
   constructor(
@@ -30,11 +30,20 @@ export class AdminShopComponent implements OnInit {
         email: ['',Validators.required],
         phone: ['',Validators.required],
         workHours: ['',Validators.required],
-        fax: ['', Validators.required]
+        fax: ['', Validators.required],
+        location: fb.group({
+          lat: [''],
+          lng: ['']
+        })
       })
    this.shopinfoService.get().subscribe(shop => this.shop = shop);
   }
 
+  placeMarker($event){
+    this.shop.location.lat = $event.coords.lat;
+    this.shop.location.lng = $event.coords.lng;
+  }
+  
   get name() {
     return this.form.get('name');
   }

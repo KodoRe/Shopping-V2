@@ -2,8 +2,8 @@
  <div class="col-md-12">
   <div class="card">
     <div class='agm-map-content'>
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-            <agm-marker [latitude]="lat" [longitude]="lng">
+        <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true">
+            <agm-marker [latitude]="shop.location.lat" [longitude]="shop.location.lng">
                 <agm-info-window [disableAutoPan]="false" [isOpen]="true">
                     <p class="text-center"><strong>{{ shop.name }}</strong></p>
                     <p><strong>Address: </strong>{{ shop.address }}</p>

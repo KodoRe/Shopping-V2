@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppUser } from 'shared/models/app-user';
 import { AuthService } from 'shared/services/auth.service';
 
-//import { AgmMap } from '@agm/core';
-
 @Component({
   selector: 'app-order-view',
   templateUrl: './order-view.component.html',
@@ -18,9 +16,6 @@ export class OrderViewComponent implements OnInit{
   appUser: AppUser;
   order$: Observable<OrderView>;
   orderId;
-
-  lat: number = 51.678418;
-  lng: number = 7.809007;
 
   constructor(
               private orderService: OrderService,

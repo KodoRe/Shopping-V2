@@ -11,11 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
-
-  lat: number = 32.342286;
-  lng: number = 34.912262;
   zoom: number = 14;
-  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" };
+  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" ,location: { lat: "", lng: "" } };
   subscription: Subscription;
 
   constructor(private shopinfoService: ShopInfoService) { 

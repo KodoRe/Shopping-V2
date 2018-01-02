@@ -1,14 +1,15 @@
 <div class="card">
     <div class="card-header text-center page-title"><h3><strong>Shop Configuration</strong></h3></div>
   <div class="card-body">
+      <form [formGroup]="form" class="card-body" (ngSubmit)="save()">   
 <div class="row">
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
           Shop Information
         </div>
-        <form [formGroup]="form" class="card-body" (ngSubmit)="save()">            
-        <div class="card-block">
+                 
+        <div class="card-body">
         <div class="form-group">
             <label for="name">Name</label>
             <input formControlName="name" [(ngModel)]="shop.name" name="name" id="name" class="form-control">
@@ -56,28 +57,41 @@
       </div>
     </div>
     </div>
-  </form> 
-  <div class="card-footer text-center">        
-      <button [disabled]="!form.valid" class="btn btn-primary" (click)="save()">Save</button>
-      <!-- <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button> -->
-  </div> 
-
   </div>
   </div>
   <div class="col-md-6">
       <div class="card">
           <div class='agm-map-content'>
-              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-                  <agm-marker [latitude]="lat" [longitude]="lng">
-                      <agm-info-window [disableAutoPan]="false" [isOpen]="true">
-                          <p class="text-center"><strong>{{ shop.name }}</strong></p>
-                          <p><strong>Address: </strong>{{ shop.address }}</p>
-                      </agm-info-window>
+              <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true" (mapDblClick)="placeMarker($event)">
+                  <agm-marker [latitude]="shop.location.lat" [longitude]="shop.location.lng">
                   </agm-marker>
               </agm-map>
+            </div>      
+          </div>
+          <br>
+              <div class="card">
+                  <div class="card-header">
+                      Shop Location
+                    </div>
+                <div class="card-body">  
+                  <div formGroupName="location">
+                      <div class="form-group">
+                      <label for="lat">Latitude</label>
+                    <input formControlName="lat" [(ngModel)]="shop.location.lat" name="lat" id="lat" class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="lng">Longitude</label>
+                    <input formControlName="lng" [(ngModel)]="shop.location.lng" name="lng" id="lng" class="form-control"/>
+                  </div>
+                  </div>
+                </div>
             </div>
-        </div>
+          </div>
   </div>
+</form>
 </div>
-  </div>
-  </div>
+<div class="card-footer text-center">        
+    <button [disabled]="!form.valid" class="btn btn-primary" (click)="save()">Save</button>
+    <!-- <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button> -->
+</div> 
+</div>
