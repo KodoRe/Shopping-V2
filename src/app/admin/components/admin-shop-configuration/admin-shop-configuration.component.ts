@@ -6,11 +6,11 @@ import { AgmMap } from '@agm/core';
 
 
 @Component({
-  selector: 'app-admin-shop',
-  templateUrl: './admin-shop.component.html',
-  styleUrls: ['./admin-shop.component.css']
+  selector: 'app-admin-shop-configuration',
+  templateUrl: './admin-shop-configuration.component.html',
+  styleUrls: ['./admin-shop-configuration.component.css']
 })
-export class AdminShopComponent implements OnInit {
+export class AdminShopConfigurationComponent implements OnInit {
   form: FormGroup;
   lat: number;
   lng: number;
@@ -45,6 +45,10 @@ export class AdminShopComponent implements OnInit {
     this.shop.location.lng = $event.coords.lng;
   }
 
+  zoomChange($event){
+    this.shop.location.zoom = $event;
+  }
+
   get name() {
     return this.form.get('name');
   }
@@ -68,16 +72,6 @@ export class AdminShopComponent implements OnInit {
     }
 
     save() {
-      //Fixing manual inputting of gps latitude and longtitude by converting the input type from string to nubmer.
-      //AGM-Map gets only numbers and not string!
-      //I think, if we use the input type="number" it will convert it to number instead of string...
-      //Converting to numbers.
-      this.shop.location.lat = Number(this.shop.location.lat);
-      this.shop.location.lng = Number(this.shop.location.lng);
-      //Saving to the form as number before sending to db.
-      this.form.get('location.lat').setValue(this.shop.location.lat);
-      this.form.get('location.lng').setValue(this.shop.location.lng);
-
       this.shopinfoService.update(this.form.value);
       this.router.navigate(['/contact-us']); //done, navigate.
     }

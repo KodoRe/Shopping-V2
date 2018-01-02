@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { AuthGuard } from "shared/services/auth-guard.service";
 import { AdminStatisticsComponent } from './components/admin-statistics/admin-statistics.component';
 import { DataTableModule } from './../modules/angular-4-data-table';
-import { AdminShopComponent } from './components/admin-shop/admin-shop.component';
+import { AdminShopConfigurationComponent } from './components/admin-shop-configuration/admin-shop-configuration.component';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -69,8 +69,8 @@ import { AgmCoreModule } from '@agm/core';
         canActivate: [AuthGuard, AdminAuthGuard] 
       },
       { 
-        path: 'admin/shop', 
-        component: AdminShopComponent, 
+        path: 'admin/shop-configuration', 
+        component: AdminShopConfigurationComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
@@ -84,7 +84,7 @@ import { AgmCoreModule } from '@agm/core';
     AdminCategoriesComponent,
     AdminInboxComponent,
     AdminStatisticsComponent,
-    AdminShopComponent
+    AdminShopConfigurationComponent
   ],
   providers: [
     AdminStatisticsService

@@ -62,7 +62,7 @@
   <div class="col-md-6">
       <div class="card">
           <div class='agm-map-content'>
-              <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="shop.location.zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true" (mapDblClick)="placeMarker($event)">
+              <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="shop.location.zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true" (mapDblClick)="placeMarker($event)" (zoomChange)="zoomChange($event)">
                   <agm-marker [latitude]="shop.location.lat" [longitude]="shop.location.lng">
                   </agm-marker>
               </agm-map>
@@ -77,11 +77,11 @@
                   <div formGroupName="location">
                       <div class="form-group">
                       <label for="lat">Latitude</label>
-                    <input formControlName="lat" [(ngModel)]="shop.location.lat" name="lat" id="lat" class="form-control"/>
+                    <input formControlName="lat" type="number" step="00.00001" [(ngModel)]="shop.location.lat" name="lat" id="lat" class="form-control"/>
                   </div>
                   <div class="form-group">
                     <label for="lng">Longitude</label>
-                    <input formControlName="lng" [(ngModel)]="shop.location.lng" name="lng" id="lng" class="form-control"/>
+                    <input formControlName="lng" type="number" step="00.00001" [(ngModel)]="shop.location.lng" name="lng" id="lng" class="form-control"/>
                   </div>
                     <div class="form-group">
                       <label for="zoom">Zoom</label>
