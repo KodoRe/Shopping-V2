@@ -32,3 +32,16 @@ hr {
   margin-top: 0em;
   margin-bottom: 0em;
 }
+
+.custom-toggler.navbar-toggler {
+  border-color: #ffbc00;
+}
+.custom-toggler .navbar-toggler-icon {
+  background-image: none;
+}
+
+.fa.fa-bars, .fa.fa-times {
+  margin: auto;
+  font-size: 25px !important;  
+  color: #ffbc00;  
+}
