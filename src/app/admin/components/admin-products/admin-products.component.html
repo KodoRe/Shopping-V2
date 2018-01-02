@@ -8,10 +8,10 @@
      [disabled]="items.length == 0"
       #query
       (keyup)="filter(query.value)"
-      type="text" class="form-control align-middle" placeholder="Filter by Product Name...">
+      type="text" class="form-control" placeholder="Filter by Product Name...">
     </div>
     <div class="col col-md-2">
-      <a routerLink="/admin/products/new" class="btn btn-primary align-middle">Add New Product</a>
+      <a routerLink="/admin/products/new" class="btn btn-primary pull-right">New Product</a>
     </div>
   </div>
   <div *ngIf="items.length > 0" class="products-table">
