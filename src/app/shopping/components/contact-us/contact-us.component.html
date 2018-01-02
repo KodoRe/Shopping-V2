@@ -2,7 +2,7 @@
  <div class="col-md-12">
   <div class="card">
     <div class='agm-map-content'>
-        <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true">
+        <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="shop.location.zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true">
             <agm-marker [latitude]="shop.location.lat" [longitude]="shop.location.lng">
                 <agm-info-window [disableAutoPan]="false" [isOpen]="true">
                     <p class="text-center"><strong>{{ shop.name }}</strong></p>
@@ -24,14 +24,14 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="card">         
-      <div class="card-body"> 
+    <div class="card">
+      <div class="card-body">
         <p class="text-center"><strong>{{ shop.name }}</strong></p>
         <p><strong>Address: </strong>{{ shop.address }}</p>
         <p><strong>Email: </strong>{{ shop.email }}</p>
         <p><strong>Phone Number: </strong>{{ shop.phone }}</p>
-        <p><strong>Fax Number: </strong> {{ shop.fax }}</p> 
-        <p><strong>Opening Hours: </strong> {{ shop.workHours }}</p> 
+        <p><strong>Fax Number: </strong> {{ shop.fax }}</p>
+        <p><strong>Opening Hours: </strong> {{ shop.workHours }}</p>
      </div>
     </div>
   </div>

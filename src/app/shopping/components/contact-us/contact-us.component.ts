@@ -11,11 +11,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
-  zoom: number = 14;
-  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" ,location: { lat: "", lng: "" } };
+  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" , location: { lat: 0, lng: 0, zoom: 14 } };
   subscription: Subscription;
 
-  constructor(private shopinfoService: ShopInfoService) { 
+  constructor(private shopinfoService: ShopInfoService) {
     this.subscription = this.shopinfoService.get().subscribe(shop => this.shop = shop);
     }
 
