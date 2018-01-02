@@ -5,7 +5,6 @@
      <div class="row pb-2">
         <div class="col col-md-10">
          <input 
-         [disabled]="items.length == 0"
           #query
           (keyup)="filter(query.value)"
           type="text" class="form-control align-middle" placeholder="Filter by Category Name...">

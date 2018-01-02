@@ -40,6 +40,12 @@ export class BsNavbarComponent implements OnInit {
     });
   }
 
+  isCollapsed = true;
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+
   logout() {
     this.auth.logout();
     
