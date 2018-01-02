@@ -5,6 +5,7 @@
      <div class="row pb-2">
         <div class="col col-md-10">
          <input 
+         [disabled]="items.length == 0"
           #query
           (keyup)="filter(query.value)"
           type="text" class="form-control align-middle" placeholder="Filter by Category Name...">
@@ -13,7 +14,7 @@
           <button class="btn btn-primary" (click)="openDialog()">New Category</button>            
         </div>
       </div>
-      <div class="categories-table">
+      <div *ngIf="items.length > 0" class="categories-table">
     <data-table
       [items]="items"
       [itemCount]="itemCount"
@@ -39,5 +40,8 @@
     
     </data-table>
     </div>
+    <div *ngIf="items.length == 0">
+        <p class="card-text">Your shop don't have any category yet. to create one click on "New Category"</p>
+      </div>
   </div>
 </div>
