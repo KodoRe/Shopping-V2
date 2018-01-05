@@ -10,3 +10,8 @@
   margin-bottom: 80px;
   margin: auto;
 }
+
+.card-header {
+  height: 70px;
+  background-color: #ffbc00;
+}
