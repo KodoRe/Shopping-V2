@@ -30,8 +30,6 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 import { DataTableModule } from './../modules/angular-4-data-table';
 import { SurveySuccessComponent } from './components/abandoned-cart-survey/survey-success/survey-success.component';
 
-
-
 @NgModule({
   imports: [
     SharedModule,

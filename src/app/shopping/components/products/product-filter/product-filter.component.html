@@ -1,7 +1,8 @@
 <div class="sticky-top">
-  <div class="list-group">
-    <!-- [class.active]="!category" -->
-    <a class="list-group-item category-filter text-center">Filter Categories</a>
+    <i *ngIf="mobileCategoriesHide" class="fa fa-filter mobileCategoriesButton" aria-hidden="true" (click)="toggleMobileCategories()"></i>    
+    <i *ngIf="!mobileCategoriesHide" class="fa fa-times mobileCategoriesButton" aria-hidden="true" (click)="toggleMobileCategories()"></i>        
+  <div class="list-group mobileCategoriesToggle" [class.mobileHideCategories]="mobileCategoriesHide">
+    <a class="list-group-item category-filter text-center">Categories</a>
     <a
       class="list-group-item list-group-item-action"
       [class.active]="!category"

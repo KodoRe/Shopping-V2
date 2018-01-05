@@ -8,12 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductFilterComponent implements OnInit {
   categories$;
+  mobileCategoriesHide = true; //for mobile view
+
   @Input('category') category;
 
   constructor(categoryService: CategoryService) {
     this.categories$ = categoryService.getAll();
   }
 
+  toggleMobileCategories() {
+    this.mobileCategoriesHide = !this.mobileCategoriesHide;
+  }
+  
   ngOnInit() {
   }
 
