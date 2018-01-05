@@ -1,4 +1,3 @@
-
 .thumbnail { 
   width: 80px;
   height: 80px;
@@ -13,5 +12,22 @@
 
 .card-header {
   height: 70px;
+  font-size: 24px;
   background-color: #ffbc00;
+}
+
+@media screen and (min-width: 319px) and (max-width: 321px) {
+  .smallMobile {
+    font-size: 8px;
+  }
+}
+@media screen and (min-width: 359px) and (max-width: 376px)  {
+  .smallMobile {
+    font-size: 11px;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1050px) {
+  .card {
+    font-size: 95%;
+  }
 }

@@ -1,19 +1,25 @@
 <div class="card" *ngIf="cart$ | async as cart">
 <div class="card-header">
-<h1 class="text-center"><strong>Shopping Cart</strong></h1>
+<div class="text-center"><strong>Shopping Cart</strong></div>
 </div>
   <div class="card-body">
-    <p>
+    <div class="col-12 smallMobile">
+    <div class="row mb-2">
+      <div class="col-6">
       <strong>You have {{ cart.totalItemsCount }} items in your shopping cart.</strong>
-      <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-danger btn-sm">Clear Shopping Cart</button>
-    </p>
+      </div>
+      <div class="col-6">
+      <button *ngIf="cart.items.length" (click)="clearCart()" class="pull-right btn btn-danger btn-sm smallMobile">Clear Shopping Cart</button>
+    </div>
   </div>
-  <table class="table">
+  </div>
+<div>
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th></th>
         <th>Product</th>
-        <th class="text-center" style="width: 230px">Quantity</th>
+        <th style="width: 230px">Quantity</th>
         <th class="text-right" style="width: 200px">Price</th>
       </tr>
     </thead>
@@ -30,7 +36,7 @@
           <product-quantity [product]="item" [shopping-cart]="cart">
           </product-quantity>
         </td>
-        <td class="text-right">
+        <td width="200px" class="text-right">
           {{ item.totalPrice | currency:'ILS':true }}
         </td>
       </tr>
@@ -44,6 +50,8 @@
       </tr>
     </tfoot>
   </table>
+  </div>
+  </div>
   <div class="card-footer text-center">
     <div *ngIf="user">
       <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary">Check Out</a>

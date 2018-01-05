@@ -1,3 +1,9 @@
 .card-text {
     text-align: left;
 }
+
+@media screen and (min-width: 319px) and (max-width: 450px) {
+    .card-text, .card-title, .list-group-item {
+        font-size: 48%;
+    }
+}
