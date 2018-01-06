@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
+import { MatTooltipModule } from '@angular/material';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
@@ -23,12 +24,14 @@ import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
 import { ShopInfoService } from 'shared/services/shop-info.service';
 
+
 //import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 
 @NgModule({
   imports: [
 //    ProductViewComponent,
     CarouselModule,
+    MatTooltipModule,
     CommonModule,
     FormsModule,
     CustomFormsModule,

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { AppUser } from '../../../shared/models/app-user';
 import { AuthService } from '../../../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, TooltipPosition } from '@angular/material';
 
 @Component({
   selector: 'bs-navbar',
@@ -15,6 +15,12 @@ import { MatDialog } from '@angular/material';
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
   cart$: Observable<ShoppingCart>;
+  position: TooltipPosition = 'below';
+  contactmessage: string = "Contact Us";
+  menumessage: string = "User Menu";
+  cartmessage: string = "Shopping Cart";
+  hideDelay = 200;
+
 
   constructor(
     private auth: AuthService,

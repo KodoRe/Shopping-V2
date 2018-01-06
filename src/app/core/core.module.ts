@@ -5,10 +5,12 @@ import { HomeComponent } from './components/home/home.component';
 import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material';
 
 @NgModule({
   imports: [
     SharedModule,
+    MatTooltipModule,
     RouterModule.forChild([])
   ],
   declarations: [
