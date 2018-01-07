@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header text-center"><h3><strong>My Orders</strong></h3></div>
+  <div class="card-header text-center smallScreen"><h3><strong>My Orders</strong></h3></div>
 <div class="card-body">
 <div *ngIf="items.length > 0" class="my-orders-table">
     <data-table
@@ -35,8 +35,9 @@
         [property]="'$key'" 
       >
         <ng-template #dataTableCell let-item="item">
-        <div class="align-center">
-          <button class="btn btn-primary" [routerLink]="['/my/orders/', item.$key]">View Order</button>
+        <div class="align-center" [ngbCollapse]="isCollapsed">
+          <button *ngIf="isCollapsed" class="btn btn-primary" [routerLink]="['/my/orders/', item.$key]">View Order</button>
+          <button *ngIf="!isCollapsed" class="btn btn-primary" [routerLink]="['/my/orders/', item.$key]"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
         </ng-template>
       </data-table-column>
