@@ -2,7 +2,7 @@
   <div class="carousel card-image-top">
     <carousel *ngIf="carouselEnabled" [sources]="product.images" [config]="carouselConfig" class="slideImg"></carousel>
   </div>
-  <div class="dialog" (click)="openDialog()">      
+  <div class="dialog" (click)="openDialog()" [matTooltip]="message" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">      
   <div class="card-body">
     <h4 class="card-title">{{ product.title }}</h4>
     <h4 class="card-text"><span class="badge badge-pill">{{ product.price | currency:'ILS':true }}</span></h4>

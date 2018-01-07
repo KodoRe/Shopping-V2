@@ -52,3 +52,12 @@ hr {
     font-size: 55%;
   }
 }  
+
+/* custom styles for tooltip  */ 
+::ng-deep .mat-tooltip {  
+  background-color: #23272B !important;
+  opacity: 0.92;
+  font-weight: 300;
+  font-size: 14px;
+}
+

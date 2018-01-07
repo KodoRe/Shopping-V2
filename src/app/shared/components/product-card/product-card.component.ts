@@ -3,7 +3,7 @@ import { ShoppingCart } from '../../models/shopping-cart';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Product } from '../../models/product';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, TooltipPosition } from '@angular/material';
 import { ProductViewComponent } from '../../../shopping/components/product-view/product-view.component';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
 import { Subscription } from 'rxjs/Subscription';
@@ -21,6 +21,9 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   @Input('shopping-cart') shoppingCart: ShoppingCart; 
   @Input('showDescription') showDescription = false;
   public carouselEnabled = true;
+  position: TooltipPosition = 'above';
+  message: string = "Click To Open!";
+  hideDelay = 200;
 
   constructor(
     private cartService: ShoppingCartService,
