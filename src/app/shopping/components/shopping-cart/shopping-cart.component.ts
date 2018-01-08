@@ -30,6 +30,10 @@ export class ShoppingCartComponent implements OnInit {
     })
   }
 
+  loginClick() {
+    this.shoppingCartService.login();
+  }
+
   clearCart() { 
     this.shoppingCartService.clearCart();
   }

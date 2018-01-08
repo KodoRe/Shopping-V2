@@ -7,9 +7,12 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map'; 
 import { UserService } from '../services/user.service';
 import { EmailService } from '../services/email.service';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class ShoppingCartService {
+  private subject = new Subject<any>();
+
   constructor(
     private db: AngularFireDatabase,
     private userService: UserService,
@@ -34,6 +37,10 @@ export class ShoppingCartService {
     this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
   
+  login() {
+    this.subject.next();
+    return this.subject.asObservable();
+  }
 
   private create() { 
     return this.db.list('/shopping-carts').push({

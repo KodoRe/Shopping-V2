@@ -49,7 +49,7 @@
       <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-primary">Check Out</a>
     </div>
     <div *ngIf="!user">
-      <button *ngIf="cart.items.length" class="btn btn-primary">Login to Checkout</button>
+      <button *ngIf="cart.items.length" class="btn btn-primary" (click)="loginClick()">Login to Checkout</button>
     </div>   
   </div>
 </div>
