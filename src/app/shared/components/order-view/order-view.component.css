@@ -6,3 +6,19 @@
 .card-text {
     text-align: left;
 }
+
+@media screen and (min-width: 319px) and (max-width: 321px) {
+    .smallMobile {
+      font-size: 8px;
+    }
+  }
+  @media screen and (min-width: 359px) and (max-width: 415px)  {
+    .smallMobile {
+      font-size: 11px;
+    }
+  }
+  @media screen and (min-width: 1023px) and (max-width: 1050px) {
+    .card {
+      font-size: 95%;
+    }
+  }
