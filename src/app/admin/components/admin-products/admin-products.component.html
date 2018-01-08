@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header text-center"><h3><strong>Manage Products</strong></h3></div>
+  <div class="card-header text-center"><h3 class="forMobile"><strong>Manage Products</strong></h3></div>
 <div class="card-body">
  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 <div class="row pb-2">
@@ -10,10 +10,10 @@
       type="text" class="form-control" placeholder="Filter by Product Name...">
     </div>
     <div class="col col-md-2">
-      <a routerLink="/admin/products/new" class="btn btn-primary pull-right">New Product</a>
+      <a routerLink="/admin/products/new" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
   </div>
-  <div *ngIf="items.length > 0" class="products-table">
+  <div *ngIf="items.length > 0" class="products-table smallScreen">
 <data-table
   [items]="items"
   [itemCount]="itemCount"
@@ -57,8 +57,10 @@
   >
     <ng-template #dataTableCell let-item="item">
     <div class="align-center">
-      <button class="btn btn-primary" [routerLink]="['/admin/products/', item.$key]">Edit</button>
-      <button class="btn btn-danger" (click)="delete(item)">Delete</button>
+      <button *ngIf="isCollapsed" class="btn btn-primary" [routerLink]="['/admin/products/', item.$key]">Edit</button>
+      <button *ngIf="!isCollapsed" class="btn btn-primary smallScreen" [routerLink]="['/admin/products/', item.$key]"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+      <button *ngIf="isCollapsed" class="btn btn-danger" (click)="delete(item)">Delete</button>
+      <button *ngIf="!isCollapsed" class="btn btn-danger smallScreen" (click)="delete(item)"><i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
     </ng-template>
   </data-table-column>
@@ -66,7 +68,7 @@
   </data-table>
     </div>
     <div *ngIf="items.length == 0">
-        <p class="card-text">Your shop don't have any product yet. to create one click on "New Product".</p>
+        <p class="card-text">Your shop don't have any product yet. to create one click on "+".</p>
       </div>
   </div>
 </div>

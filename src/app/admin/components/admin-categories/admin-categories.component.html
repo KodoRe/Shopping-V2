@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header text-center"><h3><strong>Manage Categories</strong></h3></div>
+  <div class="card-header text-center"><h3 class="forMobile"><strong>Manage Categories</strong></h3></div>
 <div class="card-body">
      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
      <div class="row pb-2">
@@ -10,7 +10,7 @@
           type="text" class="form-control align-middle" placeholder="Filter by Category Name...">
         </div>
         <div class="col col-md-2">
-          <button class="btn btn-primary pull-right" (click)="openDialog()">New Category</button>            
+          <button class="btn btn-primary pull-right" (click)="openDialog()"><i class="fa fa-plus" aria-hidden="true"></i></button>            
         </div>
       </div>
       <div *ngIf="items.length > 0" class="categories-table">
@@ -31,8 +31,8 @@
       >
         <ng-template #dataTableCell let-item="item">
         <div class="align-center">
-          <button class="btn btn-primary" (click)="openDialog(item.name, item.$key)">Edit</button>      
-          <button class="btn btn-danger" (click)="delete(item)">Delete</button>
+          <button class="btn btn-primary" (click)="openDialog(item.name, item.$key)"><i class="fa fa-pencil" aria-hidden="true"></i></button>      
+          <button class="btn btn-danger" (click)="delete(item)"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
         </ng-template>
       </data-table-column>
