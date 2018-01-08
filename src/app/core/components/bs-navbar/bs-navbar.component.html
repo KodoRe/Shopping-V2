@@ -40,14 +40,14 @@
           </a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
             <hr>
-            <a class="dropdown-item">Welcome, {{ appUser.name }}</a>
+            <a class="dropdown-item dropdown-item-title">Welcome, {{ appUser.name }}</a>
             <hr>
             <a class="dropdown-item" routerLink="/my/orders" routerLinkActive="active-link">My Orders</a>
             <a class="dropdown-item" routerLink="/my/messages" routerLinkActive="active-link">My Messages</a>
             <ng-container *ngIf="appUser.isAdmin">
               <br>
             <hr>
-              <a class="dropdown-item">Admin Tools</a>                
+              <a class="dropdown-item dropdown-item-title">Admin Tools</a>                
             <hr>
               <a class="dropdown-item" routerLink="/admin/inbox" routerLinkActive="active-link">Manage Inbox</a>
               <a class="dropdown-item" routerLink="/admin/orders" routerLinkActive="active-link">Manage Orders</a>

@@ -8,8 +8,12 @@
 	font-weight: bold;
 }
 
-.dropdown-toggle { 
+.nav-link, .dropdown-item { 
   cursor: pointer;
+}
+
+.dropdown-item-title {
+  cursor: default;
 }
 
 .dropdown-toggle::after {

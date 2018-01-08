@@ -4,11 +4,10 @@
       <form [formGroup]="form" class="card-body" (ngSubmit)="save()">
 <div class="row">
   <div class="col-md-6">
-    <div class="card">
+    <div class="card mb-4">
       <div class="card-header">
           Shop Information
         </div>
-
         <div class="card-body">
         <div class="form-group">
             <label for="name">Name</label>
@@ -24,7 +23,6 @@
             Address is required.
           </div>
         </div>
-
         <div class="form-group">
             <label for="email">Email</label>
             <input formControlName="email" [(ngModel)]="shop.email" name="email" id="email" class="form-control">
@@ -32,7 +30,6 @@
                 Email is required.
               </div>
         </div>
-
         <div class="form-group">
             <label for="phone">Phone Number</label>
             <input formControlName="phone" [(ngModel)]="shop.phone" name="phone" id="phone" class="form-control">
@@ -40,7 +37,6 @@
               Phone is required.
             </div>
           </div>
-
         <div class="form-group">
           <label for="fax">Fax</label>
             <input formControlName="fax" [(ngModel)]="shop.fax" name="fax" id="fax" class="form-control">
@@ -48,7 +44,6 @@
             <div *ngIf="fax.errors.required">Fax is required.</div>
           </div>
         </div>
-
         <div class="form-group">
           <label for="workHours">Working Hours</label>
           <textarea formControlName="workHours" [(ngModel)]="shop.workHours" name="workHours" id="workHours" class="form-control"></textarea>
@@ -60,7 +55,7 @@
   </div>
   </div>
   <div class="col-md-6">
-      <div class="card">
+      <div class="card mb-4">
           <div class='agm-map-content'>
               <agm-map [latitude]="shop.location.lat" [longitude]="shop.location.lng" [zoom]="shop.location.zoom" [disableDoubleClickZoom]="true" [mapTypeControl]="true" (mapDblClick)="placeMarker($event)" (zoomChange)="zoomChange($event)">
                   <agm-marker [latitude]="shop.location.lat" [longitude]="shop.location.lng">
@@ -68,7 +63,6 @@
               </agm-map>
             </div>
           </div>
-          <br>
               <div class="card">
                   <div class="card-header">
                       Shop Location
