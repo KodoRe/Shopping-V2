@@ -11,4 +11,8 @@ export const ROW_STYLE = `
 .clickable {
     cursor: pointer;
 }
+
+.index-column {
+    text-align: center;
+}
 `;

@@ -44,7 +44,7 @@ export const TABLE_STYLE = `
 	text-align: center;
 }
 .index-column-header {
-	width: 40px;
+	width: 50px;
 }
 .column-header.sortable {
     cursor: pointer;
