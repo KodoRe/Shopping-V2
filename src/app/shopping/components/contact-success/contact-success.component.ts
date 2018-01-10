@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {  MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 
 @Component({
-  selector: 'app-contact-success',
+  selector: 'contact-success',
   templateUrl: './contact-success.component.html',
   styleUrls: ['./contact-success.component.css']
 })

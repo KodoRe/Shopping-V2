@@ -14,6 +14,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { ProductViewComponent } from '../shopping/components/product-view/product-view.component';
 import { OrderViewComponent } from './components/order-view/order-view.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
@@ -23,6 +24,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { ContactService } from './services/contact.service';
 import { UserService } from './services/user.service';
 import { ShopInfoService } from 'shared/services/shop-info.service';
+import { ConfirmDialogService } from 'shared/services/confirm-dialog.service';
 
 
 //import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
@@ -45,6 +47,7 @@ import { ShopInfoService } from 'shared/services/shop-info.service';
     ProductQuantityComponent,
     //ngSelectLocation,    
     OrderViewComponent,
+    ConfirmDialogComponent,
   ],
   exports: [
     ProductCardComponent,
@@ -69,7 +72,8 @@ import { ShopInfoService } from 'shared/services/shop-info.service';
     ContactService,
     ShopInfoService,
     EmailService,
-    SurveyService
+    SurveyService,
+    ConfirmDialogService
   ]
 })
 export class SharedModule { }
