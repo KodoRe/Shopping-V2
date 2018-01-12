@@ -2,8 +2,33 @@
     text-align: left;
 }
 
-@media screen and (min-width: 319px) and (max-width: 450px) {
-    .card-text, .card-title, .list-group-item {
-        font-size: 48%;
+@media screen and (min-width: 319px) and (max-width: 359px) {
+    .forMobile {
+        display: inline-block;
+        width: 115px;
+    }
+}
+@media screen and (min-width: 360px) and (max-width: 410px) {
+    .forMobile {
+        display: inline-block;
+        width: 150px;
+    }
+}
+@media screen and (min-width: 412px) and (max-width: 430px) {
+    .forMobile {
+        display: inline-block;
+        width: 205px;
+    }
+}
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+    .forMobile {
+        display: inline-block;
+        width: 115px;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1050px) {
+    .forMobile {
+        display: inline-block;
+        width: 235px;
     }
 }

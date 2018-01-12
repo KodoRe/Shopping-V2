@@ -12,14 +12,16 @@
             </div>
       </div>
       <div class="row">
-      <div class="col-6">
-        <div class="card smallMobile">
+      <div class="col-md-6">
+        <div class="card mb-4 smallMobile">
             <div class="card-body">
-              <h3 class="card-title smallMobile">Summary</h3>
+              <h3 class="card-title smallMobile"><strong>Summary</strong></h3>
               <p class="card-text">You have bought {{ order.totalItemsCount }} items.</p>
               <ul class="list-group list-group-flush">
                 <li *ngFor="let item of order.items" class="list-group-item">
+                  <div class="smallMobile orderQuantityTitle">
                     {{ item.quantity }} x {{ item.product.title }}
+                  </div>
                   <div class="float-right">
                     {{ item.totalPrice | currency:'ILS':true }}
                   </div>
@@ -34,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="card smallMobile">
               <div class="card-body">
                 <h3 class="card-title smallMobile">Shipping Information</h3>

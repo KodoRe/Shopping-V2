@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { AppUser } from '../../../shared/models/app-user';
 import { AuthService } from '../../../shared/services/auth.service';
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, TooltipPosition } from '@angular/material';
 import { Subscription } from 'rxjs';
 
@@ -18,7 +18,10 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   cart$: Observable<ShoppingCart>;
   subscription: Subscription
   position: TooltipPosition = 'below';
+  navigatewazemessage: string = "Navigate with Waze"
+  copyrightsmessage: string = "Hen Tzarfati & Nitai Ben Shaul"
   contactmessage: string = "Contact Us";
+  loginmessage: string = "Login";
   menumessage: string = "User Menu";
   cartmessage: string = "Shopping Cart";
   hideDelay = 200;

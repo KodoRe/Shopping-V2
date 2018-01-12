@@ -1,3 +1,9 @@
 .category-name-width {
     width: 250px;
 }
+
+@media screen and (max-width: 320px) {
+    .category-name-width {
+        width: 200px;
+    }
+}

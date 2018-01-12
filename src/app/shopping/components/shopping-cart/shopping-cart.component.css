@@ -18,12 +18,12 @@
 
 @media screen and (min-width: 319px) and (max-width: 321px) {
   .smallMobile {
-    font-size: 8px;
+    font-size: 11px;
   }
 }
 @media screen and (min-width: 359px) and (max-width: 376px)  {
   .smallMobile {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 @media screen and (min-width: 1023px) and (max-width: 1050px) {

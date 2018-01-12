@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <form #f="ngForm" (ngSubmit)="save(f.value)">
         <div class="form-group">
-          <label for="category">Category Name</label>
+          <label for="category"><strong>Category Name</strong></label>
           <input #name="ngModel" [(ngModel)]="category.name" name="name" id="name" type="text" class="form-control category-name-width" required>
           <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
             Category Name is required.

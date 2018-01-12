@@ -1,4 +1,3 @@
-import { ConfirmDialogService } from 'shared/services/confirm-dialog.service';
 import { UserService } from 'shared/services/user.service';
 import { ContactService } from 'shared/services/contact.service';
 import { Contact } from 'shared/models/contact';
@@ -8,10 +7,6 @@ import { map } from 'rxjs/operator/map';
 import { AppUser } from 'shared/models/app-user';
 import { AuthService } from 'shared/services/auth.service';
 import { expandCollapse, slideOut, fadeInOut } from './admin-inbox.component.animations';
-import { MatDialog } from '@angular/material';
-import { ConfirmDialogComponent } from 'shared/components/confirm-dialog/confirm-dialog.component';
-
-
 
 @Component({
   selector: 'app-admin-inbox',
@@ -41,7 +36,7 @@ export class AdminInboxComponent implements OnInit, OnDestroy {
 
 
 
-constructor(private contactService: ContactService, private auth: AuthService, private dialog: MatDialog, private confirmDialogService: ConfirmDialogService) {
+constructor(private contactService: ContactService, private auth: AuthService ) {
   this.subscription = this.contactService.getAll()
   .subscribe(r => {
     this.requests = r.reverse(); //Did a trick, for desc ordering ;)
@@ -142,8 +137,10 @@ constructor(private contactService: ContactService, private auth: AuthService, p
   }
 
   markAsDone(request: Contact, messageBox: string) {
-  this.openDialog();
-  if (!this.confirmDialogService.dialogConfirm()) return;        
+  //this.openDialog();
+  if (!confirm("Are you sure you want to do this?"))
+    return;
+
   this.request = request;
   this.request.isHandled = true;
   this.request.adminName = this.appUser.name;
@@ -162,15 +159,6 @@ constructor(private contactService: ContactService, private auth: AuthService, p
         this.registeredHandled.unshift(request);  
     break;
   }
-}
-
-openDialog() {
-  this.dialog.open(ConfirmDialogComponent, {
-    data: {
-          title:"Confirm",
-          message:"Are you sure you want to mark this message as handled?"
-        }
-      });
 }
 
   ngOnInit() {

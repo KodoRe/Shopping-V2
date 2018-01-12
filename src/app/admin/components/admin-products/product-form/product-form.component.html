@@ -1,13 +1,15 @@
+<div class="card">
+    <div class="card-header text-center">
+        <h3 class="forMobile"><strong>Edit Product</strong></h3>
+      </div>
+<div class="card-body">
 <div class="row">
   <div class="col-md-6">
     <div class="card">
-      <div class="card-header">
-          Edit Product
-        </div>
         <form [formGroup]="form" class="card-body" (ngSubmit)="save()">            
         <div class="card-block">
         <div class="form-group">
-          <label for="title">Title</label>
+          <label for="title"><strong>Title</strong></label>
           <input formControlName="title" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control">
           <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
             Title is required.
@@ -15,7 +17,7 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description"><strong>Description</strong></label>
             <input formControlName="description" [(ngModel)]="product.description" name="description" id="description" class="form-control">
             <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
                 Description is required.
@@ -23,7 +25,7 @@
         </div>
 
         <div class="form-group">
-          <label for="price">Price</label>
+          <label for="price"><strong>Price</strong></label>
           <div class="input-group">
             <input formControlName="price" [(ngModel)]="product.price" name="price" id="price" type="number" class="form-control">
             <span class="input-group-addon">₪</span>
@@ -35,7 +37,7 @@
         </div>
              
         <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category"><strong>Category</strong></label>
           <select formControlName="category" [(ngModel)]="product.category" name="category" id="category" class="form-control">
             <option value=""></option>
             <option *ngFor="let c of categories$ | async" [value]="c.name">
@@ -48,7 +50,7 @@
       </div>
 
       <div class="form-group">
-          <label for="images">Image URL</label>
+          <label for="images"><strong>Image URL</strong></label>
           <span class="input-group-btn">
           <input formControlName="imageUrl" placeholder="Insert valid product image url here" [(ngModel)]="imageLink" name="imagelink" id="imageUrl" type="text" class="form-control">
           <button *ngIf="imageLink" type="button" class="btn btn-primary pull-right" (click)="addToImages(imageUrl)" [disabled]="imageUrl.errors">+</button>
@@ -87,4 +89,6 @@
   <div class="col-md-6">
      <product-card [product]="product" [show-actions]="false"></product-card> 
   </div>
+</div>
+</div>
 </div>

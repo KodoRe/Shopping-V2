@@ -1,51 +1,51 @@
 <div class="card">
-    <div class="card-header text-center page-title"><h3 class="forMobile"><strong>Shop Configuration</strong></h3></div>
+    <div class="card-header text-center page-title"><h3><strong>Shop Configuration</strong></h3></div>
   <div class="card-body">
       <form [formGroup]="form" class="card-body" (ngSubmit)="save()">
 <div class="row">
   <div class="col-md-6">
     <div class="card mb-4">
       <div class="card-header">
-          Shop Information
+          <h5><strong>Shop Information</strong></h5>
         </div>
         <div class="card-body">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name"><strong>Name</strong></label>
             <input formControlName="name" [(ngModel)]="shop.name" name="name" id="name" class="form-control">
             <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
               Name is required.
             </div>
           </div>
         <div class="form-group">
-          <label for="address">Address</label>
+          <label for="address"><strong>Address</strong></label>
           <input formControlName="address" [(ngModel)]="shop.address" name="address" id="address" class="form-control">
           <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
             Address is required.
           </div>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email"><strong>Email</strong></label>
             <input formControlName="email" [(ngModel)]="shop.email" name="email" id="email" class="form-control">
             <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
                 Email is required.
               </div>
         </div>
         <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone"><strong>Phone Number</strong></label>
             <input formControlName="phone" [(ngModel)]="shop.phone" name="phone" id="phone" class="form-control">
             <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
               Phone is required.
             </div>
           </div>
         <div class="form-group">
-          <label for="fax">Fax</label>
+          <label for="fax"><strong>Fax</strong></label>
             <input formControlName="fax" [(ngModel)]="shop.fax" name="fax" id="fax" class="form-control">
           <div class="alert alert-danger" *ngIf="fax.touched && fax.invalid">
             <div *ngIf="fax.errors.required">Fax is required.</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="workHours">Working Hours</label>
+          <label for="workHours"><strong>Working Hours</strong></label>
           <textarea formControlName="workHours" [(ngModel)]="shop.workHours" name="workHours" id="workHours" class="form-control"></textarea>
           <div class="alert alert-danger" *ngIf="workHours.touched && workHours.invalid">
             <div *ngIf="workHours.errors.required">Work Hours are required.</div>
@@ -65,20 +65,20 @@
           </div>
               <div class="card">
                   <div class="card-header">
-                      Shop Location
+                    <h5><strong> Shop Location</strong></h5>
                     </div>
                 <div class="card-body">
                   <div formGroupName="location">
                       <div class="form-group">
-                      <label for="lat">Latitude</label>
+                      <label for="lat"><strong>Latitude</strong></label>
                     <input formControlName="lat" type="number" step="00.00001" [(ngModel)]="shop.location.lat" name="lat" id="lat" class="form-control"/>
                   </div>
                   <div class="form-group">
-                    <label for="lng">Longitude</label>
+                    <label for="lng"><strong>Longitude</strong></label>
                     <input formControlName="lng" type="number" step="00.00001" [(ngModel)]="shop.location.lng" name="lng" id="lng" class="form-control"/>
                   </div>
                     <div class="form-group">
-                      <label for="zoom">Zoom</label>
+                      <label for="zoom"><strong>Zoom</strong></label>
                       <input formControlName="zoom" type="number" [(ngModel)]="shop.location.zoom" name="zoom" id="zoom" class="form-control"/>
                     </div>
                   </div>

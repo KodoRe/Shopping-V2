@@ -1,15 +1,15 @@
 <div class="card">
-  <div class="card-header text-center"><h3 class="forMobile"><strong>Manage Products</strong></h3></div>
+  <div class="card-header text-center"><h3><strong>Manage Products</strong></h3></div>
 <div class="card-body">
  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 <div class="row pb-2">
-    <div class="col col-md-10">
+    <div class="col-10 col-md-10">
      <input 
       #query
       (keyup)="filter(query.value)"
       type="text" class="form-control" placeholder="Filter by Product Name...">
     </div>
-    <div class="col col-md-2">
+    <div class="col-2 col-md-2">
       <a routerLink="/admin/products/new" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
     </div>
   </div>
@@ -17,6 +17,7 @@
 <data-table
   [items]="items"
   [itemCount]="itemCount"
+  [indexColumn]="false"
   (reload)="reloadItems($event)">
   <data-table-column
     [property]="'title'"  

@@ -1,8 +1,15 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h3 class="forMobile"><strong>Check Out</strong></h3>
+    </div>
+    <div class="card-body">
 <div class="row" *ngIf="cart$ | async as cart">
-  <div class="col-6">
+  <div class="col-md-6 orderOnMobile">
     <shipping-form [cart]="cart"></shipping-form>
   </div>
-  <div class="col-6">
+  <div class="col-md-6 mb-3">
     <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
   </div>
+</div>
+</div>
 </div>

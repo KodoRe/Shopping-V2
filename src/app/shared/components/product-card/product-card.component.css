@@ -16,20 +16,20 @@
   height: 300px;
 }
 
-.carousel-nav-list__item {
+::ng-deep .carousel-nav-list__item {
   background-color: #e3e3e3 !important;
 }
 
-.carousel-nav-list__item--current {
+::ng-deep .carousel-nav-list__item--current {
   background-color: #ffbc00 !important;
 }
 
-.carousel-nav-list {
+::ng-deep .carousel-nav-list {
   margin-right: 40px !important;
 }
 
 /* Fix carousel to display full detailed image instead of just fill the slider */
-.slide {
+::ng-deep .slide {
   height: 100%;
   object-fit: contain !important;
   object-position: center !important;

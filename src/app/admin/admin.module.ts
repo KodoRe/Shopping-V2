@@ -1,4 +1,3 @@
-import { ConfirmDialogComponent } from 'shared/components/confirm-dialog/confirm-dialog.component';
 import { AdminStatisticsService } from './services/admin-statistics.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RouterModule } from '@angular/router';
@@ -77,7 +76,7 @@ import { AgmCoreModule } from '@agm/core';
     ])            
   ],
   entryComponents: [CategoryFormComponent,
-  ConfirmDialogComponent],
+  ],
   declarations: [
     ProductFormComponent,
     AdminProductsComponent,
@@ -89,7 +88,7 @@ import { AgmCoreModule } from '@agm/core';
     AdminShopConfigurationComponent
   ],
   providers: [
-    AdminStatisticsService
+    AdminStatisticsService,
   ]
 })
 export class AdminModule { }

@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductFilterComponent implements OnInit {
   categories$;
-  mobileCategoriesHide = true; //for mobile view
+  mobileCategoriesHide = false;//true; //for mobile view
 
   @Input('category') category;
 

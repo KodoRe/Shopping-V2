@@ -2,7 +2,7 @@ import { AuthService } from '../../services/auth.service';
 import { ShoppingCart } from '../../models/shopping-cart';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Product } from '../../models/product';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'; //ViewEncapsulation
 import { MatDialog, TooltipPosition } from '@angular/material';
 import { ProductViewComponent } from '../../../shopping/components/product-view/product-view.component';
 import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
@@ -11,7 +11,7 @@ import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'product-card',
-  encapsulation: ViewEncapsulation.None, //Hen: Without it, i can't fix the carousel css to my tastes.. in this component shadow-dom is disabled so css is mixing toghter.
+  //encapsulation: ViewEncapsulation.None, //Hen: Without it, i can't fix the carousel css to my tastes.. in this component shadow-dom is disabled so css is mixing toghter.
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
@@ -22,7 +22,7 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   @Input('showDescription') showDescription = false;
   public carouselEnabled = true;
   position: TooltipPosition = 'above';
-  message: string = "Click To Open!";
+  message: string = "Click to Open";
   hideDelay = 200;
 
   constructor(

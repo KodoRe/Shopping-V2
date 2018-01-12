@@ -1,8 +1,0 @@
-@media screen and (min-width: 319px) and (max-width: 450px) {
-    .card-body, .card-title, .form-group{
-      font-size: 80%;
-    }
-    .custom-control-description, .btn-primary {
-        font-size: 60%;
-    }
-  }
