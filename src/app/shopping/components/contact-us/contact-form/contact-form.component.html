@@ -1,13 +1,13 @@
 <form  #f="ngForm" (ngSubmit)="save(f.value); openDialog(); clearForm(f)" >
   <div class="form-group">
-  <label for="name">Contact Name</label>
+  <label for="name"><strong>Contact Name</strong></label>
     <input #name="ngModel" [(ngModel)]="contact.name" [attr.disabled]="userId" name="name" id="name" type="text" class="form-control" required>
   <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
       Name is required.
   </div>
   </div>   
   <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email"><strong>Email</strong></label>
       <input #email="ngModel" [(ngModel)]="contact.email" [attr.disabled]="userId" name="email" id="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required email>
       <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
           <div *ngIf="email.errors.required">Email is required.</div>
@@ -15,7 +15,7 @@
        </div>
   </div>     
   <div class="form-group">
-    <label for="phone">Telephone</label>
+    <label for="phone"><strong>Telephone</strong></label>
       <input #phone="ngModel" [(ngModel)]="contact.phone" [value]="contact.phone" name="phone" id="phone" type="tel" class="form-control" (keyup.enter)="clearFormField(phone)" pattern="[0-9]*" minlength="9" maxlength="12" required>
     <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
       <div *ngIf="phone.errors.required">Telephone is required.</div>
@@ -24,14 +24,14 @@
     </div>
   </div>        
   <div class="form-group">
-      <label for="message">Message</label>
+      <label for="message"><strong>Message</strong></label>
       <textarea #message="ngModel" [(ngModel)]="contact.message" name="message" id="message" class="form-control" required></textarea>
       <div class="alert alert-danger" *ngIf="message.touched && message.invalid">
       <div *ngIf="message.errors.required">Message content is required.</div>
     </div>
   </div>
   <div class="text-center">
-  <button [disabled]="!f.valid" class="btn btn-primary" type="submit">Send Message</button>
+  <button [disabled]="!f.valid" class="btn btn-primary" type="submit"><strong>Send Message</strong></button>
   </div>
 </form>
 
