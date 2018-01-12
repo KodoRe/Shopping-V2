@@ -27,7 +27,6 @@ import { ShopInfoService } from 'shared/services/shop-info.service';
 import { SurveyService } from 'shared/services/survey.service';
 import { EmailService } from './services/email.service';
 
-//import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 @NgModule({
   imports: [
     CarouselModule,
@@ -43,13 +42,11 @@ import { EmailService } from './services/email.service';
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
-    //ngSelectLocation,    
     OrderViewComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
-    //ngSelectLocation,    
     OrderViewComponent,
     CommonModule,
     FormsModule,
