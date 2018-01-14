@@ -17,8 +17,8 @@
              <!-- Using this class in order to align right the next items -->
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item">
-            <a href="https://waze.com/ul?ll=32.44687,34.90057&navigate=yes" class="nav-link" target="_blank" [matTooltip]="navigatewazemessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+        <li *ngIf="this.shopGpsCoords.lat != 0 && this.shopGpsCoords.lng != 0" class="nav-item">
+            <a href="https://waze.com/ul?ll={{ this.shopGpsCoords.lat }},{{ this.shopGpsCoords.lng }}&navigate=yes" class="nav-link" target="_blank" [matTooltip]="navigatewazemessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
               <!-- <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> -->
               <img src="https://showtheway.io/img/showtheway-waze.png" style="height: 27px;" />
             </a>
