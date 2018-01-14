@@ -52,7 +52,7 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
     this.initializeTable(filteredCategories);
   }
 
-  openDialog(namereplace, key) {
+  openDialog(namereplace = "", key = "") {
     this.dialog.open(CategoryFormComponent, {
       data: {
         catKey: key,

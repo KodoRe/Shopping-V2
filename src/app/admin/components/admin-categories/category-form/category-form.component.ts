@@ -13,9 +13,9 @@ import 'rxjs/add/operator/take';
   styleUrls: ['./category-form.component.css']
 })
 export class CategoryFormComponent implements OnInit {
-  category = {}; 
+  category = { name: ""}; 
   id;
-  replaceCategoryName;
+  replaceCategoryName = "";
 
   constructor(
     private router: Router, 
@@ -25,7 +25,7 @@ export class CategoryFormComponent implements OnInit {
     private mdr: MatDialogRef<CategoryFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any    
   ) {
-    this.id = this.data.catKey; //this.route.snapshot.paramMap.get('id');
+    this.id = (this.data.catKey != "") ? this.data.catKey : null; //this.route.snapshot.paramMap.get('id');
     this.replaceCategoryName = this.data.nameToReplace;
     
     if (this.id) {
@@ -33,7 +33,8 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
-  save(category) { 
+  save(category) 
+  {     
     if (this.id) 
     {
       this.categoryService.update(this.id, category);
@@ -44,7 +45,9 @@ export class CategoryFormComponent implements OnInit {
     this.router.navigate(['/admin/categories']);
     this.mdr.close();
   }
-  delete() {
+
+  delete() 
+  {
     if (!confirm('Are you sure you want to delete this category?')) return;
     
     this.categoryService.delete(this.id);
