@@ -34,7 +34,6 @@ export class AdminInboxComponent implements OnInit, OnDestroy {
   rnhExpanded: boolean;
   ahExpanded: boolean;
   anhExpanded: boolean;
-  result: boolean;
 
 
 
@@ -138,13 +137,12 @@ constructor(private contactService: ContactService, private auth: AuthService, p
     }
   }
 
-  openDialog(passVar1: Contact, passVar2: string) {
+  openDialog(request: Contact, messageBox: string) {
     this.dialogsService
       .confirm('Confirm Dialog', 'Are you sure you want to do this?')
       .subscribe( res => {
-        this.result = res;
-        if (this.result)
-        this.markAsDone(passVar1,passVar2);
+        if (res)
+         this.markAsDone(request,messageBox);
       });
   }
 
