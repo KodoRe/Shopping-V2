@@ -45,8 +45,8 @@ import { SurveySuccessComponent } from './components/abandoned-cart-survey/surve
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
       { path: 'my/orders/:id', component: OrderViewComponent, canActivate: [AuthGuard] },    
+      { path: 'my/messages', component: MyMessagesComponent, canActivate: [AuthGuard] },   
       { path: 'contact-us', component: ContactUsComponent }, 
-      { path: 'my/messages', component: MyMessagesComponent },   
       { path: 'survey/:id', component: AbandonedCartSurveyComponent},
       { path: 'survey-success', component: SurveySuccessComponent}
     ]),

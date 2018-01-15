@@ -25,6 +25,7 @@ export class AuthService {
 
   login(provider: string) {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')  || window.location.pathname || '/';
+    //returnUrl = returnUrl.replace("site06/hnshopping/",""); //When using base-href, its nessecery (in this app..)
     localStorage.setItem('returnUrl', returnUrl);
 
     switch (provider)
@@ -55,7 +56,8 @@ export class AuthService {
   }
 
   logout() { 
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')  || window.location.pathname || '/';
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || window.location.pathname || '/';
+    //returnUrl = returnUrl.replace("site06/hnshopping/",""); //When using base-href, its nessecery. (in this app..)
     localStorage.setItem('returnUrl', returnUrl);
 
     this.afAuth.auth.signOut();
