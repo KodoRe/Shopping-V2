@@ -139,7 +139,7 @@ constructor(private contactService: ContactService, private auth: AuthService, p
 
   openDialog(request: Contact, messageBox: string) {
     this.dialogsService
-      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+      .confirm('', 'Are you sure you want to mark this message as handled?')
       .subscribe( res => {
         if (res)
          this.markAsDone(request,messageBox);
