@@ -8,6 +8,7 @@ import 'rxjs/add/operator/take';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
 import { Product } from './../../../../shared/models/product';
 import { ProductCardComponent } from './../../../../shared/components/product-card/product-card.component';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 
 @Component({
@@ -22,13 +23,15 @@ export class ProductFormComponent implements OnInit {
   imageLink = "";
   @ViewChild(ProductCardComponent) pcc: ProductCardComponent; //Used to trigger function on child element (refreshCarousel)
   id;
+  result: boolean;
 
   constructor(
     fb: FormBuilder,
     private router: Router, 
     private route: ActivatedRoute,
     private categoryService: CategoryService, 
-    private productService: ProductService) {
+    private productService: ProductService,
+    private dialogsService: DialogsService) {
       this.categories$ = categoryService.getAll();
       this.form = fb.group({
         title: ['',Validators.required],
@@ -61,10 +64,16 @@ export class ProductFormComponent implements OnInit {
   }
 
   delete() {
-    if (!confirm('Are you sure you want to delete this product?')) return;
-    
-    this.productService.delete(this.id);
-    this.router.navigate(['/admin/products']);
+    this.dialogsService
+    .confirm('', 'Are you sure you want to delete this product?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result) 
+      {
+      this.productService.delete(this.id);
+      this.router.navigate(['/admin/products']);
+      }
+    }); 
   }
 
   get title() {

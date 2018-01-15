@@ -5,6 +5,7 @@ import { OrderService } from '../../../shared/services/order.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DataTableResource } from '../../../modules/angular-4-data-table';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-admin-orders',
@@ -18,10 +19,12 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   items: Order[] = [];
   itemCount: number; 
   userName;
+  result: boolean;
 
   constructor(
     private orderService: OrderService,
-    private userService: UserService
+    private userService: UserService,
+    private dialogsService: DialogsService
   ) { 
     this.subscription = this.orderService.getOrders()
     .subscribe(orders => {
@@ -63,8 +66,13 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   }
 
   markShipped(orderId) {
-    if (!confirm('Are you sure you want to mark this order as shipped?')) return;    
-    this.orderService.markShipped(orderId, new Date().getTime()); //When click on Mark as Shipped, it send the current date time.
+    this.dialogsService
+    .confirm('', 'Are you sure you mark this as shipped?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      this.orderService.markShipped(orderId, new Date().getTime()); //When click on Mark as Shipped, it send the current date time.
+    });    
   }
   
   ngOnDestroy() {

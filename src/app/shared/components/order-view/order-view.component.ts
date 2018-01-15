@@ -5,6 +5,7 @@ import { OrderService } from '../../../shared/services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { AppUser } from 'shared/models/app-user';
 import { AuthService } from 'shared/services/auth.service';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-order-view',
@@ -15,12 +16,14 @@ export class OrderViewComponent implements OnInit{
   appUser: AppUser;
   order$: Observable<OrderView>;
   orderId;
+  result: boolean;
 
   constructor(
               private orderService: OrderService,
               private auth: AuthService,
               private router: Router, 
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private dialogsService: DialogsService
   ) {
     this.orderId = this.route.snapshot.paramMap.get('id'); 
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
@@ -35,8 +38,15 @@ export class OrderViewComponent implements OnInit{
     this.order$ = await this.orderService.getOrderDetailsByOrderId(this.orderId).take(1).map(o => new OrderView(o));    
   }
   markShipped(orderId) {
-    if (!confirm('Are you sure you want to mark this order as shipped?')) return;    
-    this.orderService.markShipped(orderId, new Date().getTime()); //When click on Mark as Shipped, it send the current date time.
-    this.loadOrder();
+    this.dialogsService
+    .confirm('', 'Are you sure you want to mark this as shipped?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      {
+      this.orderService.markShipped(orderId, new Date().getTime()); //When click on Mark as Shipped, it send the current date time.
+      this.loadOrder();
+      }
+    });    
   }
 }

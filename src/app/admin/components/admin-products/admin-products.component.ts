@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ProductService } from '../../../shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataTableResource } from '../../../modules/angular-4-data-table';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -15,8 +16,9 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   tableResource: DataTableResource<Product>;
   items: Product[] = [];
   itemCount: number; 
+  result: boolean;
 
-  constructor(private productService: ProductService) { 
+  constructor(private productService: ProductService, private dialogsService: DialogsService) { 
     this.subscription = this.productService.getAll()
       .subscribe(products => {
         this.products = products;
@@ -48,9 +50,14 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   delete(item: Product) {
-
-    if (!confirm('Are you sure you want to delete this product?')) return;    
-    this.productService.delete(item.$key);
+    this.dialogsService
+    .confirm('', 'Are you sure you want to delete this product?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      this.productService.delete(item.$key);
+    });  
+    
   }
 
   ngOnDestroy() {

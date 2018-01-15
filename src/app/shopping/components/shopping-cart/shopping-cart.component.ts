@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs/Rx';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,11 +12,13 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class ShoppingCartComponent implements OnInit {
   cart$;
   subscription: Subscription;
-  user = null; 
+  user = null;
+  result: boolean;
 
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private auth: AuthService
+    private auth: AuthService,
+    private dialogsService: DialogsService 
   ) { }
 
   async ngOnInit() {
@@ -35,7 +38,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   clearCart() { 
-    this.shoppingCartService.clearCart();
+    this.dialogsService
+    .confirm('', 'Are you sure you want to clear your shopping cart?')
+    .subscribe( res => {
+      if (res)
+        this.shoppingCartService.clearCart();
+    });
+    
   }
 
   ngOnDestroy() {

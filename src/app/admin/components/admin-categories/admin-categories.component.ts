@@ -5,6 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataTableResource } from '../../../modules/angular-4-data-table';
 import { MatDialog } from '@angular/material';
 import { CategoryFormComponent } from './../../components/admin-categories/category-form/category-form.component';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-admin-categories',
@@ -17,11 +18,12 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   tableResource: DataTableResource<Category>;
   items: Category[] = [];
   itemCount: number; 
+  result: boolean;
 
   constructor(
     private categoryService: CategoryService,
-    private dialog: MatDialog   
-  ) { 
+    private dialog: MatDialog,
+    private dialogsService: DialogsService) { 
     this.subscription = this.categoryService.getAll()
       .subscribe(categories => {
         this.categories = categories;
@@ -62,9 +64,13 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   }
 
   delete(item: Category) {
-
-    if (!confirm('Are you sure you want to delete this category?')) return;    
-    this.categoryService.delete(item.$key);
+    this.dialogsService
+    .confirm('', 'Are you sure you want to delete this category?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      this.categoryService.delete(item.$key);
+    });      
   }
 
   ngOnDestroy() {

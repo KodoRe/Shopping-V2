@@ -6,6 +6,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import 'rxjs/add/operator/take'; 
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-category-form',
@@ -16,6 +17,7 @@ export class CategoryFormComponent implements OnInit {
   category = { name: ""}; 
   id;
   replaceCategoryName = "";
+  result: boolean;
 
   constructor(
     private router: Router, 
@@ -23,6 +25,7 @@ export class CategoryFormComponent implements OnInit {
     private categoryService: CategoryService, 
     private productService: ProductService, 
     private mdr: MatDialogRef<CategoryFormComponent>,
+    private dialogsService: DialogsService,
     @Inject(MAT_DIALOG_DATA) public data: any    
   ) {
     this.id = (this.data.catKey != "") ? this.data.catKey : null; //this.route.snapshot.paramMap.get('id');
@@ -48,11 +51,17 @@ export class CategoryFormComponent implements OnInit {
 
   delete() 
   {
-    if (!confirm('Are you sure you want to delete this category?')) return;
-    
-    this.categoryService.delete(this.id);
-    this.router.navigate(['/admin/categories']);
-    this.mdr.close();
+    this.dialogsService
+    .confirm('', 'Are you sure you want to delete this category?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      {
+      this.categoryService.delete(this.id);
+      // this.router.navigate(['/admin/categories']);
+      this.mdr.close();
+      }
+    });  
   }
 
   ngOnInit() {
