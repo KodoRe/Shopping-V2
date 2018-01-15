@@ -86,7 +86,7 @@ export class ShoppingCartService {
   {
     const subject =  "HNShopping is missing you";
     const bodyLocalHost = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://localhost:4200/survey/"+cartId+"'>Click Here</a>";
-    const bodyRemoteHost = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://http://ruppinmobile.ac.il.preview26.livedns.co.il/site06/survey/"+cartId+"'>Click Here</a>";
+    const bodyRemoteHost = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://ruppinmobile.ac.il.preview26.livedns.co.il/site06/survey/"+cartId+"'>Click Here</a>";
     let emailSub = this.userService.get(userId).subscribe(u => {
       if (u.email)
       { 
