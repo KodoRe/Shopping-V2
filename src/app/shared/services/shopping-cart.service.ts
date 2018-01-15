@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import { UserService } from '../services/user.service';
 import { EmailService } from '../services/email.service';
 import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class ShoppingCartService {
@@ -16,7 +17,9 @@ export class ShoppingCartService {
   constructor(
     private db: AngularFireDatabase,
     private userService: UserService,
-    private emailService: EmailService) { }
+    private emailService: EmailService,
+    private snackBar: MatSnackBar,
+  ) { }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
@@ -92,18 +95,21 @@ export class ShoppingCartService {
       { 
          this.emailService.sendEmail(u.email,u.name,subject,bodyRemoteHost).subscribe(data => {
             this.setCartEmailSentDate(cartId); 
-            alert("Email Sent Successfully");       
+            //alert("Email Sent Successfully");     
+            this.snackBar.open("Email Sent Successfully","", {  duration: 3000 });  
             emailSub.unsubscribe();                    
         },
         errors => {
-            alert("Failed to send email");
+            //alert("Failed to send email");
+            this.snackBar.open("Failed to send email","", {  duration: 3000 });
             console.log(errors);
             emailSub.unsubscribe();                    
         })
       }
     },
   errors => {
-    alert("Failed to send email, user has no email updated.");    
+    //alert("Failed to send email, user has no email updated.");    
+    this.snackBar.open("Failed to send email, user has no email updated.","", {  duration: 3000 });
     console.log(errors);
     emailSub.unsubscribe();
   });

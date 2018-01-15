@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 import { ShoppingModule } from './shopping/shopping.module';
 
-import { MatDialogModule, MatTooltipModule } from '@angular/material';
+import { MatDialogModule, MatTooltipModule, MatSnackBarModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -32,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     MatDialogModule,
     MatTooltipModule,
-    //DataTableModule,
+    MatSnackBarModule,
     SharedModule,
     AdminModule,
     ShoppingModule,

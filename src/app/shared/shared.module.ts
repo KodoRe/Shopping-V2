@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CarouselModule } from 'angular4-carousel';
-import { MatTooltipModule, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatTooltipModule, MatDialogModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -34,6 +34,7 @@ import { DialogsService } from 'shared/services/dialogs.service';
     CarouselModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
