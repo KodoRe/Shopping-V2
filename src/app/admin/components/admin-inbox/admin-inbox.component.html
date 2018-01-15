@@ -48,7 +48,7 @@
                               <td><a href="mailto:{{rnh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{rnh.email}}</a></td>
                               <td><a href="tel:{{rnh.email}}" target="_top">{{rnh.phone}}</a></td>
                               <td style="word-break:break-word">{{rnh.message}}</td>
-                              <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(rnh,'registeredNotHandled')" ></i></td>
+                              <td class="text-center"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="openDialog(rnh,'registeredNotHandled')" ></i></td>
                             </tr>    
                           </tbody>
                         </table>
@@ -159,7 +159,7 @@
                                       <td><a href="mailto:{{anh.email}}?subject='HNShopping - Regarding Your Message'" target="_top">{{anh.email}}</a></td>
                                       <td><a href="tel:{{anh.email}}" target="_top">{{anh.phone}}</a></td>
                                       <td style="word-break:break-word;">{{anh.message}}</td>
-                                      <td><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="markAsDone(anh,'annonymousNotHandled')"></i></td>
+                                      <td><i class="fa fa-check-circle-o fa-2x" aria-hidden="true" (click)="openDialog(anh,'annonymousNotHandled')"></i></td>
                                     </tr>    
                                   </tbody>
                                 </table>

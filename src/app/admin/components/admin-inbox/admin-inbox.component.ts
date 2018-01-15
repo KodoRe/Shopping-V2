@@ -7,6 +7,7 @@ import { map } from 'rxjs/operator/map';
 import { AppUser } from 'shared/models/app-user';
 import { AuthService } from 'shared/services/auth.service';
 import { expandCollapse, slideOut, fadeInOut } from './admin-inbox.component.animations';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-admin-inbox',
@@ -33,10 +34,11 @@ export class AdminInboxComponent implements OnInit, OnDestroy {
   rnhExpanded: boolean;
   ahExpanded: boolean;
   anhExpanded: boolean;
+  result: boolean;
 
 
 
-constructor(private contactService: ContactService, private auth: AuthService ) {
+constructor(private contactService: ContactService, private auth: AuthService, private dialogsService: DialogsService ) {
   this.subscription = this.contactService.getAll()
   .subscribe(r => {
     this.requests = r.reverse(); //Did a trick, for desc ordering ;)
@@ -136,11 +138,18 @@ constructor(private contactService: ContactService, private auth: AuthService ) 
     }
   }
 
-  markAsDone(request: Contact, messageBox: string) {
-  //this.openDialog();
-  if (!confirm("Are you sure you want to do this?"))
-    return;
+  openDialog(passVar1: Contact, passVar2: string) {
+    this.dialogsService
+      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+      .subscribe( res => {
+        this.result = res;
+        if (this.result)
+        this.markAsDone(passVar1,passVar2);
+      });
+  }
 
+
+  markAsDone(request: Contact, messageBox: string) {
   this.request = request;
   this.request.isHandled = true;
   this.request.adminName = this.appUser.name;

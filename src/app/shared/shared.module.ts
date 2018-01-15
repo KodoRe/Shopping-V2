@@ -26,12 +26,15 @@ import { UserService } from './services/user.service';
 import { ShopInfoService } from 'shared/services/shop-info.service';
 import { SurveyService } from 'shared/services/survey.service';
 import { EmailService } from './services/email.service';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 //import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 @NgModule({
   imports: [
     CarouselModule,
     MatTooltipModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
@@ -45,12 +48,14 @@ import { EmailService } from './services/email.service';
     ProductQuantityComponent,
     //ngSelectLocation,    
     OrderViewComponent,
+    ConfirmDialogComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
     //ngSelectLocation,    
     OrderViewComponent,
+    ConfirmDialogComponent,
     CommonModule,
     FormsModule,
     CustomFormsModule,
@@ -70,8 +75,10 @@ import { EmailService } from './services/email.service';
     ShopInfoService,
     EmailService,
     SurveyService,
+    DialogsService,
   ],
   entryComponents: [
+    ConfirmDialogComponent,
   ]
 })
 export class SharedModule { }
