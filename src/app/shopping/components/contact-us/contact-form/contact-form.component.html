@@ -16,7 +16,7 @@
   </div>     
   <div class="form-group">
     <label for="phone"><strong>Telephone</strong></label>
-      <input #phone="ngModel" [(ngModel)]="contact.phone" [value]="contact.phone" name="phone" id="phone" type="tel" class="form-control" (keyup.enter)="clearFormField(phone)" pattern="[0-9]*" minlength="9" maxlength="12" required>
+      <input #phone="ngModel" [(ngModel)]="contact.phone" [value]="contact.phone" name="phone" id="phone" type="tel" class="form-control" pattern="[0-9]*" minlength="9" maxlength="12" required>
     <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
       <div *ngIf="phone.errors.required">Telephone is required.</div>
       <div *ngIf="phone.errors.pattern">Invalid Number. Number Format Example: 094347718</div>

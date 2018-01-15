@@ -29,7 +29,6 @@ import { EmailService } from './services/email.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { DialogsService } from 'shared/services/dialogs.service';
 
-//import { ngSelectLocation } from './components/location/browser-location'; //Get Location Service
 @NgModule({
   imports: [
     CarouselModule,
@@ -46,14 +45,12 @@ import { DialogsService } from 'shared/services/dialogs.service';
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
-    //ngSelectLocation,    
     OrderViewComponent,
     ConfirmDialogComponent,
   ],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
-    //ngSelectLocation,    
     OrderViewComponent,
     ConfirmDialogComponent,
     CommonModule,

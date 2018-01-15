@@ -7,6 +7,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, TooltipPosition } from '@angular/material';
 import { Subscription } from 'rxjs';
+import { ShopInfoService } from 'shared/services/shop-info.service';
 
 @Component({
   selector: 'bs-navbar',
@@ -16,7 +17,9 @@ import { Subscription } from 'rxjs';
 export class BsNavbarComponent implements OnInit, OnDestroy {
   appUser: AppUser;
   cart$: Observable<ShoppingCart>;
-  subscription: Subscription
+  cartSubscription: Subscription;
+  shopConfigurationSubscription: Subscription;
+  shopGpsCoords = {lat: 0, lng: 0};
   position: TooltipPosition = 'below';
   navigatewazemessage: string = "Navigate with Waze"
   copyrightsmessage: string = "Hen Tzarfati & Nitai Ben Shaul"
@@ -30,14 +33,18 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private shoppingCartService: ShoppingCartService,
+    private shopConfigService: ShopInfoService,
     private dialog: MatDialog
   ){ 
-    
   }
 
   async ngOnInit() { 
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    this.subscription = this.shoppingCartService.login().subscribe((click) => {
+    this.shopConfigurationSubscription = this.shopConfigService.get().subscribe(shopConfiguration => {
+      this.shopGpsCoords.lat = shopConfiguration.location.lat;
+      this.shopGpsCoords.lng = shopConfiguration.location.lng;
+    });
+    this.cartSubscription = this.shoppingCartService.login().subscribe((click) => {
     this.openLoginDialog();
     });
     //this.cart$ = await this.shoppingCartService.getCart(); // << This line caused the bug of first time user, make 2 carts in firebase.
@@ -66,6 +73,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
+    this.shopConfigurationSubscription.unsubscribe();
   }
 }

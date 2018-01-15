@@ -1,4 +1,3 @@
-import { ngSelectLocation } from '../location/browser-location';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order, OrderView } from '../../../shared/models/order';
 import { Observable } from 'rxjs/Observable';

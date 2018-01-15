@@ -1,0 +1,29 @@
+To Deploy ON IIS:
+-> Enable IIS and enable features under Add or remove programs. (also configure the iis and start him)
+-> Download and Install: URL Rewriter
+-> Add webconfig under system.webServer the following code:
+    <rewrite>
+    <rules>
+      <rule name="Angular Routes" stopProcessing="true">
+        <match url=".*" />
+	  <conditions logicalGrouping="MatchAll">
+	    <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+	    <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+	  </conditions>
+	  <action type="Rewrite" url="/" />
+	  <!--<action type="Rewrite" url="your-base-href..." />-->
+      </rule>
+    </rules>
+  </rewrite>
+-> run ng build --prod 
+    OR
+   ng build --prod -base-href = /your-base-href/ 
+   
+   if there are problems with AoT just disable it (search command on google).
+   
+-> take the dist folder and place inside iis root folder - wwwroot.
+-> if you run the command with -base-href, then make a sub folder with the base-href name then paste the contents there.
+
+-> More info at angular.io website under deployment.
+
+Enjoy, Hen Tzarfati 2018 (C)

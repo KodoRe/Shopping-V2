@@ -18,7 +18,7 @@ import { ProductCardComponent } from './../../../../shared/components/product-ca
 export class ProductFormComponent implements OnInit {
   form: FormGroup;
   categories$;
-  product = {images: []};
+  product = {images: [], price: null, title: "", category: "", description: "" };
   imageLink = "";
   @ViewChild(ProductCardComponent) pcc: ProductCardComponent; //Used to trigger function on child element (refreshCarousel)
   id;
