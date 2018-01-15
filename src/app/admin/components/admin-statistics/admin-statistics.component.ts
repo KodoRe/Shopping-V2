@@ -7,6 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ProductService } from 'shared/services/product.service';
 import { SurveyService } from 'shared/services/survey.service';
+import { DialogsService } from 'shared/services/dialogs.service';
 
 @Component({
   selector: 'app-admin-statistics',
@@ -33,13 +34,15 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
   ordersSubscription: Subscription; //general subscription when something changes in firebase > orders
   registeredUsersCartsSubscription: Subscription; //general subscription when something changes in firebase > registered users shopping-carts
   surveysSubscription: Subscription; //general subscription when something changes in firebase > surveys
+  result: boolean;
 
   constructor(
     private statisticsService: AdminStatisticsService,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private surveyService: SurveyService,
-    private userService: UserService
+    private userService: UserService,
+    private dialogsService: DialogsService
       ){
       //Statistics of shopping carts
        this.registeredUsersCartsSubscription = statisticsService.getShoppingCarts().subscribe(c =>  
@@ -198,13 +201,15 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
   }
 
   resetSurveyStatistics() {
-
-    if(!confirm("Are you sure you want to reset all surveys statistics?"))
-      return;
-    
-    this.surveyService.reset();
-    
+    this.dialogsService
+    .confirm('', 'Are you sure you want to reset the survey statistics?')
+    .subscribe( res => {
+      this.result = res;
+      if (this.result)
+      this.surveyService.reset();
+      });  
   }
+
   ngOnInit() {
 
   }
