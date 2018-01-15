@@ -85,11 +85,12 @@ export class ShoppingCartService {
   sendMail(userId: string, cartId: string)
   {
     const subject =  "HNShopping is missing you";
-    const body = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://localhost:4200/survey/"+cartId+"'>Click Here</a>";
+    const bodyLocalHost = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://localhost:4200/survey/"+cartId+"'>Click Here</a>";
+    const bodyRemoteHost = "We have seen that you interested in our products but didnt make a purchase<br /> Please fill a little survey so we can improve our service: <a href='http://http://ruppinmobile.ac.il.preview26.livedns.co.il/site06/survey/"+cartId+"'>Click Here</a>";
     let emailSub = this.userService.get(userId).subscribe(u => {
       if (u.email)
       { 
-         this.emailService.sendEmail(u.email,u.name,subject,body).subscribe(data => {
+         this.emailService.sendEmail(u.email,u.name,subject,bodyRemoteHost).subscribe(data => {
             this.setCartEmailSentDate(cartId); 
             alert("Email Sent Successfully");       
             emailSub.unsubscribe();                    

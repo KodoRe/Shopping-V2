@@ -15,6 +15,6 @@ export class EmailService {
     .set('EmailSubject', subject)
     .set('EmailBody', body);   
        //return this.http.post("http://localhost/EmailService.asmx/SendEmail",httpParams); //email service on localhost
-       return this.http.post("http://http://ruppinmobile.ac.il.preview26.livedns.co.il/site06/EmailService.asmx/SendEmail",httpParams); //email service on remote server
+       return this.http.post("http://ruppinmobile.ac.il.preview26.livedns.co.il/site06/EmailService.asmx/SendEmail",httpParams); //email service on remote server
 }
 }
