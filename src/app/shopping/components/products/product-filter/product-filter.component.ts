@@ -22,7 +22,7 @@ export class ProductFilterComponent implements OnInit {
   
   scrollTop() {
     window.scrollTo(0, 0);
-    }
+  }
 
   ngOnInit() {
   }

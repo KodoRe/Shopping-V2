@@ -51,7 +51,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
     // V - this method fix the 2 carts by delaying the shoppingCart.getQuantity, so when it execute there is already a userID.
     setTimeout(async () => {
       this.cart$ = await this.shoppingCartService.getCart();
-      }, 1500);
+      }, 1800);
   }
 
   openLoginDialog() {
