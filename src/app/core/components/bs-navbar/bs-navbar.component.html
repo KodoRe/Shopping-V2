@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light fixed-top" style="background-color: #23272B;">
   <div class="container">
     <div class="logo">
-    <a class="navbar-brand" routerLink="/" [matTooltip]="copyrightsmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+    <a class="navbar-brand" routerLink="/" (click)="scrollTop()" [matTooltip]="copyrightsmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
       H<i class="fa fa-music" aria-hidden="true" style="margin-left: -5px;"></i>N
     </a>
   </div>
@@ -25,10 +25,10 @@
             
         </li>
         <li class="nav-item">
-            <a *ngIf="!isCollapsed" class="nav-link" routerLink="/contact-us" routerLinkActive="active-link">
+            <a *ngIf="!isCollapsed" class="nav-link" routerLink="/contact-us" (click)="scrollTop()" routerLinkActive="active-link">
               <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
             </a>
-            <a *ngIf="isCollapsed" class="nav-link" routerLink="/contact-us" routerLinkActive="active-link-buttons" [matTooltip]="contactmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+            <a *ngIf="isCollapsed" class="nav-link" routerLink="/contact-us" routerLinkActive="active-link-buttons" (click)="scrollTop()" [matTooltip]="contactmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
               <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
             </a>
         </li>
@@ -50,19 +50,19 @@
             <hr>
             <a class="dropdown-item dropdown-item-title">Welcome, {{ appUser.name }}</a>
             <hr>
-            <a class="dropdown-item" routerLink="/my/orders" routerLinkActive="active-link">My Orders</a>
-            <a class="dropdown-item" routerLink="/my/messages" routerLinkActive="active-link">My Messages</a>
+            <a class="dropdown-item" routerLink="/my/orders" (click)="scrollTop()" routerLinkActive="active-link">My Orders</a>
+            <a class="dropdown-item" routerLink="/my/messages" (click)="scrollTop()" routerLinkActive="active-link">My Messages</a>
             <ng-container *ngIf="appUser.isAdmin">
               <br>
             <hr>
               <a class="dropdown-item dropdown-item-title">Admin Tools</a>                
             <hr>
-              <a class="dropdown-item" routerLink="/admin/inbox" routerLinkActive="active-link">Manage Inbox</a>
-              <a class="dropdown-item" routerLink="/admin/orders" routerLinkActive="active-link">Manage Orders</a>
-              <a class="dropdown-item" routerLink="/admin/categories" routerLinkActive="active-link">Manage Categories</a>              
-              <a class="dropdown-item" routerLink="/admin/products" routerLinkActive="active-link">Manage Products</a>
-              <a class="dropdown-item" routerLink="/admin/shop-configuration" routerLinkActive="active-link">Shop Configuration</a> 
-              <a class="dropdown-item" routerLink="/admin/statistics" routerLinkActive="active-link">Shop Statistics</a>              
+              <a class="dropdown-item" routerLink="/admin/inbox" (click)="scrollTop()" routerLinkActive="active-link">Manage Inbox</a>
+              <a class="dropdown-item" routerLink="/admin/orders" (click)="scrollTop()" routerLinkActive="active-link">Manage Orders</a>
+              <a class="dropdown-item" routerLink="/admin/categories" (click)="scrollTop()" routerLinkActive="active-link">Manage Categories</a>              
+              <a class="dropdown-item" routerLink="/admin/products" (click)="scrollTop()" routerLinkActive="active-link">Manage Products</a>
+              <a class="dropdown-item" routerLink="/admin/shop-configuration" (click)="scrollTop()" routerLinkActive="active-link">Shop Configuration</a> 
+              <a class="dropdown-item" routerLink="/admin/statistics" (click)="scrollTop()" routerLinkActive="active-link">Shop Statistics</a>              
             </ng-container>
             <br>
             <hr>
@@ -70,13 +70,13 @@
           </div>
         </li>
         <li class="nav-item">
-          <a  *ngIf="!isCollapsed" class="nav-link" routerLink="/shopping-cart" routerLinkActive="active-link-buttons">
+          <a  *ngIf="!isCollapsed" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons">
             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
             <span class="badge" *ngIf="cart$ | async as cart" style="color: #23272B; background-color: #ffbc00; margin-left: 2px;">
               {{ cart.totalItemsCount }}
             </span>
           </a>
-          <a  *ngIf="isCollapsed" class="nav-link" routerLink="/shopping-cart" routerLinkActive="active-link-buttons" [matTooltip]="cartmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+          <a  *ngIf="isCollapsed" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons" [matTooltip]="cartmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
             <span class="badge" *ngIf="cart$ | async as cart" style="color: #23272B; background-color: #ffbc00; margin-left: 2px;">
               {{ cart.totalItemsCount }}

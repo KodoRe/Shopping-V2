@@ -6,10 +6,12 @@
     <a
       class="list-group-item list-group-item-action"
       [class.active]="!category"
+      (click)="scrollTop()"
       routerLink="/"
       >All Categories</a>
     <a 
-      *ngFor="let c of categories$ | async" 
+      *ngFor="let c of categories$ | async"
+      (click)="scrollTop()"
       routerLink="/"
       [queryParams]="{ category: c.name }"
       class="list-group-item list-group-item-action"

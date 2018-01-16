@@ -72,6 +72,10 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
     
   }
 
+  scrollTop() {
+    window.scrollTo(0, 0);
+  }
+  
   ngOnDestroy() {
     this.cartSubscription.unsubscribe();
     this.shopConfigurationSubscription.unsubscribe();

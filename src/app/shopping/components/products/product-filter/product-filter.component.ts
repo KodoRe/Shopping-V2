@@ -20,6 +20,10 @@ export class ProductFilterComponent implements OnInit {
     this.mobileCategoriesHide = !this.mobileCategoriesHide;
   }
   
+  scrollTop() {
+    window.scrollTo(0, 0);
+    }
+
   ngOnInit() {
   }
 
