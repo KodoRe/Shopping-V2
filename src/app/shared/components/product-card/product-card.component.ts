@@ -24,6 +24,7 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   position: TooltipPosition = 'above';
   message: string = "Click to Open";
   hideDelay = 200;
+  isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(window.navigator.userAgent);
 
   constructor(
     private cartService: ShoppingCartService,
