@@ -28,7 +28,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   menumessage: string = "User Menu";
   cartmessage: string = "Shopping Cart";
   hideDelay = 200;
-
+  isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(window.navigator.userAgent);
 
   constructor(
     private auth: AuthService,

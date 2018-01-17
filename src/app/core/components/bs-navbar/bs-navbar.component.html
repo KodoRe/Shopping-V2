@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand navbar-light fixed-top" style="background-color: #23272B;">
   <div class="container">
     <div class="logo">
-    <a class="navbar-brand" routerLink="/" (click)="scrollTop()" [matTooltip]="copyrightsmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+    <a *ngIf="isMobile" class="navbar-brand" routerLink="/" (click)="scrollTop()">
+      H<i class="fa fa-music" aria-hidden="true" style="margin-left: -5px;"></i>N
+    </a>
+    <a *ngIf="!isMobile" class="navbar-brand" routerLink="/" (click)="scrollTop()" [matTooltip]="copyrightsmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
       H<i class="fa fa-music" aria-hidden="true" style="margin-left: -5px;"></i>N
     </a>
   </div>
@@ -20,15 +23,15 @@
         <li *ngIf="this.shopGpsCoords.lat != 0 && this.shopGpsCoords.lng != 0" class="nav-item">
             <a href="https://waze.com/ul?ll={{ this.shopGpsCoords.lat }},{{ this.shopGpsCoords.lng }}&navigate=yes" class="nav-link" target="_blank" [matTooltip]="navigatewazemessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
               <!-- <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i> -->
-              <img src="https://showtheway.io/img/showtheway-waze.png" style="height: 27px;" />
+              <img src="./assets/waze.png" style="height: 27px;" />
             </a>
             
         </li>
         <li class="nav-item">
-            <a *ngIf="!isCollapsed" class="nav-link" routerLink="/contact-us" (click)="scrollTop()" routerLinkActive="active-link">
+            <a *ngIf="isMobile" class="nav-link" routerLink="/contact-us"  routerLinkActive="active-link-buttons" (click)="scrollTop()">
               <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
             </a>
-            <a *ngIf="isCollapsed" class="nav-link" routerLink="/contact-us" routerLinkActive="active-link-buttons" (click)="scrollTop()" [matTooltip]="contactmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+            <a *ngIf="!isMobile" class="nav-link" routerLink="/contact-us" routerLinkActive="active-link-buttons" (click)="scrollTop()" [matTooltip]="contactmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
               <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
             </a>
         </li>
@@ -39,10 +42,10 @@
         </ng-template>
         <li ngbDropdown *ngIf="appUser; else anonymousUser" class="nav-item dropdown">
             
-          <a *ngIf="!isCollapsed" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a *ngIf="isMobile" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-user-circle fa-lg" aria-hidden="true" ></i>
           </a>
-          <a *ngIf="isCollapsed" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+          <a *ngIf="!isMobile" ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
           [matTooltip]="menumessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
               <i class="fa fa-user-circle fa-lg" aria-hidden="true" ></i>
           </a>
@@ -70,13 +73,13 @@
           </div>
         </li>
         <li class="nav-item">
-          <a  *ngIf="!isCollapsed" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons">
+          <a  *ngIf="isMobile" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons">
             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
             <span class="badge" *ngIf="cart$ | async as cart" style="color: #23272B; background-color: #ffbc00; margin-left: 2px;">
               {{ cart.totalItemsCount }}
             </span>
           </a>
-          <a  *ngIf="isCollapsed" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons" [matTooltip]="cartmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+          <a  *ngIf="!isMobile" class="nav-link" routerLink="/shopping-cart" (click)="scrollTop()" routerLinkActive="active-link-buttons" [matTooltip]="cartmessage" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
             <span class="badge" *ngIf="cart$ | async as cart" style="color: #23272B; background-color: #ffbc00; margin-left: 2px;">
               {{ cart.totalItemsCount }}

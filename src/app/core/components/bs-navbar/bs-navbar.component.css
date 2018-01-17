@@ -4,6 +4,7 @@
 }
 
 .active-link-buttons {
+  background-color: #23272B !important;
   color: #ffbc00 !important;
 }
 
@@ -69,6 +70,9 @@ hr {
   .dropdown-menu {
     font-size: 90%;
     margin-left: -60px;
+  } 
+  .navbar { 
+    border-bottom: none;
   }
 }
 @media screen and (max-width: 415px) and (min-height: 480px) and (max-height: 737px)
@@ -76,5 +80,8 @@ hr {
   .dropdown-menu {
     font-size: 85%;
     margin-left: -60px;
+  }
+  .navbar { 
+    border-bottom: none;
   }
 }
