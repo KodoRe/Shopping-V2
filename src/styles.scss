@@ -12,6 +12,13 @@ body {
   background-attachment: fixed;
 }
 
+@media screen and (max-width: 577px)
+{
+    body {
+      background-image: none;
+    }
+}
+
 .wrapper {
   background-color: white;
   padding: 30px;
