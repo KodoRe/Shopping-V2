@@ -11,7 +11,7 @@
   </div>
   <div class="form-group">
     <label for="phoneNumber"><strong>Phone Number</strong></label>
-    <input #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber" [(ngModel)]="shipping.phoneNumber" type="text" class="form-control" placeholder="Phone Number"  pattern="[0-9]*" minlength="9" maxlength="12"  required>
+    <input #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber" [(ngModel)]="shipping.phoneNumber" type="tel" class="form-control" placeholder="Phone Number"  pattern="[0-9]*" minlength="9" maxlength="12"  required>
     <div class="alert alert-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">
       <div *ngIf="phoneNumber.errors.required">Phone number is required.</div>
       <div *ngIf="phoneNumber.errors.pattern">Invalid phone number (only numbers allowed)</div>
