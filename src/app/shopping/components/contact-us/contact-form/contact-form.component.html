@@ -15,12 +15,14 @@
        </div>
   </div>     
   <div class="form-group">
-    <label for="phone"><strong>Telephone</strong></label>
+    <label for="phone"><strong>Phone Number</strong></label>
       <input #phone="ngModel" [(ngModel)]="contact.phone" [value]="contact.phone" name="phone" id="phone" type="tel" class="form-control" pattern="[0-9]*" minlength="9" maxlength="12" required>
     <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
-      <div *ngIf="phone.errors.required">Telephone is required.</div>
-      <div *ngIf="phone.errors.pattern">Invalid Number. Number Format Example: 094347718</div>
-      <div *ngIf="phone.errors.minlength">Telephone Length Must Be At Least 9 Numbers</div>
+      <div *ngIf="phone.errors.required">Phone number is required.</div>
+      <div *ngIf="phone.errors.pattern">Invalid phone number (only numbers allowed)</div>
+      <div *ngIf="phone.errors.pattern">Phone number example: 044444444</div>
+      <div *ngIf="phone.errors.pattern">Cellphone number example: 0522222222</div>
+      <div *ngIf="phone.errors.minlength">Phone number must be between 9~12 numbers</div>
     </div>
   </div>        
   <div class="form-group">
