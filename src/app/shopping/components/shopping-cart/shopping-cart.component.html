@@ -19,7 +19,7 @@
       <tr>
         <th></th>
         <th style="width: 500px">Product</th>
-        <th style="width: 230px">Quantity</th>
+        <th>Quantity</th>
         <th class="text-right" style="width: 200px">Price</th>
       </tr>
     </thead>
@@ -32,7 +32,7 @@
         <td width="400px">
           {{ item.title }}
         </td>
-        <td>
+        <td style="padding-left: 5px;padding-right: 5px;">
           <product-quantity [product]="item" [shopping-cart]="cart">
           </product-quantity>
         </td>
