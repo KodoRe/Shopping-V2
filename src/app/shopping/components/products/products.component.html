@@ -1,3 +1,14 @@
+<div class="col-12 mb-3 mt-3">
+  <div class="input-group">
+    <div class="searchIcon">
+<i class="fa fa-search" aria-hidden="true"></i>
+</div>
+<input 
+#query
+(keyup)="searchFilter(query.value)"
+type="text" class="form-control align-middle" placeholder="Search for product...">
+</div>
+</div>
 <div class="row">
   <div class="col-3">
     <product-filter [category]="category"></product-filter>
@@ -12,5 +23,6 @@
           <div *ngIf="(i + 1) % 2  === 1 && l" class="w-50"></div>          
         </ng-container>
       </div>
+      <div *ngIf="filteredProducts.length == 0"><p><strong>We are so sorry but no products found :(</strong></p></div>
   </div>
 </div>

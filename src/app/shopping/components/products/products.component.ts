@@ -45,6 +45,13 @@ export class ProductsComponent implements OnInit  {
       });
   }
 
+  searchFilter(query: string) { 
+    this.filteredProducts = (query) ?
+      this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
+      this.products;
+
+  }
+
   private applyFilter() { 
     this.filteredProducts = (this.category) ? 
     this.products.filter(p => p.category === this.category) : 

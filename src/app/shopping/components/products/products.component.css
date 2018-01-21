@@ -1,4 +1,11 @@
 .row {
     margin-left : 0;
-    margin-right: 0;
+    margin-right: -7px;
+}
+
+.searchIcon {
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-left: 1px solid #ced4da;
+    padding: 10px;
 }
