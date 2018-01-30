@@ -1,4 +1,5 @@
 import { AdminStatisticsService } from './services/admin-statistics.service';
+import { AdminPermissionsComponent } from './components/admin-permissions/admin-permissions.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
@@ -17,12 +18,15 @@ import { AdminStatisticsComponent } from './components/admin-statistics/admin-st
 import { DataTableModule } from './../modules/angular-4-data-table';
 import { AdminShopConfigurationComponent } from './components/admin-shop-configuration/admin-shop-configuration.component';
 import { AgmCoreModule } from '@agm/core';
+import { MatCheckboxModule } from '@angular/material';
+
 
 @NgModule({
   imports: [
     SharedModule,
     DataTableModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
     }),
@@ -72,6 +76,11 @@ import { AgmCoreModule } from '@agm/core';
         path: 'admin/shop-configuration', 
         component: AdminShopConfigurationComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
+      },
+      { 
+        path: 'admin/permissions', 
+        component: AdminPermissionsComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] 
       }
     ])            
   ],
@@ -85,7 +94,8 @@ import { AgmCoreModule } from '@agm/core';
     AdminCategoriesComponent,
     AdminInboxComponent,
     AdminStatisticsComponent,
-    AdminShopConfigurationComponent
+    AdminShopConfigurationComponent,
+    AdminPermissionsComponent,
   ],
   providers: [
     AdminStatisticsService,

@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header text-center"><h3><strong>Manage User Permissions</strong></h3></div>
+<div class="card-body">
+<div class="row">
+  <div class="col col-md-12 pb-2">
+   <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control align-middle" placeholder="Filter by User Name...">
+  </div>
+</div>
+<div *ngIf="items.length > 0" class="users-table smallScreen">
+  <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    [indexColumn]="false"
+    (reload)="reloadItems($event)">
+    <data-table-column
+      [property]="'name'"  
+      [header]="'User'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+    <ng-template #dataTableCell let-item="item">
+       {{ item.name }}       
+    </ng-template>
+    </data-table-column>
+
+    <data-table-column
+    [property]="'isAdmin'"
+    [header]="'Admin'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      <div class="align-center">
+        <mat-checkbox [(ngModel)]="item.isAdmin" (click)="showConfirm($event, item)"></mat-checkbox>
+      </div>
+    </ng-template>
+  </data-table-column>
+  
+  </data-table>
+    </div>
+    <div *ngIf="items.length == 0">
+        <p class="card-text">No users found.</p>
+      </div>
+  </div>
+</div>

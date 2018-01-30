@@ -20,7 +20,15 @@ export class UserService {
     return this.db.object('/users/' + uid);
   }
 
+  getAll() {
+    return this.db.list('/users/');
+  }
+
   setShippingInfo(uid: string, shippingInfo: any) {
     return this.db.object('/users/' + uid).update({shipping: shippingInfo});
+  }
+
+  toggleAdmin(uid: string, admin: boolean) {
+    return this.db.object('/users/' + uid).update({isAdmin: admin});
   }
 }
