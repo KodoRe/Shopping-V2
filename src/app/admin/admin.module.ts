@@ -78,7 +78,7 @@ import { MatCheckboxModule } from '@angular/material';
         canActivate: [AuthGuard, AdminAuthGuard] 
       },
       { 
-        path: 'admin/permissions', 
+        path: 'admin/admin-permissions', 
         component: AdminPermissionsComponent, 
         canActivate: [AuthGuard, AdminAuthGuard] 
       }

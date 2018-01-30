@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { AppUser } from 'shared/models/app-user';
 import { DataTableResource } from '../../../modules/angular-4-data-table';
 import { DialogsService } from 'shared/services/dialogs.service';
+import { AuthService } from 'shared/services/auth.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -12,17 +14,31 @@ import { DialogsService } from 'shared/services/dialogs.service';
   styleUrls: ['./admin-permissions.component.css']
 })
 export class AdminPermissionsComponent implements OnInit, OnDestroy {
+  userSubscription: Subscription;
   subscription: Subscription;
   tableResource: DataTableResource<AppUser>;
+  userId: string; //this is the logged admin userId used to disable own checkbox in admin permissions table.
   users: AppUser[];
   items: AppUser[] = [];
   itemCount: number; 
   result: boolean;
 
-  constructor(private userService: UserService,private dialogsService: DialogsService) { 
+  constructor(
+     private authService: AuthService,
+     private userService: UserService ,
+     private dialogsService: DialogsService,
+     private snackBar: MatSnackBar
+    ) { 
+    this.userSubscription = this.authService.appUser$.subscribe(au => {
+      this.userId = au.$key;
+    })
     this.subscription = this.userService.getAll()
     .subscribe(users => {
       this.users = users;   
+      this.users.forEach(u => { //This loop make sure that sorting will work good even if the user don't have the isAdmin in firebase.
+        if (u.isAdmin == null)
+          u.isAdmin = false;
+      })
       this.initializeTable(users);
     });
   }
@@ -51,17 +67,27 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
 
     this.initializeTable(filteredOrders);
   }
-  showConfirm(e: any, user: AppUser) {
-  e.preventDefault();
-  this.dialogsService
-  .confirm('', 'Are you sure you want to change admin permissions for this user?')
-  .subscribe( res => {
-  this.result = res;
-  if (this.result) {
-    this.userService.toggleAdmin(user.$key,!(user.isAdmin));
-      }
-    });
+
+  showConfirm(e: any, user: AppUser, checkBoxPermission: boolean) {
+     e.preventDefault();
+     
+     if (this.userId == user.$key) //Nothing Happens if admin click on his own admin permission. 
+     {
+      this.snackBar.open("You cant modify your own permissions","", {  duration: 3000 });
+      return;
+     }
+
+     this.dialogsService
+     .confirm('', 'Are you sure you want to change admin permissions for this user?')
+     .subscribe( res => {
+     if (res) {
+        checkBoxPermission = !checkBoxPermission;
+
+        this.userService.toggleAdmin(user.$key, checkBoxPermission);
+    }
+   });
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

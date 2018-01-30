@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header text-center"><h3><strong>Manage User Permissions</strong></h3></div>
+  <div class="card-header text-center"><h3><strong>Admin Permissions</strong></h3></div>
 <div class="card-body">
 <div class="row">
   <div class="col col-md-12 pb-2">
@@ -17,12 +17,23 @@
     (reload)="reloadItems($event)">
     <data-table-column
       [property]="'name'"  
-      [header]="'User'"
+      [header]="'Name'"
       [sortable]="true"
       [resizable]="true"
     >
     <ng-template #dataTableCell let-item="item">
        {{ item.name }}       
+    </ng-template>
+    </data-table-column>
+
+    <data-table-column
+      [property]="'email'"  
+      [header]="'Email'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+    <ng-template #dataTableCell let-item="item">
+       {{ item.email }}       
     </ng-template>
     </data-table-column>
 
@@ -34,7 +45,7 @@
   >
     <ng-template #dataTableCell let-item="item">
       <div class="align-center">
-        <mat-checkbox [(ngModel)]="item.isAdmin" (click)="showConfirm($event, item)"></mat-checkbox>
+        <mat-checkbox #checkBoxPermission name="checkBoxPermission" [(ngModel)]="item.isAdmin" (click)="showConfirm($event, item, checkBoxPermission.checked)"></mat-checkbox>
       </div>
     </ng-template>
   </data-table-column>
