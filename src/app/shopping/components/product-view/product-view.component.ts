@@ -2,7 +2,7 @@ import { Product } from './../../../shared/models/product';
 import { ProductService } from './../../../shared/services/product.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+import { ICarouselConfig, AnimationConfig } from '../../../modules/angular4-carousel';
 
 
 @Component({

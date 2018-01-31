@@ -5,7 +5,7 @@ import { Product } from '../../models/product';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'; //ViewEncapsulation
 import { MatDialog, TooltipPosition } from '@angular/material';
 import { ProductViewComponent } from '../../../shopping/components/product-view/product-view.component';
-import { ICarouselConfig, AnimationConfig } from 'angular4-carousel';
+import { ICarouselConfig, AnimationConfig } from '../../../modules/angular4-carousel';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core';
 

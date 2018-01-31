@@ -18,6 +18,16 @@ import { MatDialogModule, MatTooltipModule, MatSnackBarModule } from '@angular/m
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+//Enable features on mobile devices and fix a scroll bug when using swiperight/swipeleft (config disable pinch and rotate)
+import 'hammerjs';
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
+
+export class MyHammerConfig extends HammerGestureConfig {
+    overrides = <any> {
+        'pinch': { enable: false },
+        'rotate': { enable: false }
+    }
+}
 //https://stackblitz.com/edit/material-dialogs-sample?file=app%2Fapp.module.ts
 //for more material imports (this is material 2 and not 5!)
 //https://kyleledbetter.gitbooks.io/angular-material-2/dialog.html
@@ -47,7 +57,13 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     AdminAuthGuard,
-    { provide: LOCALE_ID, useValue: 'he-IL' } //when using the currency pipe, it depend on angular locale system to detemine some settings like where to show the symbol (right / left)...
+    { 
+      provide: LOCALE_ID, useValue: 'he-IL'
+    }, //when using the currency pipe, it depend on angular locale system to detemine some settings like where to show the symbol (right / left)...
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

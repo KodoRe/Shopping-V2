@@ -120,6 +120,6 @@ h1, h2, h3 {
   background-color: $primary-color !important;
 }
 
-.mat-ripple-element {
+.mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
   background: #ffbb0054 !important;
 }

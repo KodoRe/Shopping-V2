@@ -5,7 +5,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CarouselModule } from 'angular4-carousel';
+import { CarouselModule } from '../modules/angular4-carousel';
 import { MatTooltipModule, MatDialogModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

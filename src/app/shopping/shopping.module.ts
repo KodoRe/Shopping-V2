@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CarouselModule } from 'angular4-carousel';
+import { CarouselModule } from '../modules/angular4-carousel';
 
 import { LoginComponent } from '../core/components/login/login.component';
 
