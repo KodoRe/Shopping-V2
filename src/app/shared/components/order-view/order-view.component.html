@@ -41,7 +41,7 @@
               <div class="card-body">
                 <h3 class="card-title smallMobile">Shipping Information</h3>
                 <p class="card-text"><strong>Full Name:</strong> {{ order.shipping.fullName }}</p>
-                <p class="card-text"><strong>Phone Number:</strong> {{ order.shipping.phoneNumber }}</p>
+                <p class="card-text"><strong>Phone Number: </strong><a href="tel:{{order.shipping.phoneNumber}}" target="_top">{{order.shipping.phoneNumber}}</a></p>
                 <p class="card-text"><strong>Address:</strong> {{ order.shipping.address }}</p>
                 <p class="card-text"><strong>City:</strong> {{ order.shipping.city }}</p>
                 <p class="card-text"><strong>Postal Code:</strong> {{ order.shipping.postalCode }}</p>
