@@ -18,6 +18,13 @@ body {
     body {
       background-image: none;
     }
+
+    //Fix for zooming on inputting in mobile
+    input[type='text'],
+    input[type='number'],
+    textarea {
+      font-size: 16px;
+    }
 }
 
 .wrapper {

@@ -16,13 +16,13 @@ type="text" class="form-control align-middle" placeholder="Search for product...
   <div class="col">
     <div class="row" *ngIf="cart$ | async as cart">
         <ng-container *ngFor="let p of filteredProducts; let i = index; let l = last">
-          <div class="col">
+          <div class="col ml-2">
             <product-card [product]="p" [shopping-cart]="cart"></product-card>
           </div>
           <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
           <div *ngIf="(i + 1) % 2  === 1 && l" class="w-50"></div>          
         </ng-container>
       </div>
-      <div *ngIf="filteredProducts.length == 0"><p class="mt-1"><strong>No products found</strong></p></div>
+      <div *ngIf="filteredProducts.length == 0"><p class="mt-1 ml-4"><strong>No products found</strong></p></div>
   </div>
 </div>
