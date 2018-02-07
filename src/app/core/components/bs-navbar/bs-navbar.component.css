@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.navbar-brand {
+  margin-right: 0;
+}
+
 .dropdown-item-title {
   cursor: default;
 }

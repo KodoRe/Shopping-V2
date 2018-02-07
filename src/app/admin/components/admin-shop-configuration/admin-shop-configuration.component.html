@@ -39,6 +39,16 @@
             </div>
           </div>
         <div class="form-group">
+            <label for="phone"><strong>WhatsApp Number</strong></label>
+            <input formControlName="whatsappNumber" [(ngModel)]="shop.whatsappNumber" name="whatsappNumber" id="whatsappNumber" class="form-control">
+            <div class="alert alert-danger" *ngIf="whatsappNumber.touched && whatsappNumber.invalid">
+              <strong>Leave empty if you don't want WhatsApp Chat.</strong><br />
+              <strong>Phone number must have WhatsApp installed.</strong><br />
+              Fill valid phone number (only country prefix and numbers).<br />
+              Valid phone number looks like: <strong>972522222222</strong>.<br />
+            </div>
+          </div>
+        <div class="form-group">
           <label for="fax"><strong>Fax</strong></label>
             <input formControlName="fax" [(ngModel)]="shop.fax" name="fax" id="fax" class="form-control">
           <div class="alert alert-danger" *ngIf="fax.touched && fax.invalid">

@@ -16,7 +16,7 @@ export class AdminShopConfigurationComponent implements OnInit,OnDestroy {
   form: FormGroup;
   lat: number;
   lng: number;
-  shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" , location: {lat: 0, lng: 0, zoom: 14} };
+  shop = { name: "", address: "",  email: "", phone: "", whatsappNumber: "", fax: "", workHours: "" , location: {lat: 0, lng: 0, zoom: 14} };
   shopSubscription: Subscription;
 
   public loading = false;
@@ -33,6 +33,7 @@ export class AdminShopConfigurationComponent implements OnInit,OnDestroy {
         address: ['',Validators.required],
         email: ['',Validators.required],
         phone: ['',Validators.required],
+        whatsappNumber: ['',Validators.pattern("^[0-9]{12}$")],
         workHours: ['',Validators.required],
         fax: ['', Validators.required],
         location: fb.group({
@@ -70,6 +71,10 @@ export class AdminShopConfigurationComponent implements OnInit,OnDestroy {
 
     get phone() {
       return this.form.get('phone');
+    }
+
+    get whatsappNumber() {
+      return this.form.get('whatsappNumber');
     }
 
     get fax() {

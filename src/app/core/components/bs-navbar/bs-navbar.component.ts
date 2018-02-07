@@ -20,8 +20,10 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   cartSubscription: Subscription;
   shopConfigurationSubscription: Subscription;
   shopGpsCoords = {lat: 0, lng: 0};
+  shopWhatsappPhone = null;
   position: TooltipPosition = 'below';
-  navigatewazemessage: string = "Navigate with Waze"
+  navigatewazemessage: string = "Navigate to us"
+  whatsappchat: string = "Chat with Us"
   copyrightsmessage: string = "Hen Tzarfati & Nitai Ben Shaul"
   contactmessage: string = "Contact Us";
   loginmessage: string = "Login";
@@ -43,6 +45,15 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
     this.shopConfigurationSubscription = this.shopConfigService.get().subscribe(shopConfiguration => {
       this.shopGpsCoords.lat = shopConfiguration.location.lat;
       this.shopGpsCoords.lng = shopConfiguration.location.lng;
+
+      if (shopConfiguration.whatsappNumber)
+      {
+        this.shopWhatsappPhone = shopConfiguration.whatsappNumber;
+      }
+      else
+      {
+        this.shopWhatsappPhone = null;
+      }
     });
     this.cartSubscription = this.shoppingCartService.login().subscribe((click) => {
     this.openLoginDialog();

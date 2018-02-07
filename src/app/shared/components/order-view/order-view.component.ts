@@ -17,6 +17,7 @@ export class OrderViewComponent implements OnInit{
   order$: Observable<OrderView>;
   orderId;
   result: boolean;
+  public loading = false;
 
   constructor(
               private orderService: OrderService,
@@ -25,9 +26,12 @@ export class OrderViewComponent implements OnInit{
               private route: ActivatedRoute,
               private dialogsService: DialogsService
   ) {
+    this.loading = true;
     this.orderId = this.route.snapshot.paramMap.get('id'); 
-    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    
+    this.auth.appUser$.subscribe(appUser => {
+      this.appUser = appUser
+      this.loading = false;
+    });
   }
   
   async ngOnInit() { 
@@ -36,6 +40,7 @@ export class OrderViewComponent implements OnInit{
   
   async loadOrder() {
     this.order$ = await this.orderService.getOrderDetailsByOrderId(this.orderId).take(1).map(o => new OrderView(o));    
+    
   }
   markShipped(orderId) {
     this.dialogsService

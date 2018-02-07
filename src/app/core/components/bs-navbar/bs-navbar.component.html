@@ -20,6 +20,14 @@
              <!-- Using this class in order to align right the next items -->
       </ul>
       <ul class="navbar-nav">
+        <li *ngIf="shopWhatsappPhone" class="nav-item">
+              <a *ngIf="isMobile" href="https://api.whatsapp.com/send?phone={{shopWhatsappPhone}}" class="nav-link" target="_blank">
+                <img src="./assets/whatsapp.png" style="height: 19px;" />
+              </a>
+              <a *ngIf="!isMobile" href="https://api.whatsapp.com/send?phone={{shopWhatsappPhone}}" class="nav-link" target="_blank" [matTooltip]="whatsappchat" [matTooltipPosition]="position" [matTooltipHideDelay]="hideDelay">
+                <img src="./assets/whatsapp.png" style="height: 19px;" />
+              </a>          
+        </li>
         <li *ngIf="this.shopGpsCoords.lat != 0 && this.shopGpsCoords.lng != 0" class="nav-item">
             <a *ngIf="isMobile" href="https://waze.com/ul?ll={{ this.shopGpsCoords.lat }},{{ this.shopGpsCoords.lng }}&navigate=yes" class="nav-link" target="_blank">
               <img src="./assets/waze.png" style="height: 27px;" />

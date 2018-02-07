@@ -29,6 +29,8 @@ import { EmailService } from './services/email.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { DialogsService } from 'shared/services/dialogs.service';
 
+import { LoadingModule } from 'ngx-loading';
+
 @NgModule({
   imports: [
     CarouselModule,
@@ -39,6 +41,7 @@ import { DialogsService } from 'shared/services/dialogs.service';
     CommonModule,
     FormsModule,
     CustomFormsModule,
+    LoadingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
