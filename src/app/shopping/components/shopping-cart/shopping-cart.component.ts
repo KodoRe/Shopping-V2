@@ -14,6 +14,7 @@ export class ShoppingCartComponent implements OnInit {
   subscription: Subscription;
   user = null;
   result: boolean;
+  public loading = false;
 
   constructor(
     private shoppingCartService: ShoppingCartService,
@@ -22,6 +23,7 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.loading = true;
     this.cart$ = await this.shoppingCartService.getCart();
     this.subscription = this.auth.appUser$.subscribe((u: any) => {
       if (u) { 
@@ -30,6 +32,7 @@ export class ShoppingCartComponent implements OnInit {
       else {
         this.user = null;
       }
+      this.loading = false;
     })
   }
 

@@ -17,8 +17,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   items: Product[] = [];
   itemCount: number; 
   result: boolean;
+  public loading = false;
 
   constructor(private productService: ProductService, private dialogsService: DialogsService) { 
+    this.loading = true;
     this.subscription = this.productService.getAll()
       .subscribe(products => {
         this.products = products;
@@ -32,6 +34,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       .then(items => this.items = items);
     this.tableResource.count()
       .then(count => this.itemCount = count);
+    this.loading = false;
   }
 
   reloadItems(params) {

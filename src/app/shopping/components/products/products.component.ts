@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit  {
   filteredProducts: Product[] = [];
   category: string;
   cart$: Observable<ShoppingCart>;  
+  public loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class ProductsComponent implements OnInit  {
   }
 
   async ngOnInit() {
+    this.loading = true;
     this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();
     
@@ -41,7 +43,8 @@ export class ProductsComponent implements OnInit  {
       })
       .subscribe(params => {
         this.category = params.get('category');
-        this.applyFilter();         
+        this.applyFilter();  
+        this.loading = false;       
       });
   }
 

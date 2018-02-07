@@ -30,11 +30,14 @@ import { AgmCoreModule } from '@agm/core'; //Angular Google Maps
 import { DataTableModule } from './../modules/angular-4-data-table';
 import { SurveySuccessComponent } from './components/abandoned-cart-survey/survey-success/survey-success.component';
 
+import { LoadingModule } from 'ngx-loading';
+
 @NgModule({
   imports: [
     SharedModule,
     DataTableModule,
     CarouselModule,
+    LoadingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
     }),

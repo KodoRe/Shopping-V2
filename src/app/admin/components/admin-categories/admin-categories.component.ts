@@ -19,11 +19,13 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   items: Category[] = [];
   itemCount: number; 
   result: boolean;
+  public loading = false;
 
   constructor(
     private categoryService: CategoryService,
     private dialog: MatDialog,
     private dialogsService: DialogsService) { 
+    this.loading = true;
     this.subscription = this.categoryService.getAll()
       .subscribe(categories => {
         this.categories = categories;
@@ -37,6 +39,7 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
       .then(items => this.items = items);
     this.tableResource.count()
       .then(count => this.itemCount = count);
+    this.loading = false;
   }
 
   reloadItems(params) {

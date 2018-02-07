@@ -16,11 +16,12 @@ export class MyMessagesComponent implements OnInit {
   tableResource: DataTableResource<Contact>;
   items: Contact[] = [];
   itemCount: number; 
+  public loading = false;
 
-  
   constructor(
     private authService: AuthService,
     private contactService: ContactService) {
+      this.loading = true;
        authService.user$.take(1).subscribe(u => {
          // possible memory leak need to check if unsubscribe is needed after using take(1)
         this.subscription = this.contactService.getMessagesByUser(u.uid)
@@ -38,6 +39,7 @@ export class MyMessagesComponent implements OnInit {
       .then(items => this.items = items);
     this.tableResource.count()
       .then(count => this.itemCount = count);
+      this.loading = false;
   }
 
   reloadItems(params) {

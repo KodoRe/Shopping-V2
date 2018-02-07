@@ -17,12 +17,14 @@ export class MyOrdersComponent {
   subscription: Subscription;
   tableResource: DataTableResource<Order>;
   items: Order[] = [];
-  itemCount: number; 
+  itemCount: number;
+  public loading = false; 
 
   
   constructor(
     private authService: AuthService,
     private orderService: OrderService) {
+       this.loading = true;
        authService.user$.take(1).subscribe(u => {
          // possible memory leak need to check if unsubscribe is needed after using take(1)
         this.subscription = this.orderService.getOrdersByUser(u.uid)
@@ -40,6 +42,8 @@ export class MyOrdersComponent {
       .then(items => this.items = items);
     this.tableResource.count()
       .then(count => this.itemCount = count);
+
+    this.loading = false;
   }
 
   reloadItems(params) {

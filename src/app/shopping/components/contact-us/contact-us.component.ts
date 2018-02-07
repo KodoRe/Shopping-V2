@@ -12,10 +12,15 @@ import { Subscription } from 'rxjs';
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
   shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" , location: { lat: 0, lng: 0, zoom: 14 } };
+  public loading = false;
   subscription: Subscription;
 
   constructor(private shopinfoService: ShopInfoService) {
-    this.subscription = this.shopinfoService.get().subscribe(shop => this.shop = shop);
+    this.loading = true;
+    this.subscription = this.shopinfoService.get().subscribe(shop => {
+      this.shop = shop
+      this.loading = false;
+    });
     }
 
   ngOnInit() {

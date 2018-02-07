@@ -12,17 +12,22 @@ import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 })
 export class AbandonedCartSurveyComponent implements OnInit {
   cartId: string = "-1";
+  public loading = false;
+
   constructor( 
     private router: Router,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
     private surveyService: SurveyService
   ) {
+    this.loading = true;
     this.shoppingCartService.get(this.route.snapshot.paramMap.get('id')).subscribe(c => {
        if (c.userId)
         this.cartId = c.$key;
       else
         this.cartId = null;    
+      
+        this.loading = false;
     });
   }
 

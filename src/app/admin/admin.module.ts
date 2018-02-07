@@ -19,7 +19,7 @@ import { DataTableModule } from './../modules/angular-4-data-table';
 import { AdminShopConfigurationComponent } from './components/admin-shop-configuration/admin-shop-configuration.component';
 import { AgmCoreModule } from '@agm/core';
 import { MatCheckboxModule } from '@angular/material';
-
+import { LoadingModule } from 'ngx-loading';
 
 @NgModule({
   imports: [
@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material';
     DataTableModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    LoadingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBHAiHN1NQAOEbG1RDHTXOF_6N64gTqM-o'
     }),

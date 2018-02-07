@@ -20,12 +20,14 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   itemCount: number; 
   userName;
   result: boolean;
+  public loading = false;
 
   constructor(
     private orderService: OrderService,
     private userService: UserService,
     private dialogsService: DialogsService
   ) { 
+    this.loading = true;
     this.subscription = this.orderService.getOrders()
     .subscribe(orders => {
       this.orders = orders;   
@@ -48,6 +50,8 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
       });
     this.tableResource.count()
       .then(count => this.itemCount = count);
+      
+    this.loading = false;
   }
 
   reloadItems(params) {

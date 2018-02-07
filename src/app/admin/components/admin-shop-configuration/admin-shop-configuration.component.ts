@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AgmMap } from '@agm/core';
+import { Subscription } from 'rxjs/Subscription';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -10,11 +12,14 @@ import { AgmMap } from '@agm/core';
   templateUrl: './admin-shop-configuration.component.html',
   styleUrls: ['./admin-shop-configuration.component.css']
 })
-export class AdminShopConfigurationComponent implements OnInit {
+export class AdminShopConfigurationComponent implements OnInit,OnDestroy {
   form: FormGroup;
   lat: number;
   lng: number;
   shop = { name: "", address: "",  email: "", phone: "", fax: "", workHours: "" , location: {lat: 0, lng: 0, zoom: 14} };
+  shopSubscription: Subscription;
+
+  public loading = false;
 
   constructor(
     fb: FormBuilder,
@@ -22,7 +27,7 @@ export class AdminShopConfigurationComponent implements OnInit {
     private route: ActivatedRoute,
     private shopinfoService: ShopInfoService
   ) {
-
+      this.loading = true;
       this.form = fb.group({
         name: ['',Validators.required],
         address: ['',Validators.required],
@@ -37,7 +42,10 @@ export class AdminShopConfigurationComponent implements OnInit {
         })
       })
 
-   this.shopinfoService.get().subscribe(shop => this.shop = shop);
+   this.shopSubscription = this.shopinfoService.get().subscribe(shop => {
+     this.shop = shop
+     this.loading = false;
+    });
   }
 
   placeMarker($event){
@@ -77,6 +85,10 @@ export class AdminShopConfigurationComponent implements OnInit {
     }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.shopSubscription.unsubscribe();
   }
 
 }

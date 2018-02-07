@@ -22,6 +22,7 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
   items: AppUser[] = [];
   itemCount: number; 
   result: boolean;
+  public loading = false;
 
   constructor(
      private authService: AuthService,
@@ -29,6 +30,7 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
      private dialogsService: DialogsService,
      private snackBar: MatSnackBar
     ) { 
+    this.loading = true;
     this.userSubscription = this.authService.appUser$.subscribe(au => {
       this.userId = au.$key;
     })
@@ -51,6 +53,7 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
       });
     this.tableResource.count()
       .then(count => this.itemCount = count);
+    this.loading = false;
   }
 
   reloadItems(params) {

@@ -35,6 +35,7 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
   registeredUsersCartsSubscription: Subscription; //general subscription when something changes in firebase > registered users shopping-carts
   surveysSubscription: Subscription; //general subscription when something changes in firebase > surveys
   result: boolean;
+  public loading = false;
 
   constructor(
     private statisticsService: AdminStatisticsService,
@@ -43,7 +44,9 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
     private surveyService: SurveyService,
     private userService: UserService,
     private dialogsService: DialogsService
-      ){
+    ){
+      this.loading = true;
+
       //Statistics of shopping carts
        this.registeredUsersCartsSubscription = statisticsService.getShoppingCarts().subscribe(c =>  
       {
@@ -191,6 +194,8 @@ export class AdminStatisticsComponent implements OnInit, OnDestroy {
           this.notShipping.no++;
         else
           this.notShipping.yes++;
+
+        this.loading = false;
       })
     });
   }

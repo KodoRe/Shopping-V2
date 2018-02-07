@@ -34,10 +34,10 @@ export class AdminInboxComponent implements OnInit, OnDestroy {
   rnhExpanded: boolean;
   ahExpanded: boolean;
   anhExpanded: boolean;
-
-
+  public loading = false;
 
 constructor(private contactService: ContactService, private auth: AuthService, private dialogsService: DialogsService ) {
+  this.loading = true;
   this.subscription = this.contactService.getAll()
   .subscribe(r => {
     this.requests = r.reverse(); //Did a trick, for desc ordering ;)
@@ -115,6 +115,8 @@ constructor(private contactService: ContactService, private auth: AuthService, p
       //initialize filtered arrays.
       this.anonymousHandledFiltered = this.anonymousHandled;
       this.anonymousNotHandledFiltered = this.anonymousNotHandled;
+
+      this.loading = false;
 
     });    
   }
